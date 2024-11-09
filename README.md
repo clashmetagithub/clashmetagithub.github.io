@@ -1,4 +1,4 @@
-# 「11月8日」最高速度20.8M/S，2024年Clash Meta每天更新免费机场订阅节点链接  更新时间 2024-11-08 09:55:33
+# 「11月9日」最高速度22.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接  更新时间 2024-11-09 09:35:43
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashmetagithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,19 +9,19 @@
 
 ### Clash订阅链接
 
-- https://clashmetagithub.github.io/uploads/2024/11/0-20241108.yaml
-- https://clashmetagithub.github.io/uploads/2024/11/1-20241108.yaml
-- https://clashmetagithub.github.io/uploads/2024/11/2-20241108.yaml
-- https://clashmetagithub.github.io/uploads/2024/11/3-20241108.yaml
-- https://clashmetagithub.github.io/uploads/2024/11/4-20241108.yml
+- https://clashmetagithub.github.io/uploads/2024/11/0-20241109.yaml
+- https://clashmetagithub.github.io/uploads/2024/11/1-20241109.yaml
+- https://clashmetagithub.github.io/uploads/2024/11/2-20241109.yaml
+- https://clashmetagithub.github.io/uploads/2024/11/3-20241109.yaml
+- https://clashmetagithub.github.io/uploads/2024/11/4-20241109.yml
 
 ### V2ray订阅链接
 
-- https://clashmetagithub.github.io/uploads/2024/11/0-20241108.txt
-- https://clashmetagithub.github.io/uploads/2024/11/1-20241108.txt
-- https://clashmetagithub.github.io/uploads/2024/11/2-20241108.txt
-- https://clashmetagithub.github.io/uploads/2024/11/3-20241108.txt
-- https://clashmetagithub.github.io/uploads/2024/11/4-20241108.txt
+- https://clashmetagithub.github.io/uploads/2024/11/0-20241109.txt
+- https://clashmetagithub.github.io/uploads/2024/11/1-20241109.txt
+- https://clashmetagithub.github.io/uploads/2024/11/2-20241109.txt
+- https://clashmetagithub.github.io/uploads/2024/11/3-20241109.txt
+- https://clashmetagithub.github.io/uploads/2024/11/4-20241109.txt
 
 ## 更多clash节点订阅 ：
 
