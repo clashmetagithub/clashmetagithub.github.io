@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-20748.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>[vmware to openstack] 安装virtio驱动</title>
+        <meta name="description" content="描述   从vmware的虚拟机迁移到opensatck，由于vmware虚拟机磁盘类型采用的是scsi，要迁移到opensatck平台运行，发现虚拟机无法起来，原因是vmware虚拟机没有安装vir" />
+        <link rel="icon" href="__ADDON__/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">[vmware to openstack] 安装virtio驱动</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<h4 id="描述">描述</h4> <p>  从vmware的虚拟机迁移到opensatck，由于vmware虚拟机磁盘类型采用的是scsi，要迁移到opensatck平台运行，发现虚拟机无法起来，原因是vmware虚拟机没有安装virtio驱动，所以迁移之前要确保虚拟机支持virtio和安装了virtio驱动。</p> <h5 id="前置条件">前置条件</h5> <p>根据您服务器的操作系统，判断是否需要<strong>修复临时文件系统</strong>启用virtio驱动。</p> <table> <thead> <tr> <th style="text-align: center">系统版本</th> <th style="text-align: center">说明</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">CentOS 6/7/8及以上版本、Ubuntu 12/14/16/18/20及以上版本、<br /> Debian 7/8/9/10及以上版本、SUSE 11/12/15及以上版本</td> <td style="text-align: center">如果服务器操作系统如左侧所示，在导入自定义镜像时，openstack将会自动处理virtio驱动。 默认已安装virtio驱动的系统，但有时openstack image注入<code>hw_scsi_mode=virtio-scsi</code><code>hw_disk_bus=scsi</code>元数据不生效，需要注意<strong>步骤二: 修复临时文件系统。</strong></td> </tr> </tbody> </table> <h5 id="步骤一检查服务器内核是否支持virtio驱动">步骤一：检查服务器内核是否支持virtio驱动</h5> <p>  通过检查，发现源服务器内核支持virtio驱动，但是临时文件系统initramfs或者initrd中没有包含virtio驱动时，需要修复临时文件系统。以CentOS等为例。</p> <p>1、运行grep -i virtio /boot/config-$(uname -r)检查当前操作系统的内核是否支持virtio驱动。</p> <pre><code class="language-bash">$ grep -i virtio /boot/config-$(uname -r) CONFIG_VIRTIO_BLK=m CONFIG_SCSI_VIRTIO=m CONFIG_VIRTIO_NET=m CONFIG_VIRTIO_CONSOLE=m CONFIG_HW_RANDOM_VIRTIO=m CONFIG_VIRTIO=m # Virtio drivers CONFIG_VIRTIO_PCI=m CONFIG_VIRTIO_BALLOON=m # CONFIG_VIRTIO_MMIO is not set</code></pre> <blockquote> <p>请检查CONFIG_VIRTIO_BLK和CONFIG_VIRTIO_NET这两个参数。</p> </blockquote> <table> <thead> <tr> <th style="text-align: center">检查结果</th> <th style="text-align: center">说明</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">没有这两个参数</td> <td style="text-align: center">表示该操作系统没有安装virtio相关驱动，暂时不能直接导入openstack云平台。需要为您的服务器[<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://help.aliyun.com/document_detail/62423.html#Sample"  target="_blank" rel="nofollow">编译安装virtio驱动</a>]</td> </tr> <tr> <td style="text-align: center">参数取值为m</td> <td style="text-align: center">请执行下一步确认virtio驱动是否包含在临时文件系统initramfs或者initrd中</td> </tr> <tr> <td style="text-align: center">参数取值为y</td> <td style="text-align: center">表示包含了virtio驱动，您可以直接导入自定义的镜像到openstack平台。[<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/acommoners/p/15924889.html"  target="_blank" rel="nofollow">vmware虚拟机导入openstack</a>]</td> </tr> </tbody> </table> <p>2、执行命令lsinitrd /boot/initramfs-$(uname -r).img | grep virtio确认virtio驱动是否包含在临时文件系统initramfs或者initrd中。</p> <pre><code class="language-bash">$ lsinitrd /boot/initramfs-$(uname -r).img | grep virtio -rw-r--r--   1 root     root         7880 Sep 14  2019 usr/lib/modules/3.10.0-1062.1.1.el7.x86_64/kernel/drivers/block/virtio_blk.ko.xz -rw-r--r--   1 root     root        14324 Sep 14  2019 usr/lib/modules/3.10.0-1062.1.1.el7.x86_64/kernel/drivers/net/virtio_net.ko.xz -rw-r--r--   1 root     root         8180 Sep 14  2019 usr/lib/modules/3.10.0-1062.1.1.el7.x86_64/kernel/drivers/scsi/virtio_scsi.ko.xz drwxr-xr-x   2 root     root            0 Sep 21  2019 usr/lib/modules/3.10.0-1062.1.1.el7.x86_64/kernel/drivers/virtio -rw-r--r--   1 root     root         4552 Sep 14  2019 usr/lib/modules/3.10.0-1062.1.1.el7.x86_64/kernel/drivers/virtio/virtio.ko.xz -rw-r--r--   1 root     root         9908 Sep 14  2019 usr/lib/modules/3.10.0-1062.1.1.el7.x86_64/kernel/drivers/virtio/virtio_pci.ko.xz -rw-r--r--   1 root     root         8328 Sep 14  2019 usr/lib/modules/3.10.0-1062.1.1.el7.x86_64/kernel/drivers/virtio/virtio_ring.ko.xz</code></pre> <p><strong>确认结果说明：</strong></p> <ul> <li>如上图所示，表示initramfs已经包含了virtio_blk驱动，以及其所依赖的virtio.ko、virtio_pci.ko和virtio_ring.ko，您可以直接导入到openstack</li> <li>如果临时文件系统initramfs没有包含virtio驱动，则需要修复临时文件系统。具体操作，请参见步骤二：修复临时文件系统。</li> </ul> <h5 id="步骤二修复临时文件系统">步骤二：修复临时文件系统</h5> <ul> <li>CentOS/RedHat 8</li> <li></li> </ul> <pre><code class="language-bash">$ mkinitrd -f --allow-missing \             --with=virtio_blk --preload=virtio_blk \             --with=virtio_net --preload=virtio_net \             --with=virtio_console --preload=virtio_console \             /boot/initramfs-$(uname -r).img $(uname -r)</code></pre> <ul> <li>CentOS/RedHat 6/7</li> </ul> <pre><code class="language-bash">$ mkinitrd -f --allow-missing \             --with=xen-blkfront --preload=xen-blkfront \             --with=virtio_blk --preload=virtio_blk \             --with=virtio_pci --preload=virtio_pci \             --with=virtio_console --preload=virtio_console \             /boot/initramfs-$(uname -r).img $(uname -r)</code></pre> <ul> <li>CentOS/RedHat 5</li> </ul> <pre><code class="language-bash">$ mkinitrd -f --allow-missing \             --with=xen-vbd  --preload=xen-vbd \             --with=xen-platform-pci --preload=xen-platform-pci \             --with=virtio_blk --preload=virtio_blk \             --with=virtio_pci --preload=virtio_pci \             --with=virtio_console --preload=virtio_console \             /boot/initrd-$(uname -r).img $(uname -r)</code></pre> <ul> <li>Debian/Ubuntu</li> </ul> <pre><code class="language-bash">$ echo -e 'xen-blkfront\nvirtio_blk\nvirtio_pci\nvirtio_console' &gt;&gt; \ /etc/initramfs-tools/modules mkinitramfs -o /boot/initrd.img-$(uname -r)</code></pre> <h5 id="检查virtio驱动的安装情况">检查virtio驱动的安装情况</h5> <pre><code class="language-bash">$ find /lib/modules/"$(uname -r)"/ -name "virtio*" | grep -E "virtio*" $ grep -E "virtio*" &lt; /lib/modules/"$(uname -r)"/modules.builtin</code></pre> <blockquote> <p>如果任一命令输出virtio_blk、virtio_pci、virtio_console等文件列表，表明您已经正确安装了virtio驱动。</p> </blockquote> <h5 id="参考文献">参考文献</h5> <p>2022<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://help.aliyun.com/document_detail/62423.html#Sample"  target="_blank" rel="nofollow">阿里云帮助中心</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-20289.htm">如何快速实现一个颜色选择器_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-20749.htm">动物疫苗间隔多久打一次最好 动物疫苗间隔多久打一次最好呢</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe-links.htm" title="「11月17日」最高速度18.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月17日」最高速度18.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-2-free-clash-meta-node.htm" title="「9月2日」最高速度19.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月2日」最高速度19.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-node-share-links.htm" title="「10月4日」最高速度21M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月4日」最高速度21M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-today-clash-meta-node.htm" title="「11月12日」最高速度20M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月12日」最高速度20M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-15-latest-clash-meta-node.htm" title="「9月15日」最高速度19.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月15日」最高速度19.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-today-clash-meta-node.htm" title="「11月22日」最高速度20.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月22日」最高速度20.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-today-clash-meta-node.htm" title="「11月14日」最高速度20.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月14日」最高速度20.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-1-clash-meta-node-github.htm" title="「9月1日」最高速度18.8M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月1日」最高速度18.8M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-20-today-clash-meta-node.htm" title="「9月20日」最高速度19.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月20日」最高速度19.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
