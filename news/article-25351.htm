@@ -2,12 +2,11 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://clashmetagithub.github.io" />
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-25351.htm" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>2024-10归档 - Clash Meta Github节点订阅官网</title>
-        <meta name="keywords" content="2024-10归档" />
-        <meta name="description" content="2024-10归档" />
+    <title>通过源码了解Java的自动装箱拆箱</title>
+        <meta name="description" content="什么叫装箱 &amp; 拆箱？ 将int基本类型转换为Integer包装类型的过程叫做装箱，反之叫拆箱。 首先看一段代码 public static void main(String[] args) " />
         <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
@@ -32,7 +31,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="category">
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
         <div class="lines-wrap">
         <div class="lines-inner">
             <div class="lines"></div>
@@ -73,10 +72,10 @@
                             <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
                         </div> <!-- /.col-lg-6 -->
                         <div class="col-lg-5">
-                            <h2 class="heading" data-aos="fade-up" data-aos-delay="0">2024-10 归档</h2>
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">通过源码了解Java的自动装箱拆箱</h1>
                             <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
                                 <p>
-                                    <a href="/">首页</a> / <span>2024-10 归档</span>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
                                 </p>
                             </div> <!-- /.excerpt -->
                         </div> <!-- /.col-lg-5 -->
@@ -89,25 +88,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="xcblog-blog-list">
-                                                <div class="row justify-content-between item xcblog-blog-item" data-date="2024-10-01">
-                            <div class="col-md-3">
-                                <a href="/free-nodes/2024-10-1-clash-meta-node-share.htm" class="xcblog-blog-url">
-                                    <img src="/uploads/20240815-1/e7cbc43cc7e568feab18fa1351c842e1.webp" alt="「10月1日」最高速度18.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接" class="img-fluid">
-                                </a>
-                            </div> <!-- /.col-lg-6 -->
-                            <div class="col-md-9">
-                                <div class="mb-4" data-aos="fade-up" data-aos-delay="0">
-                                    <a href="/free-nodes/2024-10-1-clash-meta-node-share.htm" class="xcblog-blog-url">
-                                        <h3 class="heading xcblog-blog-title">「10月1日」最高速度18.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接</h3>
-                                    </a>
-                                    <p>这一次的节点更新覆盖了美国、日本、欧洲、加拿大、香港、新加坡、韩国等地区,最高速度可达18.6 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
+                                      				  				  				<h2 id="什么叫装箱--拆箱">什么叫装箱 &amp; 拆箱？</h2> <p>将int基本类型转换为Integer包装类型的过程叫做装箱，反之叫拆箱。</p> <h2 id="首先看一段代码">首先看一段代码</h2> <pre><code class="language-java">public static void main(String[] args) {     Integer a = 127, b = 127;     Integer c = 128, d= 128;     System.out.println(a == b); // true     System.out.println(c == d); // false }</code></pre> <p>不知道还有没有人不知道这段代码出现true和false的原因。由此我们引出了Java装箱的这个操作。我们带着疑问去进行分析。</p> <h2 id="装箱valueof">装箱（valueOf()）</h2> <pre><code class="language-java">public static Integer valueOf(int i) {     // -128 - 127     if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)         return IntegerCache.cache[i + (-IntegerCache.low)];     return new Integer(i); }</code></pre> <p>我们可以发现，在最开始有一个判断，如果这个值的范围在[-128,127]之间，那么就从这个缓存（Integer数组）中取，如果不在这个范围那么直接new一个。</p> <h3 id="为什么要有-128127的缓存">为什么要有[-128,127]的缓存？</h3> <p>我说说的理解，因为在我们的业务中，可能存在各种状态和标识等Integer类型的字段，这些值一般都是0,1,2,3之类的，而且出现的比较频繁，如果没有缓存，那么就需要频繁的new对象，然后再释放，就非常消耗内存空间，所以对于这个缓存就出现了，可以极大的帮助我们优化一些空间上的浪费。</p> <h3 id="为什么是-128127">为什么是[-128,127]？</h3> <p>这个我看了一下，具体为什么这里就不详说了，主要还是依赖计算机基础知识，在你了解了什么是原码、反码、补码。就很容易知道为什么是这个范围区间了。</p> <p>这个值也是可以通过启动参数进行更改的。</p> <p>-XX:AutoBoxCacheMax=(size)</p> <h3 id="自动装箱带来的性能问题">自动装箱带来的性能问题</h3> <p>那么看到现在你应该明白上面代码出现不同结果的原因了，那么你有没有想过，比如我们业务中一个for循环中，出现了统计数据类似这样的操作，如果存在自动装箱，那么会出现什么问题？我们看下面一段代码。</p> <pre><code class="language-java">public static void main(String[] args) {     long startTime = System.currentTimeMillis();     Integer count = 0;     // int count = 0;     for (int i = 0; i &lt; 5000000; i++) {         count += i;     }     System.out.println("计算时长：" + (System.currentTimeMillis() - startTime) + " ms"); }  // 执行结果： // Integer 计算时长：51 ms // int 计算时长：6 ms</code></pre> <p>那么通过执行结果可以明显的发现自动装箱频繁的new对象、分配内存，造成时间和空间上的性能损耗。</p> <h3 id="小总结">小总结</h3> <p>通过上面的源码阅读和测试分析，我们可以得出结论，我们平时在进行计算统计，或者方法入参的时候，应该尽量的避免这种类型转换的问题。来提升我们整个代码的执行效率。</p> <h2 id="拆箱intvalue">拆箱(intValue)</h2> <p>拆箱总体没有什么复杂的逻辑，直接返回这个数值的基本类型。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-24891.htm">动物疫苗厂家电话查询号码（动物疫苗批发）</a></p>
+                                        <p>下一个：<a href="/news/article-25353.htm">广州宠物批发（广州宠物批发市场在哪里进货）</a></p>
+                                    </div>
                                 </div>
-                            </div> <!-- /.col-lg-6 -->
-                        </div> <!-- /.row -->
-                        
-                        <ul class="pagination"><li><a href="/date/2024-10/page-3.htm">&laquo;</a></li> <li><a href="/date/2024-10/">1</a></li><li><a href="/date/2024-10/page-2.htm">2</a></li><li><a href="/date/2024-10/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
-                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -115,16 +101,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-today-clash-meta-node.htm" title="「12月1日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月1日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-22-free-high-speed-nodes.htm" title="「8月22日」最高速度20.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「8月22日」最高速度20.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-27-free-node-subscribe.htm" title="「9月27日」最高速度22.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月27日」最高速度22.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-11-clash-meta-node.htm" title="「9月11日」最高速度20.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月11日」最高速度20.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-29-free-node-subscribe.htm" title="「10月29日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月29日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19833.htm" title="做梦梦见抱着小女孩好不好（做梦梦见抱着小女孩好不好呀）">做梦梦见抱着小女孩好不好（做梦梦见抱着小女孩好不好呀）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-11-11-free-clash-meta-node.htm" title="「11月11日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月11日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-23041.htm" title="华畜兽药是正规公司吗,药品质量怎么样 华畜兽药是正规公司吗,药品质量怎么样啊">华畜兽药是正规公司吗,药品质量怎么样 华畜兽药是正规公司吗,药品质量怎么样啊</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-10-latest-clash-meta-node.htm" title="「10月10日」最高速度22.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月10日」最高速度22.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-6-latest-clash-meta-node.htm" title="「10月6日」最高速度20.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月6日」最高速度20.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-16-today-clash-meta-node.htm" title="「8月16日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「8月16日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-10-free-subscribe-node.htm" title="「9月10日」最高速度20.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月10日」最高速度20.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-clash-meta-node.htm" title="「11月2日」最高速度22M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月2日」最高速度22M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-clash-meta-node-share.htm" title="「12月13日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月13日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-clash-meta-node.htm" title="「11月19日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月19日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-clash-meta-node.htm" title="「11月21日」最高速度20.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月21日」最高速度20.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-23-node-share.htm" title="「9月23日」最高速度21.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月23日」最高速度21.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-clash-meta-github.htm" title="「11月29日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月29日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
