@@ -88,7 +88,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<h2 id="什么叫装箱--拆箱">什么叫装箱 &amp; 拆箱？</h2> <p>将int基本类型转换为Integer包装类型的过程叫做装箱，反之叫拆箱。</p> <h2 id="首先看一段代码">首先看一段代码</h2> <pre><code class="language-java">public static void main(String[] args) {     Integer a = 127, b = 127;     Integer c = 128, d= 128;     System.out.println(a == b); // true     System.out.println(c == d); // false }</code></pre> <p>不知道还有没有人不知道这段代码出现true和false的原因。由此我们引出了Java装箱的这个操作。我们带着疑问去进行分析。</p> <h2 id="装箱valueof">装箱（valueOf()）</h2> <pre><code class="language-java">public static Integer valueOf(int i) {     // -128 - 127     if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)         return IntegerCache.cache[i + (-IntegerCache.low)];     return new Integer(i); }</code></pre> <p>我们可以发现，在最开始有一个判断，如果这个值的范围在[-128,127]之间，那么就从这个缓存（Integer数组）中取，如果不在这个范围那么直接new一个。</p> <h3 id="为什么要有-128127的缓存">为什么要有[-128,127]的缓存？</h3> <p>我说说的理解，因为在我们的业务中，可能存在各种状态和标识等Integer类型的字段，这些值一般都是0,1,2,3之类的，而且出现的比较频繁，如果没有缓存，那么就需要频繁的new对象，然后再释放，就非常消耗内存空间，所以对于这个缓存就出现了，可以极大的帮助我们优化一些空间上的浪费。</p> <h3 id="为什么是-128127">为什么是[-128,127]？</h3> <p>这个我看了一下，具体为什么这里就不详说了，主要还是依赖计算机基础知识，在你了解了什么是原码、反码、补码。就很容易知道为什么是这个范围区间了。</p> <p>这个值也是可以通过启动参数进行更改的。</p> <p>-XX:AutoBoxCacheMax=(size)</p> <h3 id="自动装箱带来的性能问题">自动装箱带来的性能问题</h3> <p>那么看到现在你应该明白上面代码出现不同结果的原因了，那么你有没有想过，比如我们业务中一个for循环中，出现了统计数据类似这样的操作，如果存在自动装箱，那么会出现什么问题？我们看下面一段代码。</p> <pre><code class="language-java">public static void main(String[] args) {     long startTime = System.currentTimeMillis();     Integer count = 0;     // int count = 0;     for (int i = 0; i &lt; 5000000; i++) {         count += i;     }     System.out.println("计算时长：" + (System.currentTimeMillis() - startTime) + " ms"); }  // 执行结果： // Integer 计算时长：51 ms // int 计算时长：6 ms</code></pre> <p>那么通过执行结果可以明显的发现自动装箱频繁的new对象、分配内存，造成时间和空间上的性能损耗。</p> <h3 id="小总结">小总结</h3> <p>通过上面的源码阅读和测试分析，我们可以得出结论，我们平时在进行计算统计，或者方法入参的时候，应该尽量的避免这种类型转换的问题。来提升我们整个代码的执行效率。</p> <h2 id="拆箱intvalue">拆箱(intValue)</h2> <p>拆箱总体没有什么复杂的逻辑，直接返回这个数值的基本类型。</p> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2 id="什么叫装箱--拆箱">什么叫装箱 &amp; 拆箱？</h2> <p>将int基本类型转换为Integer包装类型的过程叫做装箱，反之叫拆箱。</p> <h2 id="首先看一段代码">首先看一段代码</h2> <pre><code class="language-java">public static void main(String[] args) {     Integer a = 127, b = 127;     Integer c = 128, d= 128;     System.out.println(a == b); // true     System.out.println(c == d); // false }</code></pre> <p>不知道还有没有人不知道这段代码出现true和false的原因。由此我们引出了Java装箱的这个操作。我们带着疑问去进行分析。</p> <h2 id="装箱valueof">装箱（valueOf()）</h2> <pre><code class="language-java">public static Integer valueOf(int i) {     // -128 - 127     if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)         return IntegerCache.cache[i + (-IntegerCache.low)];     return new Integer(i); }</code></pre> <p>我们可以发现，在最开始有一个判断，如果这个值的范围在[-128,127]之间，那么就从这个缓存（Integer数组）中取，如果不在这个范围那么直接new一个。</p> <h3 id="为什么要有-128127的缓存">为什么要有[-128,127]的缓存？</h3> <p>我说说的理解，因为在我们的业务中，可能存在各种状态和标识等Integer类型的字段，这些值一般都是0,1,2,3之类的，而且出现的比较频繁，如果没有缓存，那么就需要频繁的new对象，然后再释放，就非常消耗内存空间，所以对于这个缓存就出现了，可以极大的帮助我们优化一些空间上的浪费。</p> <h3 id="为什么是-128127">为什么是[-128,127]？</h3> <p>这个我看了一下，具体为什么这里就不详说了，主要还是依赖计算机基础知识，在你了解了什么是原码、反码、补码。就很容易知道为什么是这个范围区间了。</p> <p>这个值也是可以通过启动参数进行更改的。</p> <p>-XX:AutoBoxCacheMax=(size)</p> <h3 id="自动装箱带来的性能问题">自动装箱带来的性能问题</h3> <p>那么看到现在你应该明白上面代码出现不同结果的原因了，那么你有没有想过，比如我们业务中一个for循环中，出现了统计数据类似这样的操作，如果存在自动装箱，那么会出现什么问题？我们看下面一段代码。</p> <pre><code class="language-java">public static void main(String[] args) {     long startTime = System.currentTimeMillis();     Integer count = 0;     // int count = 0;     for (int i = 0; i &lt; 5000000; i++) {         count += i;     }     System.out.println("计算时长：" + (System.currentTimeMillis() - startTime) + " ms"); }  // 执行结果： // Integer 计算时长：51 ms // int 计算时长：6 ms</code></pre> <p>那么通过执行结果可以明显的发现自动装箱频繁的new对象、分配内存，造成时间和空间上的性能损耗。</p> <h3 id="小总结">小总结</h3> <p>通过上面的源码阅读和测试分析，我们可以得出结论，我们平时在进行计算统计，或者方法入参的时候，应该尽量的避免这种类型转换的问题。来提升我们整个代码的执行效率。</p> <h2 id="拆箱intvalue">拆箱(intValue)</h2> <p>拆箱总体没有什么复杂的逻辑，直接返回这个数值的基本类型。</p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-24891.htm">动物疫苗厂家电话查询号码（动物疫苗批发）</a></p>
                                         <p>下一个：<a href="/news/article-25353.htm">广州宠物批发（广州宠物批发市场在哪里进货）</a></p>
@@ -101,16 +102,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-14-clash-meta-node-share.htm" title="「9月14日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月14日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-1-free-node-subscribe.htm" title="「11月1日」最高速度18.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月1日」最高速度18.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-26261.htm" title="宠物粮批发平台有哪些公司（宠物粮批发平台有哪些公司招聘）">宠物粮批发平台有哪些公司（宠物粮批发平台有哪些公司招聘）</a></li>
-                        <li class="py-2"><a href="/news/article-24384.htm" title="Spring ResolvableType满足你对Java泛型的任何操作和幻想">Spring ResolvableType满足你对Java泛型的任何操作和幻想</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-3-node-share-links.htm" title="「9月3日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月3日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-high-speed-nodes.htm" title="「11月26日」最高速度19.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月26日」最高速度19.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-13-free-subscribe-node.htm" title="「10月13日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月13日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-26-clash-meta-github.htm" title="「10月26日」最高速度22.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月26日」最高速度22.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-10-clash-meta-github.htm" title="「11月10日」最高速度21.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月10日」最高速度21.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-node-share-links.htm" title="「11月8日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月8日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26743.htm" title="宠物批发零售网站有哪些（宠物批发商）">宠物批发零售网站有哪些（宠物批发商）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share.htm" title="「12月3日」最高速度22.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月3日」最高速度22.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-clash-meta-node.htm" title="「11月3日」最高速度18.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月3日」最高速度18.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-clash-meta-node-share.htm" title="「12月13日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月13日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22124.htm" title="动物疫苗公司10强名单公布时间（动物疫苗公司10强名单公布时间查询）">动物疫苗公司10强名单公布时间（动物疫苗公司10强名单公布时间查询）</a></li>
+                        <li class="py-2"><a href="/news/article-25351.htm" title="通过源码了解Java的自动装箱拆箱">通过源码了解Java的自动装箱拆箱</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-clash-meta-node.htm" title="「8月24日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「8月24日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-clash-meta-github.htm" title="「10月14日」最高速度18.8M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月14日」最高速度18.8M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27207.htm" title="中国兽药30强企业有哪些（中国兽药十强企业）">中国兽药30强企业有哪些（中国兽药十强企业）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-6-free-node-subscribe-links.htm" title="「9月6日」最高速度21.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月6日」最高速度21.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -122,7 +123,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">44</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">56</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -150,6 +151,15 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                     <p>
                         <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
                         <br />
