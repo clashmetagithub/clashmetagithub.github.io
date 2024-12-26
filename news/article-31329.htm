@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-31329.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>微服务nacos简单部署+网关设置+日志管理</title>
+        <meta name="description" content="1.nacos简单部署 2.网关设置 3日志管理.   nacos引用的主要依赖是然后在配置文件进行注册（需要提前启动nacos插件，默认密码都是nacos）       &lt;dependency" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">微服务nacos简单部署+网关设置+日志管理</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p id="1.nacos%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2-toc" style="margin-left:0px;"><a href="#1.nacos%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2" rel="nofollow">1.nacos简单部署</a></p> <p id="2.%E7%BD%91%E5%85%B3%E8%AE%BE%E7%BD%AE-toc" style="margin-left:0px;"><a href="#2.%E7%BD%91%E5%85%B3%E8%AE%BE%E7%BD%AE" rel="nofollow">2.网关设置</a></p> <p id="3%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86.%C2%A0-toc" style="margin-left:0px;"><a href="#3%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86.%C2%A0" rel="nofollow">3日志管理.</a></p> <hr id="hr-toc"/> </h1> <p>nacos引用的主要依赖是然后在配置文件进行注册（需要提前启动nacos插件，默认密码都是nacos）</p> <pre><code class="language-java">      &lt;dependency&gt;             &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;             &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;        &lt;/dependency&gt;</code></pre> <p>在配置文件进行注册&nbsp;（注册时必须设置服务名）</p> <pre><code class="language-java">spring.application.name=shop-product spring.cloud.nacos.server-addr=localhost:8848</code></pre> <p>&nbsp;然后在列表中可以看见对应的服务<img fetchpriority="high" decoding="async" alt="" height="479" src="http://img.555519.xyz/uploads/20221117/24b18b1642dcc56ae06799e7f73bbe51.jpg"></p> <p>服务直接可以相互调用，调用方式有三种</p> <p>1.直接输入服务ip(不灵活)</p> <pre><code class="language-java">  /**  * @program: shop-parent3  * @description:  * @author: 大鱼  * @create: 2021-07-07 19:36  **/ @RestController public class OrderController {     @Resource     OrderMapper orderMapper;     @Resource     RestTemplate restTemplate;     @GetMapping("insert")     private String insertit(Integer pid, Integer num) {         Order order = new Order();         Product prduct = restTemplate.getForObject("http://localhost:8081/product/byid/"+pid,Product.class);         order.setUsername("xxxx");          orderMapper.insert(order);         return "ok";     } }</code></pre> <p>2.从nacos注册中心获取（不符合习惯）</p> <blockquote> <pre><code class="language-html hljs">@RestController public class OrderController1 {     @Resource     OrderMapper orderMapper;     @Resource     RestTemplate restTemplate;     @Resource     DiscoveryClient discoveryClient;     @GetMapping("insert1")     private String insertit(Integer pid, Integer num) {         Order order = new Order();         List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances("shop-product");         ServiceInstance instance = instances.get(0);         Product prduct = restTemplate.getForObject(instance.getUri()+"/product/byid/"+pid,Product.class);         order.setUsername("xxxx");          orderMapper.insert(order);         return "ok";     } }</code></pre> </blockquote> <p>&nbsp;用DiscoveryClient类获取注册中心的集群，然后获取路径</p> <p>同时在主启动类加入RestTemplate引用类</p> <pre><code>@SpringBootApplication @MapperScan(basePackages = "com.dayu.mapper")  public class OrderApplication {     public static void main(String[] args) {         SpringApplication.run(OrderApplication.class, args);     }      @Bean     public RestTemplate restTemplate() {         return new RestTemplate();     } }</code></pre> <p>3.引用openfeign依赖</p> <pre><code class="language-java">      &lt;dependency&gt;             &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;             &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;         &lt;/dependency&gt;</code></pre> <p>&nbsp;新建一个接口加注解并且指定注册中心想要获取的服务名以及该服务的方法</p> <pre><code>@FeignClient(value = "shop-product") @RequestMapping("product") public interface Myopen {     @GetMapping("byid/{id}")     public Product getit(@PathVariable Integer id); }</code></pre> <p>开启注解&nbsp;@EnableFeignClients生效和&nbsp; @LoadBalanced（负载均衡）</p> <pre><code>@SpringBootApplication @MapperScan(basePackages = "com.dayu.mapper") @EnableFeignClients  public class OrderApplication {     public static void main(String[] args) {         SpringApplication.run(OrderApplication.class, args);     }      @Bean     @LoadBalanced     public RestTemplate restTemplate() {         return new RestTemplate();     } }</code></pre> <p>在配置文件可声明服务负载均衡的方式</p> <pre><code>shop-product:  # 这里使用服务的名称   ribbon:     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #使用的的负载均衡策略</code></pre> <p>4.配置文件</p> <p>微服务的配置文件可以从注册中心进行获取，</p> <p>&nbsp;1）首先引入依赖</p> <pre><code>    &lt;dependency&gt;         &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;         &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;     &lt;/dependency&gt;</code></pre> <p>首先定义一个bootstrap.yml文件</p> <pre><code>#资源配置文件有优先级pro&gt;yaml&gt;yml #从nacos 获取资源配置文件 spring:   application:     name: shop-product#微服务名   cloud:     nacos:       config:         server-addr: localhost:8848         file-extension: yaml#文件后缀可变</code></pre> <p>根据服务名和相应的文件后缀获取配置文件，与配置文件无异<img decoding="async" alt="" height="243" src="http://img.555519.xyz/uploads/20221117/293291395229021c8738a75bc65b0d10.jpg"></p> <p><img decoding="async" alt="" height="783" src="http://img.555519.xyz/uploads/20221117/b33bdd5c6f32e4015835f05ce4338053.jpg"></p> </h1> </h1> <p style="margin-left:0;text-align:left;">所谓的API网关，就是指系统的统一入口，它封装了应用程序的内部结构，为客户端提供统一服 务，一些与业务本身功能无关的公共逻辑可以在这里实现，诸如认证、鉴权、监控（黑白名单）、路由转发等等。</p> <p style="margin-left:0;text-align:left;">首先引入依赖</p> <pre><code class="language-html hljs">&lt;dependency&gt;     &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;     &lt;artifactId&gt;spring-cloud-starter-gateway&lt;/artifactId&gt; &lt;/dependency&gt;</code></pre> <p>首先在配置文件注册微服务的相关信息，然后可以在nacos的配置中心进行获取</p> <pre><code>spring:   cloud:     gateway:       routes:         - id: shop-product           uri: lb://shop-product/   #负载均衡服务名ip           order: 0           predicates:             - Path=/product/**   #断言 #            - Age=18,60           filters:   #过滤器             - SetStatus=250 #            - StripPrefix=1</code></pre> <p>全局过滤器是用来对网关请求所有的服务请求进行过滤的。</p> <pre><code class="language-java">@Component public class AllFilter  implements GlobalFilter, Ordered {      public Mono&lt;Void&gt; filter(ServerWebExchange exchange, GatewayFilterChain chain) {          System.out.println("---------------------------全局拦截器---------------");         ServerHttpRequest request = exchange.getRequest();          ServerHttpResponse response = exchange.getResponse();          String token = request.getHeaders().getFirst("token");         System.out.println(token);         if (!StringUtils.isEmpty(token)) {             if ("admin".equals(token)) {                 return chain.filter(exchange);//如果请求头含有token并且是admin时对其放性             }             String path = request.getPath().toString();             if (path.contains("/login")) {                 return chain.filter(exchange);//判断路径是否包含login（防止空指针异常）             }         }         Map data = new HashMap&lt;&gt;();         DataBuffer buffer = null;         try {             data.put("status", "2222");//将map转成json并且返回前端             data.put("msg", "先登录");             byte[] datas = JSON.toJSONString(data).getBytes("utf-8");//需要阿里的依赖             buffer = response.bufferFactory().wrap(datas);             response.setStatusCode(HttpStatus.UNAUTHORIZED);             response.getHeaders().add("Content-Type","application/json;charset=UTF-8");//编译格式         } catch (Exception e) {             e.printStackTrace();          }         return response.writeWith(Mono.just(buffer)); // // //        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED); //        return exchange.getResponse().setComplete();     }       public int getOrder() {//优先级         return 1;     } }</code></pre> <p>转为json的依赖</p> <pre><code class="language-java">    &lt;dependency&gt;         &lt;groupId&gt;com.alibaba&lt;/groupId&gt;         &lt;artifactId&gt;fastjson&lt;/artifactId&gt;         &lt;version&gt;1.2.72&lt;/version&gt;     &lt;/dependency&gt;</code></pre> </h1> <p>链路追踪一般采用sleuth和zipkin进行结合首先引入依赖</p> <pre><code class="language-java">    &lt;dependency&gt;         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;         &lt;artifactId&gt;spring-cloud-starter-sleuth&lt;/artifactId&gt;     &lt;/dependency&gt;     &lt;dependency&gt;         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;         &lt;artifactId&gt;spring-cloud-starter-zipkin&lt;/artifactId&gt;     &lt;/dependency&gt;</code></pre> <p>同时启用客户端 并且将数据存储到表中，</p> <blockquote> <p>&nbsp;java -jar zipkin-server-2.12.9-exec.jar --STORAGE_TYPE=mysql --MYSQL_HOST=localhost --MYSQL_TCP_PORT=3306 --MYSQL_DB=zipkin --MYSQL_USER=root --MYSQL_PASS=123456</p> </blockquote> <p>&nbsp;建表sql 数据库名zipkin</p> <pre><code class="language-sql">CREATE TABLE IF NOT EXISTS zipkin_spans (  `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',  `trace_id` BIGINT NOT NULL,  `id` BIGINT NOT NULL,  `name` VARCHAR(255) NOT NULL,  `parent_id` BIGINT,  `debug` BIT(1),  `start_ts` BIGINT COMMENT 'Span.timestamp(): epoch micros used for endTs query and to implement TTL', `duration` BIGINT COMMENT 'Span.duration(): micros used for minDuration and maxDuration query' )  ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;  ALTER TABLE zipkin_spans ADD UNIQUE KEY(`trace_id_high`, `trace_id`, `id`) COMMENT 'ignore insert on duplicate';  ALTER TABLE zipkin_spans ADD INDEX(`trace_id_high`, `trace_id`, `id`) COMMENT 'for joining with zipkin_annotations';  ALTER TABLE zipkin_spans ADD INDEX(`trace_id_high`, `trace_id`) COMMENT 'for getTracesByIds';  ALTER TABLE zipkin_spans ADD INDEX(`name`) COMMENT 'for getTraces and getSpanNames';  ALTER TABLE zipkin_spans ADD INDEX(`start_ts`) COMMENT 'for getTraces ordering and range'; CREATE TABLE IF NOT EXISTS zipkin_annotations (  `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',  `trace_id` BIGINT NOT NULL COMMENT 'coincides with zipkin_spans.trace_id',  `span_id` BIGINT NOT NULL COMMENT 'coincides with zipkin_spans.id',  `a_key` VARCHAR(255) NOT NULL COMMENT 'BinaryAnnotation.key or Annotation.value if type == -1',  `a_value` BLOB COMMENT 'BinaryAnnotation.value(), which must be smaller than 64KB',  `a_type` INT NOT NULL COMMENT 'BinaryAnnotation.type() or -1 if Annotation',  `a_timestamp` BIGINT COMMENT 'Used to implement TTL; Annotation.timestamp or zipkin_spans.timestamp',  `endpoint_ipv4` INT COMMENT 'Null when Binary/Annotation.endpoint is null',  `endpoint_ipv6` BINARY(16) COMMENT 'Null when Binary/Annotation.endpoint is null, or no IPv6 address',  `endpoint_port` SMALLINT COMMENT 'Null when Binary/Annotation.endpoint is null', `endpoint_service_name` VARCHAR(255) COMMENT 'Null when Binary/Annotation.endpoint is null' )  ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci; ALTER TABLE zipkin_annotations ADD UNIQUE KEY(`trace_id_high`, `trace_id`, `span_id`, `a_key`, `a_timestamp`) COMMENT 'Ignore insert on duplicate';  ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`, `span_id`) COMMENT 'for joining with zipkin_spans';  ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`) COMMENT 'for getTraces/ByIds';  ALTER TABLE zipkin_annotations ADD INDEX(`endpoint_service_name`) COMMENT 'for getTraces and getServiceNames';  ALTER TABLE zipkin_annotations ADD INDEX(`a_type`) COMMENT 'for getTraces';  ALTER TABLE zipkin_annotations ADD INDEX(`a_key`) COMMENT 'for getTraces';  ALTER TABLE zipkin_annotations ADD INDEX(`trace_id`, `span_id`, `a_key`) COMMENT 'for dependencies job'; CREATE TABLE IF NOT EXISTS zipkin_dependencies (  `day` DATE NOT NULL,  `parent` VARCHAR(255) NOT NULL,  `child` VARCHAR(255) NOT NULL,  `call_count` BIGINT )  ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;  ALTER TABLE zipkin_dependencies ADD UNIQUE KEY(`day`, `parent`, `child`);</code></pre> <p>&nbsp;启动端口号时localhost:9411</p> <p><img loading="lazy" decoding="async" alt="" height="306" src="http://img.555519.xyz/uploads/20221117/ea21b57fbbe40bc6a7f4115012ce0fac.jpg"></p> <p>可以看出链路并且看出服务的时间以及出问题的环节</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-30972.htm">郑州领养猫咪的网站（郑州哪里能领养猫）</a></p>
+                                        <p>下一个：<a href="/news/article-31330.htm">动物疫苗反应有哪些（动物疫苗使用注意事项）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-29984.htm" title="Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息">Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息</a></li>
+                        <li class="py-2"><a href="/news/article-20748.htm" title="[vmware to openstack] 安装virtio驱动">[vmware to openstack] 安装virtio驱动</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-29-free-node-subscribe.htm" title="「8月29日」最高速度18.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「8月29日」最高速度18.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-today-clash-meta-node.htm" title="「12月7日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月7日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-clash-meta-node-share.htm" title="「12月24日」最高速度18.9M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接">「12月24日」最高速度18.9M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-clash-meta-github.htm" title="「10月21日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月21日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-16-node-share-links.htm" title="「9月16日」最高速度19.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月16日」最高速度19.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19832.htm" title="源码中的设计模式&#8211;装饰器模式_在线工具">源码中的设计模式&#8211;装饰器模式_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-node-share-links.htm" title="「10月7日」最高速度18.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月7日」最高速度18.9M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">77</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
