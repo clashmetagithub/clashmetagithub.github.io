@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-31937.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>从同步函数 hello-world-dotnet 开始探索OpenFunction</title>
+        <meta name="description" content="OpenFunction[1] 是一个现代化的云原生 FaaS（函数即服务）框架，它引入了很多非常优秀的开源技术栈，包括 Knative、Tekton、Shipwright、Dapr、KEDA 等，这" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">从同步函数 hello-world-dotnet 开始探索OpenFunction</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>OpenFunction<sup>[1]</sup> 是一个现代化的云原生 FaaS（函数即服务）框架，它引入了很多非常优秀的开源技术栈，包括 Knative、Tekton、Shipwright、Dapr、KEDA 等，这些技术栈为打造新一代开源函数计算平台提供了无限可能：</p> <ul> <li>Shipwright 可以在函数构建的过程中让用户自由选择和切换镜像构建的工具，并对其进行抽象，提供了统一的 API；</li> <li>Knative 提供了优秀的同步函数运行时，具有强大的自动伸缩能力；</li> <li>KEDA 可以基于更多类型的指标来自动伸缩，更加灵活；</li> <li>Dapr 可以将不同应用的通用能力进行抽象，减轻开发分布式应用的工作量。</li> </ul> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213633257-95198026.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img fetchpriority="high" decoding="async" width="894" height="497" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/3c64f10807ed3abc40dfe9a18fcd23fa.jpg"></a></p> <p>OpenFunction 最新发布了0.6版本，而且2022 年 4 月 27 日，<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/OpenFunction/OpenFunction"  rel="nofollow">OpenFunction</a><sup>[1]</sup> 顺利通过了云原生计算基金会 CNCF 技术监督委员会（TOC）的投票，正式进入 CNCF 沙箱（Sandbox）托管。OpenFunction 也将真正变成一个由 100% 社区驱动的开源项目。最近我也加入了OpenFunction项目开始规划dotnet的支持开发，dotnet 框架支持的仓库<sup>[2]</sup>，目前完成0.1版本的开发。</p> <p><img decoding="async" width="850" height="578" src="http://img.555519.xyz/uploads3/20220509/659cf9c514c6fa5f12715534aa94c9dd.jpg" alt="从同步函数 hello-world-dotnet 开始探索OpenFunction"/></p> <p>经过我这2周时间的摸索，本文将会带领大家快速部署和上手 OpenFunction，并通过一个 demo{hello-world-dotnet} 来体验同步函数是如何运作的，以便对函数计算有一个感性的认知。</p> <p><strong>OpenFunction CLI 介绍</strong></p> <p>OpenFunction 从 0.5 版本开始使用全新的命令行工具 ofn<sup>[3]</sup> 来安装各个依赖组件，它的功能更加全面，支持一键部署、一键卸载以及 Demo 演示的功能。用户可以通过设置相应的参数自定义地选择安装各个组件，同时可以选择特定的版本，使安装更为灵活，安装进程也提供了实时展示，使得界面更为美观。它支持的组件和其依赖的 Kubernetes 版本如下：</p> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213634308-1964807230.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img decoding="async" width="950" height="540" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/849ae165b97856d5d506f4cc3886071c.jpg"></a></p> <p>ofn 的安装参数<code>ofn install</code> 解决了 OpenFunction 和 Kubernetes 的兼容问题，会自动根据 Kubernetes 版本选择兼容组件进行安装，同时提供多种参数以供用户选择。</p> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213635151-1713086130.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img loading="lazy" decoding="async" width="951" height="758" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/b0ae786dadb1fd40dcc5884a5d722ca1.jpg"></a></p> <p><strong>使用 OpenFunction CLI 部署 OpenFunction</strong></p> <p>有了命令行工具 ofn 之后，OpenFunction 部署起来非常简单。首先需要安装 ofn，以 amd64 版本的 Linux 为例，仅需两步即可：</p> <p>1、下载 ofn，最新的ofn 是0.5.3</p> <p>$ wget -c<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/OpenFunction/cli/releases/download/v0.5.3/ofn_linux_amd64.tar.gz"  rel="nofollow">https://github.com/OpenFunction/cli/releases/download/v0.5.3/ofn_linux_amd64.tar.gz</a> -O - | tar –xz</p> <p>2、为 ofn 赋予权限并移动到<code>/usr/local/bin/</code> 文件夹下。</p> <p>$ chmod +x ofn &amp;&amp; mv ofn /usr/local/bin/</p> <p>安装好 ofn 之后，仅需一步即可完成 OpenFunction 的安装。虽然使用<code>--all</code> 选项可以安装所有组件，也可以选择安装指定需要安装的组件，我们的集群里面已经安装了Dapr的情况下，我们就不想额外安装一遍Dapr ，不过如果集群里面已经安装了Dapr的情况下他也不会给重新安装的，具体可以看下图。</p> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213636046-1675717695.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img loading="lazy" decoding="async" width="980" height="537" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/977ac2fa6483ae38e76ca4f83e483baa.jpg"></a></p> <p>安装成功了，之后我们就可以开始运行同步函数了，OpenFunction 还支持异步函数，这部分今天就不演示了，留作后续在dotnet框架里面实现了异步函数的时候再来。</p> <p><strong>同步函数 demo 示例</strong></p> <p>OpenFunction 官方仓库提供了多种语言的同步函数示例<sup>[4]</sup>：</p> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213636865-1344495009.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img loading="lazy" decoding="async" width="940" height="347" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/9675e218620a89f2f1ccfb56fac663f3.jpg"></a></p> <p>这里我们选择 dotnet 的函数示例，先来看一下最核心的部署清单：</p> <p>apiVersion: core.openfunction.io/v1beta1<br /> kind: Function<br /> metadata:<br />&nbsp;&nbsp; name: dotnet-sample<br />&nbsp;&nbsp; namespace: default<br /> spec:<br />&nbsp;&nbsp; version: "v1.0.0"<br />&nbsp;&nbsp; image: "geffzhang/sample-dotnet-func:v1"<br />&nbsp;&nbsp; imageCredentials:<br />&nbsp;&nbsp;&nbsp;&nbsp; name: push-secret<br />&nbsp;&nbsp; port: 8080 # default to 8080<br />&nbsp;&nbsp; build:<br />&nbsp;&nbsp;&nbsp;&nbsp; builder: "openfunction/gcp-builder:v1"<br />&nbsp;&nbsp;&nbsp;&nbsp; env:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GOOGLE_FUNCTION_TARGET: "helloworld"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GOOGLE_FUNCTION_SIGNATURE_TYPE: "http"<br />&nbsp;&nbsp;&nbsp;&nbsp; srcRepo:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; url: "<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/openfunction/samples.git%22"  rel="nofollow">https://github.com/openfunction/samples.git"</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sourceSubPath: "functions/knative/hello-world-dotnet"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; revision: "release-0.6"<br />&nbsp;&nbsp; serving:<br />&nbsp;&nbsp;&nbsp;&nbsp; runtime: "knative" # default to knative<br />&nbsp;&nbsp;&nbsp;&nbsp; template:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; containers:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - name: function<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; imagePullPolicy: IfNotPresent</p> <p><code>Function</code> 是由 CRD 定义的一个 CR，用来将函数转换为最终运行的应用。这个例子里面包含了两个组件：</p> <ul> <li><strong>build</strong> : 通过 Shipwright 选择不同的镜像构建工具，最终将应用构建为容器镜像；</li> <li><strong>Serving</strong> : 通过 Serving CRD 将应用部署到不同的运行时中，可以选择同步运行时或异步运行时。这里选择的是同步运行时 knative。</li> </ul> <p>运行这个示例之前，需要在运行函数的命名空间下创建Secret ，生成一个Secret 来访问您的容器注册表，例如<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://hub.docker.com/"  rel="nofollow">Docker Hub</a><sup>[5]</sup> 或<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://quay.io/"  rel="nofollow">Quay.io</a><sup>[6]</sup> 上的一个。<font color="#ff0000">这一点非常重要，不然就在Build 阶段就失败了</font><font color="#ff0000">。</font></p> <p><code>REGISTRY_SERVER</code>您可以通过编辑以下命令中的<code>REGISTRY_USER</code>和字段来创建此密钥<code>REGISTRY_PASSWORD</code>，然后运行它。</p> <p>REGISTRY_SERVER=<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://index.docker.io/v1/"  rel="nofollow">https://index.docker.io/v1/</a> REGISTRY_USER= &lt; your_registry_user &gt; REGISTRY_PASSWORD= &lt; your_registry_password &gt;<br /> kubectl create secret –n default docker-registry push-secret \<br />&nbsp;&nbsp;&nbsp;&nbsp; --docker-server= $REGISTRY_SERVER \<br />&nbsp;&nbsp;&nbsp;&nbsp; --docker-username= $REGISTRY_USER \<br />&nbsp;&nbsp;&nbsp;&nbsp; --docker-password= $REGISTRY_PASSWORD</p> <p></p> <p>然后将上面的部署清单保存为function-dotnet-sample.yaml ，修改spec.image 字段为您自己的容器注册表地址，使用以下命令创建此函数：</p> <p>kubectl apply –f&nbsp; function-dotnet-sample.yaml</p> <p>在Build 阶段，builder会启动一个 Pod 来构建镜像，这个 Pod 中包含了 4 个容器：</p> <ul> <li><strong>step-source-default</strong> : 拉取源代码；</li> <li><strong>step-prepare</strong> : 设置环境变量；</li> <li><strong>step-create</strong> : 构建镜像；</li> <li><strong>step-results</strong> : 输出镜像的 digest。</li> </ul> <p></p> <p>您可以使用以下命令观察函数的过程。</p> <p>kubectl get functions -n default</p> <p>NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BUILDSTATE&nbsp;&nbsp; SERVINGSTATE&nbsp;&nbsp; BUILDER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SERVING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AGE<br /> dotnet-sample&nbsp;&nbsp;&nbsp;&nbsp; Succeeded&nbsp;&nbsp;&nbsp; Running&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; builder-hf74t&nbsp;&nbsp; serving-wh6hs<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://openfunction.io/default/dotnet-sample"  rel="nofollow">http://openfunction.io/default/dotnet-sample</a>&nbsp;&nbsp;&nbsp;&nbsp; 54m</p> <p><code>URL</code>是OpenFunction Domain提供的可以访问的地址。要通过此 URL 地址访问该功能，您需要确保 DNS 可以解析此地址。使用以下命令在集群中创建一个 pod，并从该 pod 访问该功能</p> <p>kubectl run&nbsp; curl --image=radial/busyboxplus:curl -i –tty</p> <p>[ root@curl:/ ]$ curl http://openfunction.io.svc.cluster.local/default/dotnet-sample/</p> <p>还可以通过 Knative Services 提供的访问地址触发该功能</p> <p>kubectl get ksvc</p> <p>geffzhang@edgevm1:~/openfunctionsamples/functions/knative/hello-world-dotnet$ sudo kubectl get ksvc<br /> NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LATESTCREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LATESTREADY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; READY&nbsp;&nbsp; REASON<br /> serving-wh6hs-ksvc-m7fc9<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://serving-wh6hs-ksvc-m7fc9.default.20.239.115.228.sslip.io"  rel="nofollow">http://serving-wh6hs-ksvc-m7fc9.default.20.239.115.228.sslip.io</a>&nbsp;&nbsp; serving-wh6hs-ksvc-m7fc9-v100&nbsp;&nbsp; serving-wh6hs-ksvc-m7fc9-v100&nbsp;&nbsp; True</p> <p>这个地址是可以直接访问的</p> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213637611-831506662.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img loading="lazy" decoding="async" width="935" height="151" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/7910767ec8c46cab179995dd38acc0ef.jpg"></a></p> <p>访问这个函数时会自动触发运行一个 Pod：</p> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213638289-1614802378.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img loading="lazy" decoding="async" width="969" height="60" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/32c2b75d813a90670270b067b30aa8c4.jpg"></a></p> <p>这个 Pod 使用的镜像就是之前 build 阶段构建的镜像。事实上这个 Pod 是由 Deployment 控制的，在没有流量时，这个 Deployment 的副本数是 0。当有新的流量进入时，会先进入 Knative 的 Activator，Activator 接收到流量后会通知 Autoscaler（自动伸缩控制器），然后 Autoscaler 将 Deployment 的副本数扩展到 1，最后 Activator 会将流量转发到实际的 Pod 中，从而实现服务调用。这个过程也叫<strong>冷启动</strong>。</p> <p>如果你不再访问这个入口，过一段时间之后，Deployment 的副本数就会被收缩为 0：</p> <p><a href="https://img2022.cnblogs.com/blog/510/202204/510-20220428213639031-262507825.png" rel="nofollow" class="fancybox" data-fancybox-group="button"><img loading="lazy" decoding="async" width="987" height="61" title="image" style="display: inline; background-image: none" alt="image" src="http://img.555519.xyz/uploads3/20220509/3acccdbef05ea0021f17c50891723459.jpg"></a></p> <p></p> <p>通过上面的示例，相信大家应该能够体会到一些函数计算的优势，我们只需要专注于业务开发，编写函数代码，并上传到代码仓库，其他的东西不需要关心，就连Dockerfile都不需要编写，不需要了解基础设施，甚至不需要知道容器和 Kubernetes 的存在。函数计算平台会自动为您分配好计算资源，并弹性地运行任务，只有当您需要访问的时候，才会通过扩容来运行任务，其他时间并不会消耗计算资源，可以充分利用dotnet在云原生时代的优势，使用dotnet写函数是很高效的，大家可以体验一下我上面的示例<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://serving-wh6hs-ksvc-m7fc9.default.20.239.115.228.sslip.io/"  rel="nofollow">http://serving-wh6hs-ksvc-m7fc9.default.20.239.115.228.sslip.io</a> 。OpenFunction基于Dapr 所提供的各种分布式能力，让我们轻松的实现无服务微服务架构，获得像Azure 容器应用<sup>[7]</sup> 一样的能力。</p> <p></p> <h5>相关链接</h5> <p>[1] openFunction:<em><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/OpenFunction/OpenFunction"  rel="nofollow">https://github.com/OpenFunction/OpenFunction</a></em></p> <p>[2] functions-framework-dotnet:<a title="https://github.com/OpenFunction/functions-framework-dotnet" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/OpenFunction/functions-framework-dotnet"  rel="nofollow">https://github.com/OpenFunction/functions-framework-dotnet</a></p> <p>[3] ofn:<em><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/OpenFunction/cli"  rel="nofollow">https://github.com/OpenFunction/cli</a></em></p> <p>[4] OpenFunction 官方仓库提供了多种语言的同步函数示例:<em>https://github.com/OpenFunction/samples/tree/main/functions/knative</em></p> <p>[5] Docker Hub:<a title="https://hub.docker.com/" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://hub.docker.com/"  rel="nofollow">https://hub.docker.com/</a></p> <p>[6] Quay.io:<a title="https://quay.io/" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://quay.io/"  rel="nofollow">https://quay.io/</a></p> <p>[7] Azure 容器应用:<a title="https://www.cnblogs.com/shanyou/p/15509042.html" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/shanyou/p/15509042.html"  rel="nofollow">https://www.cnblogs.com/shanyou/p/15509042.html</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-31330.htm">动物疫苗反应有哪些（动物疫苗使用注意事项）</a></p>
+                                        <p>下一个：<a href="/news/article-31940.htm">办理宠物医院诊疗许可证（办理宠物医院审批动物诊疗许可证）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-today-clash-meta-node.htm" title="「12月1日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月1日」最高速度18.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-clash-meta-node-github.htm" title="「10月31日」最高速度22.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月31日」最高速度22.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-29071.htm" title="动物防疫站几点上班 动物防疫站几点上班时间">动物防疫站几点上班 动物防疫站几点上班时间</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-today-clash-meta-node.htm" title="「11月12日」最高速度20M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月12日」最高速度20M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-13-clash-meta-node-github.htm" title="「9月13日」最高速度19.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月13日」最高速度19.6M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-25-free-node-subscribe-links.htm" title="「9月25日」最高速度21.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月25日」最高速度21.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share.htm" title="「12月3日」最高速度22.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月3日」最高速度22.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-clash-meta-github.htm" title="「10月21日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月21日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-28-today-clash-meta-node.htm" title="「9月28日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月28日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-21-free-node-subscribe-links.htm" title="「8月21日」最高速度19.8M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「8月21日」最高速度19.8M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">80</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
