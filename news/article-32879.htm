@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-32879.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Golang-Channel原理解析</title>
+        <meta name="description" content="本文主要分析golang实现并发基础组件channel的实现原理； 主要内容分为几个部分 Section1：channel使用实例分析 Section2：源码分析   Golang-Channel原理" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">Golang-Channel原理解析</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <blockquote> <p>本文主要分析golang实现并发基础组件channel的实现原理；<br /> 主要内容分为几个部分<br /> Section1：channel使用实例分析<br /> Section2：源码分析</p> </blockquote> <div class="toc"> <h3>Golang-Channel原理解析</h3> <ul> <li><a href="#Section1_channel_7" rel="nofollow">Section1 channel使用实例</a></li> <li> <ul> <li><a href="#11_make_channel_16" rel="nofollow">1.1 make channel</a></li> <li><a href="#12_sends_and_receives_42" rel="nofollow">1.2 sends and receives</a></li> <li><a href="#13_channel_125" rel="nofollow">1.3 channel主要特性</a></li> </ul> </li> <li><a href="#Section2__140" rel="nofollow">Section2 源码分析</a></li> <li> <ul> <li><a href="#21_channel_142" rel="nofollow">2.1 channel数据存储结构</a></li> <li><a href="#22_make_channel_182" rel="nofollow">2.2 make channel</a></li> <li><a href="#23_channelgoroutine_receive_data_242" rel="nofollow">2.3 协程从channel接收数据(goroutine receive data)</a></li> <li><a href="#24_channelgoroutine_sender_data_275" rel="nofollow">2.4 协程向channel写入数据(goroutine sender data)</a></li> <li><a href="#25_channel_closechannel_301" rel="nofollow">2.5 channel close关闭channel源码分析</a></li> </ul> </li> </ul> </div> </h1> <p>channel主要是为了实现go的并发特性，用于并发通信的，也就是在不同的协程单元goroutine之间同步通信。</p> <p>下面主要从三个方面来讲解：</p> <ul> <li>make channel，主要也就是hchan的数据结构原型；</li> <li>发送和接收数据时，goroutine会怎么调度；</li> <li>设计思考；</li> </ul> <h2> <a id="11_make_channel_16" rel="nofollow"></a>1.1 make channel</h2> <p>我们创建channel时候有两种，一种是带缓冲的channel一种是不带缓冲的channel。创建方式分别如下：</p> <pre><code class="prism language-go"><span class="token comment">// buffered</span> ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Task<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// unbuffered</span> ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span> </code></pre> <p><font color="red" size="5"> buffered channel </font></p> <p>如果我们创建一个带buffer的channel，底层的数据模型如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/bad72fdbb403f413b9657578f535619b.jpg" alt="Golang-Channel原理解析"><br /> 当我们向channel里面写入数据时候，会直接把数据存入circular queue(send)。当Queue存满了之后就会是如下的状态：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/656a65f6ba48337b1d2a33c9a5f4d77e.jpg" alt="Golang-Channel原理解析"></p> <p>当dequeue一个元素时候，如下所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/d810f4a7dc111d314dc9c251be4279af.jpg" alt="Golang-Channel原理解析"><br /> 从上图可知，recvx自增加一，表示出队了一个元素，其实也就是循环数组实现FIFO语义。</p> <p>那么还有一个问题，当我们新建channel的时候，底层创建的hchan数据结构是在哪里分配内存的呢？其实Section2里面源码分析时候已经做了分析，hchan是在heap里面分配的。</p> <p>如下图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/fd4d4e2284e2c4319a5cea36fb3dae85.jpg" alt="Golang-Channel原理解析"><br /> 当我们使用make去创建一个channel的时候，实际上返回的是一个指向channel的pointer，所以我们能够在不同的function之间直接传递channel对象，而不用通过指向channel的指针。</p> <h2> <a id="12_sends_and_receives_42" rel="nofollow"></a>1.2 sends and receives</h2> <p>不同goroutine在channel上面进行读写时，涉及到的过程比较复杂，比如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/695dd16167b6cdcb497e5b6f10e8016d.jpg" alt="Golang-Channel原理解析"><br /> 上图中G1会往channel里面写入数据，G2会从channel里面读取数据。</p> <p>G1作用于底层hchan的流程如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/5a00097693d725546b0d5e5e6ce0c5e7.jpg" alt="Golang-Channel原理解析"></p> <ol> <li>先获取全局锁；</li> <li>然后enqueue元素(通过移动拷贝的方式)；</li> <li>释放锁；</li> </ol> <p>G2读取时候作用于底层数据结构流程如下图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/0722bbe017d56bec86d980619adf480f.jpg" alt="Golang-Channel原理解析"></p> <ol> <li>先获取全局锁；</li> <li>然后dequeue元素(通过移动拷贝的方式)；</li> <li>释放锁；</li> </ol> <p>上面的读写思路其实很简单，除了hchan数据结构外，不要通过共享内存去通信；而是通过通信(复制)实现共享内存。</p> <p><font color="red" size="5"> 写入满channel的场景 </font></p> <p>如下图所示：channel写入3个task之后队列已经满了，这时候G1再写入第四个task的时候会发生什么呢？<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/72ef2cb5caa3049bbd3f5fccc97ceff1.jpg" alt="Golang-Channel原理解析"><br /> G1这时候会暂停直到出现一个receiver。</p> <p>这个地方需要介绍一下Golang的scheduler的。我们知道goroutine是用户空间的线程，创建和管理协程都是通过Go的runtime，而不是通过OS的thread。</p> <p>但是Go的runtime调度执行goroutine却是基于OS thread的。如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/3c605269a9045bae470a4f23c2745dd3.jpg" alt="Golang-Channel原理解析"></p> <p>具体关于golang的scheduler的原理，可以看前面的一篇博客，关于go的scheduler原理分析。</p> <p>当向已经满的channel里面写入数据时候，会发生什么呢？如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/b021d732ed56ccb21c0d8a43aa6dca38.jpg" alt="Golang-Channel原理解析"></p> <p>上图流程大概如下：</p> <ol> <li>当前goroutine（G1）会调用gopark函数，将当前协程置为waiting状态；</li> <li>将M和G1绑定关系断开；</li> <li>scheduler会调度另外一个就绪态的goroutine与M建立绑定关系，然后M 会运行另外一个G。</li> </ol> <p>所以整个过程中，OS thread会一直处于运行状态，不会因为协程G1的阻塞而阻塞。最后当前的G1的引用会存入channel的sender队列(队列元素是持有G1的sudog)。</p> <p>那么blocked的G1怎么恢复呢？<font color="blue">当有一个receiver接收channel数据的时候，会恢复 G1。</font></p> <p>实际上hchan数据结构也存储了channel的sender和receiver的等待队列。数据原型如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/2afe0527008e5ec905a301799f717d62.jpg" alt="Golang-Channel原理解析"><br /> 等待队列里面是sudog的单链表，sudog持有一个G代表goroutine对象引用，elem代表channel里面保存的元素。当G1执行<code>ch&lt;-task4</code>的时候，G1会创建一个sudog然后保存进入sendq队列，实际上hchan结构如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/624627891a0859ef192c442bd3df4cee.jpg" alt="Golang-Channel原理解析"></p> <p>这个时候，如果G1进行一个读取channel操作，读取前和读取后的变化图如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230207/4867ce2e12bc7d99c9cd8fc6ee549132.jpg" alt="Golang-Channel原理解析"></p> <p>整个过程如下：</p> <ol> <li>G2调用 <code>t:=&lt;-ch</code> 获取一个元素；</li> <li>从channel的buffer里面取出一个元素task1；</li> <li>从sender等待队列里面pop一个sudog；</li> <li>将task4复制buffer中task1的位置，然后更新buffer的sendx和recvx索引值；</li> <li>这时候需要将G1置为Runable状态，表示G1可以恢复运行；</li> </ol> <p>这个时候将G1恢复到可运行状态需要scheduler的参与。G2会调用goready(G1)来唤醒G1。流程如下图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/7bb1b2911f1bd8f0dfe8053fe015337c.jpg" alt="Golang-Channel原理解析"></p> <ol> <li>首先G2会调用goready(G1)，唤起scheduler的调度；</li> <li>将G1设置成Runable状态；</li> <li>G1会加入到局部调度器P的local queue队列，等待运行。</li> </ol> <p><font color="red" size="5"> 读取空channel的场景 </font></p> <p>当channel的buffer里面为空时，这时候如果G2首先发起了读取操作。如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/b0c0ce11859d2d6bef54b1de02caad70.jpg" alt="Golang-Channel原理解析"><br /> 会创建一个sudog，将代表G2的sudog存入recvq等待队列。然后G2会调用gopark函数进入等待状态，让出OS thread，然后G2进入阻塞态。</p> <p>这个时候，如果有一个G1执行读取操作，最直观的流程就是：</p> <ol> <li>将recvq中的task存入buffer；</li> <li>goready(G2) 唤醒G2；</li> </ol> <p>但是我们有更加智能的方法：direct send; 其实也就是G1直接把数据写入到G2中的elem中，这样就不用走G2中的elem复制到buffer中，再从buffer复制给G1。如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230207/b16698d11cac96ed28cc669d4cd1a3f7.jpg" alt="Golang-Channel原理解析"></p> <p>具体过程就是G1直接把数据写入到G2的栈中。这样 G2 不需要去获取channel的全局锁和操作缓冲。</p> <h2> <a id="13_channel_125" rel="nofollow"></a>1.3 channel主要特性</h2> <p>（1）goroutine-safe<br /> hchan mutex</p> <p>（2）store values, pass in FIFO.<br /> copying into and out of hchan buffer</p> <p>（3）can cause goroutines to pause and resume.<br /> a）hchan sudog queues<br /> b）calls into the runtime scheduler (gopark, goready)</p> <p>（4）channel的高性能所在：<br /> a）调用runtime scheduler实现，OS thread不需要阻塞；<br /> b）跨goroutine栈可以直接进行读写；</p> </h1> <h2> <a id="21_channel_142" rel="nofollow"></a>2.1 channel数据存储结构</h2> <p>在源码<code>runtime/chan.go</code> 里面定义了channel的数据模型，channel可以理解成一个缓冲队列，这个缓冲队列用来存储元素，并且提供FIFO的语义。源码如下：</p> <pre><code class="prism language-go"><span class="token keyword">type</span> hchan <span class="token keyword">struct</span> <span class="token punctuation">{<!-- --></span> 	<span class="token comment">//channel队列里面总的数据量</span> 	qcount   <span class="token builtin">uint</span>           <span class="token comment">// total data in the queue</span> 	<span class="token comment">// 循环队列的容量，如果是非缓冲的channel就是0</span> 	dataqsiz <span class="token builtin">uint</span>           <span class="token comment">// size of the circular queue</span> 	<span class="token comment">// 缓冲队列，数组类型。</span> 	buf      unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// points to an array of dataqsiz elements</span> 	<span class="token comment">// 元素占用字节的size</span> 	elemsize <span class="token builtin">uint16</span> 	<span class="token comment">// 当前队列关闭标志位，非零表示关闭</span> 	closed   <span class="token builtin">uint32</span> 	<span class="token comment">// 队列里面元素类型</span> 	elemtype <span class="token operator">*</span>_type <span class="token comment">// element type</span> 	<span class="token comment">// 队列send索引</span> 	sendx    <span class="token builtin">uint</span>   <span class="token comment">// send index</span> 	<span class="token comment">// 队列索引</span> 	recvx    <span class="token builtin">uint</span>   <span class="token comment">// receive index</span> 	<span class="token comment">// 等待channel的G队列。</span> 	recvq    waitq  <span class="token comment">// list of recv waiters</span> 	<span class="token comment">// 向channel发送数据的G队列。</span> 	sendq    waitq  <span class="token comment">// list of send waiters</span>  	<span class="token comment">// lock protects all fields in hchan, as well as several</span> 	<span class="token comment">// fields in sudogs blocked on this channel.</span> 	<span class="token comment">//</span> 	<span class="token comment">// Do not change another G's status while holding this lock</span> 	<span class="token comment">// (in particular, do not ready a G), as this can deadlock</span> 	<span class="token comment">// with stack shrinking.</span> 	<span class="token comment">// 全局锁</span> 	lock mutex <span class="token punctuation">}</span> </code></pre> <p>channel的数据结构相对比较简单，主要是两个结构：<br /> 1）一个数组实现的环形队列，数组有两个下标索引分别表示读写的索引，用于保存channel缓冲区数据。<br /> 2）channel的send和recv队列，队列里面都是持有goroutine的sudog元素，队列都是双链表实现的。<br /> 3）channel的全局锁。</p> <h2> <a id="22_make_channel_182" rel="nofollow"></a>2.2 make channel</h2> <p>我们新建一个channel的时候一般使用 <code>make(chan, n)</code> 语句，这个语句的执行编译器会重写然后执行 chan.go里面的 makechan函数。函数源码如下：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">makechan</span><span class="token punctuation">(</span>t <span class="token operator">*</span>chantype<span class="token punctuation">,</span> size <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">*</span>hchan <span class="token punctuation">{<!-- --></span> 	elem <span class="token operator">:=</span> t<span class="token punctuation">.</span>elem  	<span class="token comment">// compiler checks this but be safe.</span> 	<span class="token keyword">if</span> elem<span class="token punctuation">.</span>size <span class="token operator">&gt;=</span> <span class="token number">1</span><span class="token operator">&lt;&lt;</span><span class="token number">16</span> <span class="token punctuation">{<!-- --></span> 		<span class="token function">throw</span><span class="token punctuation">(</span><span class="token string">"makechan: invalid channel element type"</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span> 	<span class="token keyword">if</span> hchanSize<span class="token operator">%</span>maxAlign <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">||</span> elem<span class="token punctuation">.</span>align <span class="token operator">&gt;</span> maxAlign <span class="token punctuation">{<!-- --></span> 		<span class="token function">throw</span><span class="token punctuation">(</span><span class="token string">"makechan: bad alignment"</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span>  	<span class="token keyword">if</span> size <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> <span class="token function">uintptr</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token function">maxSliceCap</span><span class="token punctuation">(</span>elem<span class="token punctuation">.</span>size<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">uintptr</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token operator">*</span>elem<span class="token punctuation">.</span>size <span class="token operator">&gt;</span> maxAlloc<span class="token operator">-</span>hchanSize <span class="token punctuation">{<!-- --></span> 		<span class="token function">panic</span><span class="token punctuation">(</span><span class="token function">plainError</span><span class="token punctuation">(</span><span class="token string">"makechan: size out of range"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span>  	<span class="token comment">// Hchan does not contain pointers interesting for GC when elements stored in buf do not contain pointers.</span> 	<span class="token comment">// buf points into the same allocation, elemtype is persistent.</span> 	<span class="token comment">// SudoG's are referenced from their owning thread so they can't be collected.</span> 	<span class="token comment">// TODO(dvyukov,rlh): Rethink when collector can move allocated objects.</span> 	<span class="token keyword">var</span> c <span class="token operator">*</span>hchan 	<span class="token keyword">switch</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">case</span> size <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> elem<span class="token punctuation">.</span>size <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> 		<span class="token comment">// Queue or element size is zero.</span> 		c <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>hchan<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">mallocgc</span><span class="token punctuation">(</span>hchanSize<span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 		<span class="token comment">// Race detector uses this location for synchronization.</span> 		c<span class="token punctuation">.</span>buf <span class="token operator">=</span> unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> 	<span class="token keyword">case</span> elem<span class="token punctuation">.</span>kind<span class="token operator">&amp;</span>kindNoPointers <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span> 		<span class="token comment">// Elements do not contain pointers.</span> 		<span class="token comment">// Allocate hchan and buf in one call.</span> 		c <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>hchan<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">mallocgc</span><span class="token punctuation">(</span>hchanSize<span class="token operator">+</span><span class="token function">uintptr</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token operator">*</span>elem<span class="token punctuation">.</span>size<span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 		c<span class="token punctuation">.</span>buf <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">,</span> hchanSize<span class="token punctuation">)</span> 	<span class="token keyword">default</span><span class="token punctuation">:</span> 		<span class="token comment">// Elements contain pointers.</span> 		c <span class="token operator">=</span> <span class="token function">new</span><span class="token punctuation">(</span>hchan<span class="token punctuation">)</span> 		c<span class="token punctuation">.</span>buf <span class="token operator">=</span> <span class="token function">mallocgc</span><span class="token punctuation">(</span><span class="token function">uintptr</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token operator">*</span>elem<span class="token punctuation">.</span>size<span class="token punctuation">,</span> elem<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span>  	c<span class="token punctuation">.</span>elemsize <span class="token operator">=</span> <span class="token function">uint16</span><span class="token punctuation">(</span>elem<span class="token punctuation">.</span>size<span class="token punctuation">)</span> 	c<span class="token punctuation">.</span>elemtype <span class="token operator">=</span> elem 	c<span class="token punctuation">.</span>dataqsiz <span class="token operator">=</span> <span class="token function">uint</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span>  	<span class="token keyword">if</span> debugChan <span class="token punctuation">{<!-- --></span> 		<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"makechan: chan="</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token string">"; elemsize="</span><span class="token punctuation">,</span> elem<span class="token punctuation">.</span>size<span class="token punctuation">,</span> <span class="token string">"; elemalg="</span><span class="token punctuation">,</span> elem<span class="token punctuation">.</span>alg<span class="token punctuation">,</span> <span class="token string">"; dataqsiz="</span><span class="token punctuation">,</span> size<span class="token punctuation">,</span> <span class="token string">"\n"</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span> 	<span class="token keyword">return</span> c <span class="token punctuation">}</span> </code></pre> <p>函数接收两个参数，一个是channel里面保存的元素的数据类型，一个是缓冲的容量(如果为0表示是非缓冲buffer)，创建流程如下：</p> <ul> <li>根据传递的缓冲大小size是否为零，分别创建不带buffer的channel或则带size大小的缓冲channel： <ul> <li>对于不带缓冲channel，申请一个hchan数据结构的内存大小；</li> <li>对于带缓冲channel，new一个hchan对象，并初始化buffer内存；</li> </ul> </li> <li>更新 chan中循环队列的关键属性：elemsize、elemtype、dataqsiz。</li> </ul> <p>所以，整个创建channel的过程还是比较简单的。</p> <h2> <a id="23_channelgoroutine_receive_data_242" rel="nofollow"></a>2.3 协程从channel接收数据(goroutine receive data)</h2> <p>所有执行 <code>ep &lt; c</code> 使用ep接收channel数据的代码，最后都会调用到chan.go里面的 <code>chanrecv函数</code>。</p> <p>函数的定义如下：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">chanrecv</span><span class="token punctuation">(</span>c <span class="token operator">*</span>hchan<span class="token punctuation">,</span> ep unsafe<span class="token punctuation">.</span>Pointer<span class="token punctuation">,</span> block <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>selected<span class="token punctuation">,</span> received <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> <span class="token operator">...</span><span class="token operator">...</span> <span class="token punctuation">}</span> </code></pre> <p>从源码注释就可以知道，该函数从channel里面接收数据，然后将接收到的数据写入到ep指针指向的对象里面。</p> <p>还有一个参数block，表示当channel无法返回数据时是否阻塞等待。当block=false并且channel里面没有数据时候，函数直接返回(false,false)。</p> <p>接收channel的数据的流程如下：</p> <ul> <li>CASE1：前置channel为nil的场景： <ul> <li>如果block为非阻塞，直接return；</li> <li>如果block为阻塞，就调用gopark()阻塞当前goroutine，并抛出异常。</li> </ul> </li> <li>前置场景，block为非阻塞，且channel为非缓冲队列且sender等待队列为空 或则 channel为有缓冲队列但是队列里面元素数量为0，且channel未关闭，这个时候直接return；</li> <li>调用 <code>lock(&amp;c.lock)</code> 锁住channel的全局锁；</li> <li>CASE2：channel已经被关闭且channel缓冲中没有数据了，这时直接返回success和空值；</li> <li>CASE3：sender队列非空，调用<code>func recv(c *hchan, sg *sudog, ep unsafe.Pointer, unlockf func(), skip int)</code> 函数处理： <ul> <li>channel是非缓冲channel，直接调用recvDirect函数直接从sender recv元素到ep对象，这样就只用复制一次；</li> <li>对于sender队列非空情况下， 有缓冲的channel的缓冲队列一定是满的： <ul> <li>1.先取channel缓冲队列的对头元素复制给receiver(也就是ep)；</li> <li>2.将sender队列的对头元素里面的数据复制到channel缓冲队列刚刚弹出的元素的位置，这样缓冲队列就不用移动数据了。</li> </ul> </li> <li>释放channel的全局锁；</li> <li>调用goready函数标记当前goroutine处于ready，可以运行的状态；</li> </ul> </li> <li>CASE4：sender队列为空，缓冲队列非空，直接取队列元素，移动头索引；</li> <li>CASE5：sender队列为空、缓冲队列也没有元素且不阻塞协程，直接return (false,false)；</li> <li>CASE6：sender队列为空且channel的缓存队列为空，将goroutine加入recv队列，并阻塞。</li> </ul> <h2> <a id="24_channelgoroutine_sender_data_275" rel="nofollow"></a>2.4 协程向channel写入数据(goroutine sender data)</h2> <p>所有执行 <code>c &lt; ep</code> 将ep发送到channel的代码，最后都会调用到chan.go里面的 <code>chansend函数</code>。</p> <p>函数的定义如下：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">chansend</span><span class="token punctuation">(</span>c <span class="token operator">*</span>hchan<span class="token punctuation">,</span> ep unsafe<span class="token punctuation">.</span>Pointer<span class="token punctuation">,</span> block <span class="token builtin">bool</span><span class="token punctuation">,</span> callerpc <span class="token builtin">uintptr</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{<!-- --></span> <span class="token operator">...</span><span class="token operator">...</span> <span class="token punctuation">}</span> </code></pre> <p>函数有三个参数，第一个代表channel的数据结构，第二个是要指向写入的数据的指针，第三个block代表写入操作是否阻塞。</p> <p>向channel写入数据主要流程如下：</p> <ul> <li>CASE1：当channel为空或者未初始化，如果block表示阻塞那么向其中发送数据将会永久阻塞；如果block表示非阻塞就会直接return；</li> <li>CASE2：前置场景，block为非阻塞，且channel没有关闭(已关闭的channel不能写入数据)且(channel为非缓冲队列且receiver等待队列为空)或则( channel为有缓冲队列但是队列已满)，这个时候直接return；</li> <li>调用 <code>lock(&amp;c.lock)</code> 锁住channel的全局锁；</li> <li>CASE3：不能向已经关闭的channel send数据，会导致panic。</li> <li>CASE4：如果channel上的recv队列非空，则跳过channel的缓存队列，直接向消息发送给接收的goroutine： <ul> <li>调用sendDirect方法，将待写入的消息发送给接收的goroutine；</li> <li>释放channel的全局锁；</li> <li>调用goready函数，将接收消息的goroutine设置成就绪状态，等待调度。</li> </ul> </li> <li>CASE5：缓存队列未满，则将消息复制到缓存队列上，然后释放全局锁；</li> <li>CASE6：缓存队列已满且接收消息队列recv为空，则将当前的goroutine加入到send队列； <ul> <li>获取当前goroutine的sudog，然后入channel的send队列；</li> <li>将当前goroutine休眠</li> </ul> </li> </ul> <h2> <a id="25_channel_closechannel_301" rel="nofollow"></a>2.5 channel close关闭channel源码分析</h2> <p>当我们执行channel的close操作的时候会关闭channel。</p> <p>关闭的主要流程如下所示：</p> <ul> <li>获取全局锁；</li> <li>设置channel数据结构chan的关闭标志位；</li> <li>获取当前channel上面的读goroutine并链接成链表；</li> <li>获取当前channel上面的写goroutine然后拼接到前面的读链表后面；</li> <li>释放全局锁；</li> <li>唤醒所有的读写goroutine。</li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-32413.htm">动物疫苗公司排名榜前十名 动物疫苗公司排名榜前十名有哪些</a></p>
+                                        <p>下一个：<a href="/news/article-32881.htm">著名宠物品牌排行榜前十名（著名的宠物品牌排行榜）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-28141.htm" title="动物疫苗间隔时间多久打第二针呢（动物疫苗间隔时间多久打第二针呢）">动物疫苗间隔时间多久打第二针呢（动物疫苗间隔时间多久打第二针呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-today-clash-meta-node.htm" title="「12月7日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月7日」最高速度20.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20748.htm" title="[vmware to openstack] 安装virtio驱动">[vmware to openstack] 安装virtio驱动</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-31-free-subscribe-node.htm" title="「8月31日」最高速度22M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「8月31日」最高速度22M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-29985.htm" title="动物疫苗注射的作用机制有哪些 动物疫苗注射的作用机制有哪些呢">动物疫苗注射的作用机制有哪些 动物疫苗注射的作用机制有哪些呢</a></li>
+                        <li class="py-2"><a href="/news/article-29984.htm" title="Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息">Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息</a></li>
+                        <li class="py-2"><a href="/news/article-23961.htm" title="宠物领养平台论文摘要怎么写（宠物领养文章）">宠物领养平台论文摘要怎么写（宠物领养文章）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-15-node-share.htm" title="「8月15日」最高速度18.2M/S，2024年ClashMetaGithub每天更新免费机场订阅节点链接">「8月15日」最高速度18.2M/S，2024年ClashMetaGithub每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-clash-meta-node.htm" title="「8月24日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「8月24日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-9-clash-meta-node-share.htm" title="「9月9日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月9日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">86</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
