@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-35074.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>vue项目的excel的导入与导出</title>
+        <meta name="description" content="在做人力资源管理的后台项目时，实现了excel表的导入导出功能。用到了vue-element-admin提供的框架（链接地址&nbsp;），我们只需要在自己的项目中封装改造即可。 下面，来讲一下在项目" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">vue项目的excel的导入与导出</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>在做人力资源管理的后台项目时，实现了excel表的导入导出功能。用到了vue-element-admin提供的框架（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/UploadExcel/index.vue"  rel="nofollow">链接地址</a>&nbsp;），我们只需要在自己的项目中封装改造即可。</p> <p>下面，来讲一下在项目中实现excel表的导入与导出的步骤。</p> <h2>一、excel的导入</h2> <h3>1.excel导入功能需要使用npm包<strong><code>xlsx</code></strong>，所以需要安装<strong><code>xlsx</code></strong>插件</h3> <pre><code>npm i xlsx</code></pre> <h3>2.将vue-element-admin提供的导入功能新建一个公共组件 ，将组件引入到我们的页面中</h3> <p>（为了让我们的项目每次跳转都跳转到一个统一的页面，我们的项目中封装了单独的路由和页面组件@/views/import/index.vue来放excel导入）</p> <p>注意：这个页面结构用到了element-ui框架，但是如果用的是其他框架只需要改页面结构，逻辑代码是通用的。</p> <p>@/components/UploadExcel/index.vue</p> <p>代码到链接中复制即可，要改动的只有页面结构和样式。（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/UploadExcel/index.vue"  rel="nofollow">代码地址</a>）</p> <h3>3.实现excel的导入</h3> <p>在我们的import/index.vue组件中，传给UploadExcel/index.vue一个<strong><span style="color:#0d0016;">onsuccess</span></strong>方法，在这个方法里面我们可以拿到excel表的header表头和results表格数据。拿到这些数据就可以根据我们的业务需求来转换数据，来实现我们的业务需求逻辑代码。</p> <p>拿到的数据大概是如下这种：</p> <pre><code>      // 拿到的数据是如下这种，我们要将它转化成我们请求接口中所需要的数据       console.log(header)       // ["手机号", "姓名", "入职日期", "转正日期", "工号", ...]       console.log(results)       // [{入职日期: 'xxx', 姓名: 'xxx', 工号: 'xxx', ...}, {入职日期: 'xxx', 姓名: 'xxx', 工号: 'xxx', ...}]       // 我们需要的数据是如下这种       // [{timeOfEntry: 'xxx', username: 'xxx', workNumber: 'xxx', ...}, {timeOfEntry: 'xxx', username: 'xxx', workNumber: 'xxx', ...}]</code></pre> <p>&nbsp;下面附上整个代码：</p> <pre><code>&lt;template&gt;   &lt;upload-excel :on-success="success" /&gt; &lt;/template&gt;  &lt;script&gt; // 导入封装的导入excel表组件 import UploadExcel from '@/components/UploadExcel/index' import { importEmployee } from '@/api/employees' export default {   components: {     UploadExcel   },   data() {   },   methods: {     // 要使用这个组件，可以传入beforeUpload和onSuccess这两个函数     // beforeUpload要注意要return一个布尔值     // onSuccess这里面可以拿到表格的header(表头)和results(表格内容)     // 在我们自己的onSuccess函数里，可以拼接出我们需要的结构的数据     async success({ header, results }) {       // 拿到的数据是如下这种，我们要将它转化成我们请求接口中所需要的数据       console.log(header)       // ["手机号", "姓名", "入职日期", "转正日期", "工号", ...]       console.log(results)       // [{入职日期: 'xxx', 姓名: 'xxx', 工号: 'xxx', ...}]        // 1.定义我们需要的表头的映射关系（表头的字段其实就是我们接口中所需要的参数）       const userRelations = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber'       }       // 2.进行数据转换，实现业务需求       var newArr = results.map(item =&gt; {         const userInfo = {}         Object.keys(item).forEach(k =&gt; {           // key是当前的中文名 找到对应的英文名           if (userRelations[k] === 'timeOfEntry' || userRelations[k] === 'correctionTime') {             userInfo[userRelations[k]] = new Date(this.formatDate(item[k], '/')) // 只有这样, 才能入库             return           }           userInfo[userRelations[k]] = item[k]         })         return userInfo       })       await importEmployee(newArr)       this.$message.success('导入成功')       this.$router.back() // 回到上一页     },     formatDate(numb, format) {       const time = new Date((numb - 1) * 24 * 3600000 + 1)       time.setYear(time.getFullYear() - 70)       const year = time.getFullYear() + ''       const month = time.getMonth() + 1 + ''       const date = time.getDate() - 1 + ''       if (format &amp;&amp; format.length === 1) {         return year + format + month + format + date       }       return year + (month &lt; 10 ? '0' + month : month) + (date &lt; 10 ? '0' + date : date)     }   } } &lt;/script&gt;</code></pre> <h2>二、excel的导出</h2> <h3>1.下载所需js文件</h3> <p>Excel 的导入导出都是依赖于<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/SheetJS/js-xlsx"  rel="nofollow">js-xlsx</a>来实现的。</p> <p>在<code>js-xlsx</code>的基础上又封装了<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/vendor/Export2Excel.js"  rel="nofollow">Export2Excel.js</a>来方便导出数据。所以我们可以先下载该js文件到我们的项目目录下（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/vendor/Export2Excel.js"  rel="nofollow">链接地址</a>）</p> <p>src/vendor/Export2Excel.js</p> <h3>2.安装导出excel所需依赖</h3> <p>由于<code>Export2Excel</code>不仅依赖<code>js-xlsx</code>还依赖<code>file-saver</code>和<code>script-loader，所以我们要再下载两个依赖包。</code></p> <pre><code>npm install xlsx file-saver -S npm install script-loader -S -D</code></pre> <h3>3.按需导入引用方法</h3> <p>由于下载的Export2Excel.js文件还挺大的，我们可以用按需导入的方法导入到我们的组件中。然后调用导入文件的导出对象上的方法，这个方法需要我们传入一些参数。</p> <pre><code>// 懒加载 import('@/vendor/Export2Excel').then(excel =&gt; {   // excel是引入文件（也就是@/ventor/Export2Excel）的导出对象   excel.export_json_to_excel({     header: tHeader, // 表头 必填  []     data, // 具体数据 必填  [[], [], ...]     filename: 'excel-list', // 导出文件名 非必填      autoWidth: true, // 单元格是否要自适应宽度 非必填  true / false     bookType: 'xlsx' // 导出文件类型 非必填  'xlsx'/'csv'/'txt'等   }) })</code></pre> <p>在导出的函数我们，我们需要将我们项目中拿到的数据转化成参数所需要的数据格式</p> <pre><code>        // 拿到的数据是这种         //  [{ username: 'xxx', mobile: 'xxx', ... }, { username: 'xxx', mobile: 'xxx', ... }]         // 要转化的是如下这种         // header: ['姓名', '手机号', '入职日期', ...]         // data: [['张三', '138xxxxxxxx', '1992-08-04', ...], ['李四', '135xxxxxxxx', '1992-08-04', ...]]</code></pre> <p>下面附上整个代码</p> <pre><code>    // 导出数据     exportData() {       // 1.定义表头对应关系       const headers = {         '姓名': 'username',         '手机号': 'mobile',         '入职日期': 'timeOfEntry',         '聘用形式': 'formOfEmployment',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName'       }       // 懒加载       import('@/vendor/Export2Excel').then(async excel =&gt; {         // excel是引入文件（也就是@/ventor/Export2Excel）的导出对象         // 获取所有的数据         const { rows } = await getEmployeeList({ page: 1, size: this.page.total })         const data = this.formatJson(headers, rows) // 返回的data就是我们转化后的数据         excel.export_json_to_excel({           // 要求转出的表头是中文           header: Object.keys(headers), // 表头 必填           data, // //具体数据 必填           filename: 'excel-list', // 非必填           autoWidth: true, // 非必填           bookType: 'xlsx' // 非必填         })         // 拿到的数据是这种         //  [{ username: 'xxx', mobile: 'xxx', ... }, { username: 'xxx', mobile: 'xxx', ... }]         // 要转化的是如下这种         // header: ['姓名', '手机号', '入职日期', ...]         // data: [['张三', '138xxxxxxxx', '1992-08-04', ...], ['李四', '135xxxxxxxx', '1992-08-04', ...]]       })     },     formatJson(headers, rows) {       return rows.map(item =&gt; {         console.log(item)         return Object.keys(headers).map(k =&gt; {           if (headers[k] === 'timeOfEntry' || headers[k] === 'correctionTime') {             return formatDate(item[headers[k]]) // 返回格式化之前的时间           } else if (headers[k] === 'formOfEmployment') {             return EmployeeEnum.hireType[item.formOfEmployment] ? EmployeeEnum.hireType[item.formOfEmployment] : '未知'           }           return item[headers[k]]         })       })     }</code></pre> <p>好啦，以上就是excel表导入导出的步骤啦，有不对的地方欢迎指正哦！~</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-34786.htm">有没有专门卖宠物用品的app（专门卖宠物用品的软件）</a></p>
+                                        <p>下一个：<a href="/news/article-35075.htm">河南兽药生产厂家名单（河南十大知名兽药厂家）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-30972.htm" title="郑州领养猫咪的网站（郑州哪里能领养猫）">郑州领养猫咪的网站（郑州哪里能领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-today-clash-meta-node.htm" title="「12月23日」最高速度21.4M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接">「12月23日」最高速度21.4M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23041.htm" title="华畜兽药是正规公司吗,药品质量怎么样 华畜兽药是正规公司吗,药品质量怎么样啊">华畜兽药是正规公司吗,药品质量怎么样 华畜兽药是正规公司吗,药品质量怎么样啊</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-clash-meta-node-github.htm" title="「10月31日」最高速度22.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月31日」最高速度22.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-node-subscribe-links.htm" title="「12月2日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月2日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-node-share.htm" title="「12月21日」最高速度20.3M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接">「12月21日」最高速度20.3M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-29071.htm" title="动物防疫站几点上班 动物防疫站几点上班时间">动物防疫站几点上班 动物防疫站几点上班时间</a></li>
+                        <li class="py-2"><a href="/news/article-34784.htm" title="国产品牌十大宠物食品有哪些（国产品牌十大宠物食品有哪些呢）">国产品牌十大宠物食品有哪些（国产品牌十大宠物食品有哪些呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-22-free-node-subscribe-links.htm" title="「9月22日」最高速度19.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「9月22日」最高速度19.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26742.htm" title="为什么猫打针没反应（为什么猫打针没反应了）">为什么猫打针没反应（为什么猫打针没反应了）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
