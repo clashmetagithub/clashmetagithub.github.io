@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-41629.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>vue组件之间传值的几种方式</title>
+        <meta name="description" content="vue组件传值  父子组件之间传值。几种常见方式  第一种方式（父传子） 父组件 &lt;m-child :childMsg="parentMsg"&gt;&lt;/m-child&gt; //在父组" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">vue组件之间传值的几种方式</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <h2> <a id="vue_0" rel="nofollow"></a>vue组件传值</h2> <h4> <a id="_1" rel="nofollow"></a>父子组件之间传值。几种常见方式</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/e50f3fa8da0f80989e9c8828fc36b74c.jpg" alt="vue组件之间传值的几种方式"></p> <p><strong>第一种方式（父传子）</strong></p> <p>父组件</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>m<span class="token operator">-</span>child <span class="token operator">:</span>childMsg<span class="token operator">=</span><span class="token string">"parentMsg"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>m<span class="token operator">-</span>child<span class="token operator">&gt;</span> <span class="token comment">//在父组件中的子组件&lt;m-child&gt;上面绑定一个msg,此时已经把父组件的值绑定在子组件上</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">return</span><span class="token punctuation">{<!-- --></span> 		<span class="token comment">//父组件的数据</span> 		<span class="token literal-property property">parentMsg</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <blockquote> <p>注意：数据绑定的时候记得加 <mark>：</mark> 如果后面的数据是字符串则不用加 <mark>双引号</mark> 如果实在要加 <mark>：</mark> 的时候写法 :msg=“‘i am item’” ,因为 <mark>：msg</mark> 默认把后面的识别变量，所以后面记得在字符串里面单引号，直接msg默认是字符串，后面不用加</p> </blockquote> <p>子组件（mChild）<br /> 通过子组件props属性继承父组件的值，在通过渲染模板渲染出来{<!-- -->{msg}}</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>p<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>childMsg<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span> <span class="token literal-property property">props</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span> 	<span class="token literal-property property">childMsg</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span> 		<span class="token literal-property property">type</span><span class="token operator">:</span>String<span class="token punctuation">,</span>  <span class="token comment">//类型可以定义</span> 		<span class="token keyword">default</span><span class="token operator">:</span><span class="token string">''</span>  <span class="token comment">//默认是空值</span> 		<span class="token comment">// type:Object,  default () {return {}}</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p><strong>第二种方法（子传父）</strong></p> <blockquote> <p>简单说明一下思路，虽然很绕但很好理解，多琢磨几次，<br /> 子传父通过事件方法来传值，首先在子组件定义一个方法，当方法执行的时候调用<code>this.$emit('自定义的方法名'，'要给父组件的值')</code>的方法来提交值，在通过父组件中的子组件通过v-on或者@来绑定刚才的方法，当这个方法执行的时候后面会触发另外一个方法，在这个方法中的第一个参数就是传过来的值，然后可以处理这个值</p> </blockquote> <p>父组件</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>p<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>msg<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span> <span class="token comment">//将父组件中的子组件标签绑定事件,@子给父的事件=父组件中的事件</span> <span class="token operator">&lt;</span>m<span class="token operator">-</span>child @childFnGetParent<span class="token operator">=</span><span class="token string">"parentFn"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>m<span class="token operator">-</span>child<span class="token operator">&gt;</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">return</span> <span class="token punctuation">{<!-- --></span> 		<span class="token literal-property property">mag</span><span class="token operator">:</span><span class="token string">''</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token literal-property property">methods</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span> <span class="token comment">//自定义父组件的方法,val就是子给父的值,第一个参数</span> 	<span class="token function">parentFn</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token comment">//让父组件中的数据等于子给父的,这样msg就是传过来的值</span> 		<span class="token keyword">this</span><span class="token punctuation">.</span>msg<span class="token operator">=</span>val 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>子组件（mChild）</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"childFn"</span><span class="token operator">&gt;</span>  <span class="token literal-property property">methods</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span> 	<span class="token function">childFn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token comment">//自定意见$emit,传给父组件的事件名跟值</span> 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">"childFnGetParent"</span><span class="token punctuation">,</span><span class="token string">'要传入的值'</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>父传子第二种方法（$children/ $parent）</p> <blockquote> <p>这种方法就不多解释了，挺容易理解的，实在不理解可以打印<mark>this.<span class="katex--inline"><span class="katex"><span class="katex-mathml"></p> <p>          c</p> <p>          h</p> <p>          i</p> <p>          l</p> <p>          d</p> <p>          r</p> <p>          e</p> <p>          n</p> <p>          /</p> <p>          t</p> <p>          h</p> <p>          i</p> <p>          s</p> <p>          .</p> <p>         children/this.</p> <p>      </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right: 0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord">.</span></span></span></span></span>parent</mark> 就可以获取到信息</p> </blockquote> <pre><code class="prism language-javascript"><span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">this</span><span class="token punctuation">.</span>$children<span class="token operator">/</span><span class="token keyword">this</span><span class="token punctuation">.</span>$parent <span class="token comment">//获取子组件或者父组件的组件信息</span> <span class="token punctuation">}</span> </code></pre> <p>父传子的第三种方法（ref）<br /> 在父组件中的子组件m-child中添加一个ref=“事件名“</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">'togo'</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>m<span class="token operator">-</span>child ref<span class="token operator">=</span><span class="token string">"childFn"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>m<span class="token operator">-</span>child<span class="token operator">&gt;</span> <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token comment">//这种是可以通过方法来取得子组件的值</span> 	<span class="token function">toGo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">//得到的就是childFn这个子组件,childFn相当于组件名,假如这个组件中有data数据</span> 		<span class="token comment">//则写法就是this.$refs.childFn.data,而子组件无非就是定义数据即可</span> 			console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'我是接受参数的'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>childFn<span class="token punctuation">)</span><span class="token punctuation">;</span> 		<span class="token punctuation">}</span>  	<span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>childFn <span class="token punctuation">}</span> </code></pre> <blockquote> <p>这种方式跟第二种相似只不过他自己起了个事件名，方便查找</p> </blockquote> <h4> <a id="_98" rel="nofollow"></a>非父子组件传值</h4> <blockquote> <p>传值思想其实是一致的，先使用<code>$on</code>定义一个全局事件，后面写个回调函数，触发这个事件执行的方法，可以接参数<code>bus.$on('msg',val=&gt;{ })</code>，msg就是全局事件，然后在想要获取这个全局事件里面的值就调用他，不过这时候不是 <mark>this.<span class="katex--inline"><span class="katex"><span class="katex-mathml"></p> <p>          e</p> <p>          m</p> <p>          i</p> <p>          t</p> <p>          而</p> <p>          是</p> <p>          b</p> <p>          u</p> <p>          s</p> <p>          .</p> <p>         emit 而是 bus.</p> <p>      </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord cjk_fallback">而</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault">b</span><span class="mord mathdefault">u</span><span class="mord mathdefault">s</span><span class="mord">.</span></span></span></span></span>emit</mark></p> </blockquote> <ul> <li>事件总线<br /> 首先创建一个公共文件夹 <mark>util</mark><br /> 其次在创建一个js文件 例如<mark>bus.js</mark> </li> </ul> <p>bus.js下面的代码</p> <pre><code class="prism language-javascript"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  </code></pre> <p>这是两个组件传值,在互相传值各组件中引入bus.js文件<br /><code>import bus from "../bus.js"</code><br /> 在A组件中通过$emit调用自定义函数并且传参</p> <pre><code class="prism language-javascript"> 	<span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>     <span class="token constant">A</span><span class="token literal-property property">组件</span><span class="token operator">:</span>     <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>elementValue<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> value<span class="token operator">=</span><span class="token string">"点击触发"</span> @click<span class="token operator">=</span><span class="token string">"elementByValue"</span><span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>   <span class="token comment">// 引入公共的bug，来做为中间传达的工具</span>   <span class="token keyword">import</span> Bus <span class="token keyword">from</span> <span class="token string">'./bus.js'</span>   <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{<!-- --></span>     <span class="token function">data</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>       <span class="token keyword">return</span> <span class="token punctuation">{<!-- --></span>         <span class="token literal-property property">elementValue</span><span class="token operator">:</span> <span class="token number">4</span>       <span class="token punctuation">}</span>     <span class="token punctuation">}</span><span class="token punctuation">,</span>     <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>       <span class="token function-variable function">elementByValue</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         Bus<span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'val'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>elementValue<span class="token punctuation">)</span>       <span class="token punctuation">}</span>     <span class="token punctuation">}</span>   <span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> </code></pre> <p>B组件 用$on事件来接收参数</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>     <span class="token constant">B</span><span class="token literal-property property">组件</span><span class="token operator">:</span>     <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> value<span class="token operator">=</span><span class="token string">"点击触发"</span> @click<span class="token operator">=</span><span class="token string">"getData"</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>name<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>   <span class="token keyword">import</span> Bus <span class="token keyword">from</span> <span class="token string">'./bus.js'</span>   <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{<!-- --></span>     <span class="token function">data</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>       <span class="token keyword">return</span> <span class="token punctuation">{<!-- --></span>         <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token number">0</span>       <span class="token punctuation">}</span>     <span class="token punctuation">}</span><span class="token punctuation">,</span>     <span class="token function-variable function">mounted</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>       <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">this</span>       <span class="token comment">// 用$on事件来接收参数</span>       Bus<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">'val'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>         vm<span class="token punctuation">.</span>name <span class="token operator">=</span> data       <span class="token punctuation">}</span><span class="token punctuation">)</span>     <span class="token punctuation">}</span><span class="token punctuation">,</span>     <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>       <span class="token function-variable function">getData</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">++</span>       <span class="token punctuation">}</span>     <span class="token punctuation">}</span>   <span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>  </code></pre> <p>只是全局组件传值,单个组件调用</p> <blockquote> <p>然后在所有需要用到这个文件下面的数据只需要导入这个文件就行</p> </blockquote> <p>在<code>APP.vue</code>下面定义一个方法</p> <pre><code class="prism language-javascript"><span class="token comment">//全局中定义的方法名</span> <span class="token literal-property property">methods</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span> 	<span class="token function">passMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token comment">//注意这里的写法 </span> 		bus<span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'msg'</span><span class="token punctuation">,</span><span class="token string">'要传入的数数据'</span><span class="token punctuation">)</span><span class="token comment">//自定义事件都用emit</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token comment">//子组件利用勾子函数监听事件</span> <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	bus<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">'msg'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span> 		 	<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <pre><code class="prism language-javascript">注意的是 在页面销毁的时候需要吧bus销毁掉  <span class="token function">destroyed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     bus<span class="token punctuation">.</span><span class="token function">$off</span><span class="token punctuation">(</span><span class="token string">"child2"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>destroyedMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span> </code></pre> <ul> <li>$ attrs / listeners<br /> 解决多级组件间传值的问题</li> </ul> <h4> <a id="attrs_205" rel="nofollow"></a>attrs</h4> <p>在<code>App.vue</code>下面定义数据并且把想要的数据全部绑定到相应的子组件上面<br /> 然后在在其父组件上面绑定一个v-bind=‘$attrs’ 注意这里不能简写，如果本身有的数据跟vue的数据名相同时，他会自动过滤</p> <h4> <a id="listeners_209" rel="nofollow"></a>listeners</h4> <p>是通过监听事件来实现的</p> <h4> <a id="provide__inject__212" rel="nofollow"></a>provide 和 inject 传值</h4> <p>用于祖先与后代传值<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/dan_seek/article/details/102641761"  rel="nofollow">这篇文章也不错后面的几种传值方式这里面有详解</a></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41145.htm">一片枫叶一片红是什么歌（一片枫叶一片情是什么歌）</a></p>
+                                        <p>下一个：<a href="/news/article-41630.htm">正大饲料加盟代理（正大饲料加盟代理好做吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-26262.htm" title="河南省兽药前十名企业名单（河南兽药50强企业排名）">河南省兽药前十名企业名单（河南兽药50强企业排名）</a></li>
+                        <li class="py-2"><a href="/news/article-25818.htm" title="动物接种疫苗多少钱一次（动物 疫苗）">动物接种疫苗多少钱一次（动物 疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-1-today-clash-meta-node.htm" title="「1月1日」最高速度19.9M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月1日」最高速度19.9M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-latest-clash-meta-node.htm" title="「12月30日」最高速度18.7M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接">「12月30日」最高速度18.7M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-clash-meta-node-share.htm" title="「11月16日」最高速度22.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月16日」最高速度22.1M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-clash-meta-github.htm" title="「10月21日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月21日」最高速度19.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-clash-meta-github.htm" title="「11月10日」最高速度21.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月10日」最高速度21.3M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-37183.htm" title="动物疫苗一般在哪里打针的 动物疫苗在哪里购买">动物疫苗一般在哪里打针的 动物疫苗在哪里购买</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-27-node-share-links.htm" title="「10月27日」最高速度22.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月27日」最高速度22.7M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23513.htm" title="成都宠物领养微信公众号推荐（成都宠物领养微信公众号推荐下载）">成都宠物领养微信公众号推荐（成都宠物领养微信公众号推荐下载）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
