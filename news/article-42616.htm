@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-42616.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>数据结构 &#8211; 单链表 C++ 实现</title>
+        <meta name="description" content="单链表的定义 typedef int ElemType; typedef struct LNode {     ElemType data;     LNode *next; } LNode, *Li" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-42616.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="数据结构 &#8211; 单链表 C++ 实现" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/af57e05ee02ed6f459421543533f5b1e.webp" />
+        <meta property="og:release_date" content="2025-01-18T07:15:35" />
+    <meta property="og:updated_time" content="2025-01-18T07:15:35" />
+        <meta property="og:description" content="单链表的定义 typedef int ElemType; typedef struct LNode {     ElemType data;     LNode *next; } LNode, *Li" />
+        
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img href="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">数据结构 &#8211; 单链表 C++ 实现</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <h2 id="单链表的定义">单链表的定义</h2> <pre><code class="language-cpp">typedef int ElemType; typedef struct LNode {     ElemType data;     LNode *next; } LNode, *LinkList;</code></pre> <p>此处<code>LNode</code> 强调一个结点，<code>*LinkList</code> 强调一个单链表的头指针，本例中只有头指针使用<code>*LinkList</code>&nbsp;；</p> <h2 id="单链表的头指针和头节点">单链表的头指针和头节点</h2> <p>若单链表没有头节点，那么单链表的头指针则<code>指向</code>链表的第一个元素；若由头节点，头指针指向头节点；例如头指针为 L；如果链表为空，则有<code>L == NULL</code>，若有头节点，则有<code>L-&gt;next = NULL</code>；</p> <p>注意此处的指向问题应当透彻理解指针的概念，<code>指向</code>理解为元素地址；此处的 L 为头指针；在没有头节点时指向第一个元素，L 就是第一个元素的地址，若没有元素，即没有第一个元素，那么<code>L == NULL</code>；如果有头节点，那么 L 为头节点的地址，因此<code>L-&gt;next</code> 即为元素的第一个结点，故当链表为空时<code>L-&gt;next == NULL</code>；</p> <p>本例中的单链表均为带头节点的单链表；</p> <h2 id="初始化一个单链表">初始化一个单链表</h2> <blockquote> <p>初始化单链表的主要目的在于建立一个头节点，并让 L 指向头节点；</p> </blockquote> <p><code>L = (LinkList)malloc(sizeof(LNode))</code> 此处申请一个头节点的空间并返回申请到空间的地址返回，必须传入 L 的应用或者二级指针；</p> <p>若直接传入 L 那么将会拷贝一份 L 指针给 L1 ，那么申请到的空间地址将返回给 L1 而不是L，如下图</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5aafc9d7fe70f1c32fa487fde69c6cbd.jpg" alt="数据结构 - 单链表 C++ 实现"></p> <p>因此必须传入 L 的引用或者 L 的指针；</p> <p>传入 L（无效）</p> <pre><code class="language-cpp">void ListInitite(LinkList L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }</code></pre> <p>传入引用</p> <pre><code class="language-cpp">void ListInitite(LinkList &amp;L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }</code></pre> <p>传入 L 的指针</p> <pre><code class="language-cpp">void ListInitite(LinkList *L) {     *L = (LinkList)malloc(sizeof(LNode));     (*L)-&gt;next = NULL; }</code></pre> <h2 id="创建一个单链表">创建一个单链表</h2> <h3 id="头插法">头插法</h3> <blockquote> <p>即将新元素插入到链表的第一个位置</p> </blockquote> <pre><code class="language-cpp">void List_HeadInsert(LinkList &amp;L) {     for(int i = 1; i &lt;= 10; i++) { //将 1 ~ 10 按头插法插入单链表         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = L-&gt;next;         L-&gt;next = p;     }     //按照头插法的插入方式结果为倒序     Show_List(L); }</code></pre> <p>测试本段代码</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;cstdlib&gt; using namespace std;   typedef int ElemType; typedef struct LNode {     ElemType data;     struct LNode *next; } LNode, *LinkList;  void ListInitite(LinkList &amp;L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }  void Show_List(LinkList L) {     LNode* p = L-&gt;next;     while (p)     {         printf("%d ", p-&gt;data);         p = p-&gt;next;     } }  void List_HeadInsert(LinkList &amp;L) {     for(int i = 1; i &lt;= 10; i++) { //将 1 ~ 10 按头插法插入单链表         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = L-&gt;next;         L-&gt;next = p;     }     //按照头插法的插入方式结果为倒序     Show_List(L); }  int main() {     LinkList L;     ListInitite(L);     List_HeadInsert(L);     return 0; }</code></pre> <p>运行结果</p> <pre><code class="language-cpp">10 9 8 7 6 5 4 3 2 1</code></pre> <h3 id="尾插法">尾插法</h3> <blockquote> <p>即新的元素放在链表尾</p> </blockquote> <p>使用尾插法，需要定义一个尾指针 r，尾指针始终指向链表的最后一个元素；刚开始为空链表，尾指针指向头节点，即和 L 相等，此后每插入一个新的结点，新的结点成为新的尾结点，r 指向此结点；</p> <pre><code class="language-cpp">void List_TailInsert(LinkList &amp;L) {     LNode* r = L;     for(int i = 1; i &lt;= 10; i++) {         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = r-&gt;next;         r-&gt;next = p;         r = p;     } }</code></pre> <p>测试：</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;cstdlib&gt; using namespace std;  typedef int ElemType; typedef struct LNode {     ElemType data;     struct LNode *next; } LNode, *LinkList;  void ListInitite(LinkList &amp;L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }  void Show_List(LinkList L) {     LNode* p = L-&gt;next;     while (p)     {         printf("%d ", p-&gt;data);         p = p-&gt;next;     } }  void List_HeadInsert(LinkList &amp;L) {     for(int i = 1; i &lt;= 10; i++) { //将 1 ~ 10 按头插法插入单链表         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = L-&gt;next;         L-&gt;next = p;     }     //按照头插法的插入方式结果为倒序     Show_List(L); }  void List_TailInsert(LinkList &amp;L) {     LNode* r = L;     for(int i = 1; i &lt;= 10; i++) {         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = r-&gt;next;         r-&gt;next = p;         r = p;     } }  int main() {     LinkList L;     ListInitite(L);     List_TailInsert(L);     //按尾插法插入为顺序      Show_List(L);     return 0; }</code></pre> <p>测试结果：</p> <pre><code class="language-cpp">1 2 3 4 5 6 7 8 9 10</code></pre> <h2 id="返回链表的长度">返回链表的长度</h2> <pre><code class="language-cpp">int Length(LinkList L) {     LNode* p = L;     int length = 0;     while (p-&gt;next) {         length++;         p = p-&gt;next;     }     return length; }</code></pre> <h2 id="链表的查询">链表的查询</h2> <h3 id="按序号查找结点的值">按序号查找结点的值</h3> <blockquote> <p>即查找第 i 个结点的值，最终返回此结点</p> </blockquote> <pre><code class="language-cpp">LNode* GetElem(LinkList L, int i) {     if(i == 0) {         return L;     }     if(i &lt; 1 || i &gt; Length(L)) {   //若超出链表范围         return NULL;     }     LNode* p = L;     int now = 0;     while(p &amp;&amp; now &lt; i) {         p = p-&gt;next;         now++;     }     return p; }</code></pre> <p>测试：</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;cstdlib&gt; using namespace std;  typedef int ElemType; typedef struct LNode {     ElemType data;     struct LNode *next; } LNode, *LinkList;  void ListInitite(LinkList &amp;L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }  void Show_List(LinkList L) {     LNode* p = L-&gt;next;     while (p)     {         printf("%d ", p-&gt;data);         p = p-&gt;next;     } }  void List_TailInsert(LinkList &amp;L) {     LNode* r = L;     for(int i = 1; i &lt;= 10; i++) {         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = r-&gt;next;         r-&gt;next = p;         r = p;     } }  int Length(LinkList L) {     LNode* p = L;     int length = 0;     while (p-&gt;next) {         length++;         p = p-&gt;next;     }     return length; }   LNode* GetElem(LinkList L, int i) {     if(i == 0) {         return L;     }     if(i &lt; 1 || i &gt; Length(L)) {   //若超出链表范围         return NULL;     }     LNode* p = L;     int now = 0;     while(p &amp;&amp; now &lt; i) {         p = p-&gt;next;         now++;     }     return p; }   int main() {     LinkList L;     ListInitite(L);     List_TailInsert(L);     LNode* ip = GetElem(L, 5);     Show_List(L);     if(ip) {         printf("\n%d", ip-&gt;data);     }     return 0; }</code></pre> <p>测试结果：</p> <pre><code class="language-cpp">1 2 3 4 5 6 7 8 9 10 5</code></pre> <h3 id="按值查找结点">按值查找结点</h3> <pre><code class="language-cpp">LNode* LocateElem(LinkList L, ElemType e) {     LNode* p = L-&gt;next;     while(p &amp;&amp; p-&gt;data != e) {         p = p-&gt;next;     }     return p; }</code></pre> <h2 id="插入结点">插入结点</h2> <blockquote> <p>在链表的第 i 个位置插入元素 e</p> </blockquote> <p>插入新的元素后共有 len + 1 个元素，插入位置也必须在 [1, len + 1]，因此插入位置必须在这个范围内；首先获得第 i - 1 个结点，然后进行操作；</p> <pre><code class="language-cpp">bool ListInsert(LinkList &amp;L, int i, ElemType e) {     if(i &lt; 1 || i &gt; Length(L) + 1) {         printf("插入位置错误\n");         return false;     }     LNode *pre, *s;     s-&gt;data = e;     pre = GetElem(L, i - 1);     s-&gt;next = pre-&gt;next;     pre-&gt;next = s;     return true; }</code></pre> <p>测试代码：</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;cstdlib&gt; using namespace std;  typedef int ElemType; typedef struct LNode { 	ElemType data; 	struct LNode *next; } LNode, *LinkList;  void ListInitite(LinkList &amp;L) { 	L = (LinkList)malloc(sizeof(LNode)); 	L-&gt;next = NULL; }  void Show_List(LinkList L) { 	LNode* p = L-&gt;next; 	while (p) { 		printf("%d ", p-&gt;data); 		p = p-&gt;next; 	} }  void List_HeadInsert(LinkList &amp;L) { 	for(int i = 1; i &lt;= 10; i++) { //将 1 ~ 10 按头插法插入单链表 		LNode* p = (LNode*)malloc(sizeof(LNode)); 		p-&gt;data = i; 		p-&gt;next = L-&gt;next; 		L-&gt;next = p; 	} }   int Length(LinkList L) { 	LNode* p = L-&gt;next; 	int length = 0; 	while(p) { 		length++; 		p = p-&gt;next; 	} 	return length; }   LNode* GetElem(LinkList L, int i) { 	if(i == 0) { 		return L; 	} 	if(i &lt; 1 || i &gt; Length(L)) {   //若超出链表范围 		return NULL; 	} 	LNode* p = L; 	int now = 0; 	while(p &amp;&amp; now &lt; i) { 		p = p-&gt;next; 		now++; 	} 	return p; }   bool ListInsert(LinkList &amp;L, int i, ElemType e) {     if(i &lt; 1 || i &gt; Length(L) + 1) {         printf("插入位置错误\n");         return false;     }     LNode *pre = GetElem(L, i - 1);     LNode *s = (LNode*)malloc(sizeof(LNode));     s-&gt;data = e;     s-&gt;next = pre-&gt;next;     pre-&gt;next = s;     return true; }  int main() { 	LinkList L; 	ListInitite(L); 	List_HeadInsert(L); 	ListInsert(L, 5, 100); 	Show_List(L); 	return 0; }</code></pre> <p>测试结果：</p> <pre><code class="language-cpp">10 9 8 7 100 6 5 4 3 2 1</code></pre> <h3 id="前插和后插">前插和后插</h3> <blockquote> <p>前插即在一个<strong>已知结点</strong>的前面插入新的结点，后插即在一个已知结点的后面插入新的结点；</p> </blockquote> <p>上面的插入函数即在结点的后面插入新的结点，首先需要得到第 i - 1 个结点，然后再此结点后面插入新的结点，即为后插；</p> <p>前插操作也是类似，在某个结点的前面插入结点，首先获取到此结点的前一个结点，然后在前一个结点后面插入新的结点；但这种插入方式必须首先获取到已知结点的前一个结点，查找过程必须遍历当前结点之前的所有元素才能找到前一个结点；时间复杂度为 O(n)，采用另一种方式可以巧妙的将复杂度降低到 O(1)；方法为在已知结点的后面插入新的结点，然后交换新节点与已知结点的值，就实现了相同的目的；</p> <pre><code class="language-cpp">void FrontInsert(LNode* node, ElemType e) {     LNode *s = (LNode*)malloc(sizeof(LNode));     s-&gt;data = e;     s-&gt;next = node-&gt;next;     node-&gt;next = s;     ElemType temp = node-&gt;data;     node-&gt;data = s-&gt;data;     s-&gt;data = temp; }</code></pre> <blockquote> <p>2~5 行操作为将新的结点插入到已知结点的后面，6~8 行操作为交换两个结点内的值；</p> </blockquote> <p>测试：</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;cstdlib&gt; using namespace std;  typedef int ElemType; typedef struct LNode {     ElemType data;     struct LNode *next; } LNode, *LinkList;  void ListInitite(LinkList &amp;L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }  void Show_List(LinkList L) {     LNode* p = L-&gt;next;     while (p)     {         printf("%d ", p-&gt;data);         p = p-&gt;next;     } }  void List_HeadInsert(LinkList &amp;L) {     for(int i = 1; i &lt;= 10; i++) { //将 1 ~ 10 按头插法插入单链表         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = L-&gt;next;         L-&gt;next = p;     } }   int Length(LinkList L) {     LNode* p = L-&gt;next;     int length = 0;     while(p) {         length++;         p = p-&gt;next;     }     return length; }   LNode* GetElem(LinkList L, int i) {     if(i == 0) {         return L;     }     if(i &lt; 1 || i &gt; Length(L)) {   //若超出链表范围         return NULL;     }     LNode *p = L;     int now = 0;     while(p &amp;&amp; now &lt; i) {         p = p-&gt;next;         now++;     }     return p; }   void FrontInsert(LNode* &amp;node, ElemType e) {     LNode *s = (LNode*)malloc(sizeof(LNode));     s-&gt;data = e;     s-&gt;next = node-&gt;next;     node-&gt;next = s;     ElemType temp = node-&gt;data;     node-&gt;data = s-&gt;data;     s-&gt;data = temp; }   int main() {     LinkList L;     ListInitite(L);     List_HeadInsert(L);     Show_List(L);     LNode *node = GetElem(L, 5);     FrontInsert(node, 50);     printf("\n");     Show_List(L);     return 0; }</code></pre> <p>测试结果：</p> <pre><code class="language-cpp">10 9 8 7 6 5 4 3 2 1 10 9 8 7 50 6 5 4 3 2 1</code></pre> <h2 id="删除结点操作">删除结点操作</h2> <blockquote> <p>删除链表位置为 i 的结点，并将删除的结点存放在 node 中</p> </blockquote> <pre><code class="language-cpp">bool ListDelete(LinkList &amp;L, int i, LNode* &amp;node) {     if(i &lt; 1 || i &gt; Length(L)) {         printf("删除位置错误");         return false;     }     LNode *p = GetElem(L, i - 1);     LNode *q = p-&gt;next;     p-&gt;next = q-&gt;next;     node = q;     free(q);     return true; }</code></pre> <p>上述代码有错，free(void* p) 函数的作用是回收 动态分配给 p 的空间，不论有多少指针指向 p 所指向的空间，因此将对于<code>node = q</code>，在<code>free(q)</code> 以后 node 所指向的空间也被回收了，因此此处最好不返回结点，返回结点中的值；修正后的代码如下：</p> <pre><code class="language-cpp">bool ListDelete(LinkList &amp;L, int i, ElemType &amp;del) {     if(i &lt; 1 || i &gt; Length(L)) {         printf("删除位置错误");         return false;     }     LNode *p = GetElem(L, i - 1);     LNode *q = p-&gt;next;     p-&gt;next = q-&gt;next;     del = q-&gt;data;     free(q);     return true; }</code></pre> <p>测试：</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;cstdlib&gt; using namespace std;  typedef int ElemType; typedef struct LNode {     ElemType data;     struct LNode *next; } LNode, *LinkList;  void ListInitite(LinkList &amp;L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }  void Show_List(LinkList L) {     LNode* p = L-&gt;next;     while (p)     {         printf("%d ", p-&gt;data);         p = p-&gt;next;     } }  void List_TailInsert(LinkList &amp;L) {     LNode* r = L;     for(int i = 1; i &lt;= 10; i++) {         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = r-&gt;next;         r-&gt;next = p;         r = p;     } }  int Length(LinkList L) {     LNode* p = L-&gt;next;     int length = 0;     while(p) {         length++;         p = p-&gt;next;     }     return length; }   LNode* GetElem(LinkList L, int i) {     if(i == 0) {         return L;     }     if(i &lt; 1 || i &gt; Length(L)) {   //若超出链表范围         return NULL;     }     LNode *p = L;     int now = 0;     while(p &amp;&amp; now &lt; i) {         p = p-&gt;next;         now++;     }     return p; }   bool ListDelete(LinkList &amp;L, int i, ElemType &amp;del) {     if(i &lt; 1 || i &gt; Length(L)) {         printf("删除位置错误");         return false;     }     LNode *p = GetElem(L, i - 1);     LNode *q = p-&gt;next;     p-&gt;next = q-&gt;next;     del = q-&gt;data;     free(q);     return true; }  int main() {     LinkList L;     ListInitite(L);     List_TailInsert(L);     Show_List(L);     ElemType del;     ListDelete(L, 7, del);     printf("\n");     Show_List(L);     printf("\n删除的元素为：%d", del);     return 0; }</code></pre> <p>结果：</p> <pre><code class="language-cpp">1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 8 9 10 删除的元素为：7</code></pre> <p>此处删除的实现依然为后删，即找到将要删除结点的前一个结点进行删除；即给定一个已知结点需要对其进行删除，首先应该找到其前驱节点才能进行删除；和前插法类似，也有减少其复杂度的方法，即首先交换待删除结点后其后继节点的值，然后删除其后继节点；实现方式和前插法类似：</p> <pre><code class="language-cpp">void Del(LinkList &amp;L, LNode* &amp;p) {     LNode* q = p-&gt;next;     ElemType temp = q-&gt;data;     q-&gt;data = p-&gt;data;     p-&gt;data = temp;     p-&gt;next = q-&gt;next;     free(q); }</code></pre> <blockquote> <p>当然此时对于极端情况，即要删除的元素为最后一个元素时不适用；</p> </blockquote> <p>测试：</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;cstdlib&gt; using namespace std;  typedef int ElemType; typedef struct LNode {     ElemType data;     struct LNode *next; } LNode, *LinkList;  void ListInitite(LinkList &amp;L) {     L = (LinkList)malloc(sizeof(LNode));     L-&gt;next = NULL; }  void Show_List(LinkList L) {     LNode* p = L-&gt;next;     while (p)     {         printf("%d ", p-&gt;data);         p = p-&gt;next;     } }  void List_TailInsert(LinkList &amp;L) {     LNode* r = L;     for(int i = 1; i &lt;= 10; i++) {         LNode* p = (LNode*)malloc(sizeof(LNode));         p-&gt;data = i;         p-&gt;next = r-&gt;next;         r-&gt;next = p;         r = p;     } }  int Length(LinkList L) {     LNode* p = L-&gt;next;     int length = 0;     while(p) {         length++;         p = p-&gt;next;     }     return length; }   LNode* GetElem(LinkList L, int i) {     if(i == 0) {         return L;     }     if(i &lt; 1 || i &gt; Length(L)) {   //若超出链表范围         return NULL;     }     LNode *p = L;     int now = 0;     while(p &amp;&amp; now &lt; i) {         p = p-&gt;next;         now++;     }     return p; }    void Del(LinkList &amp;L, LNode* &amp;p) {     LNode* q = p-&gt;next;     ElemType temp = q-&gt;data;     q-&gt;data = p-&gt;data;     p-&gt;data = temp;     p-&gt;next = q-&gt;next;     free(q); }  int main() {     LinkList L;     ListInitite(L);     List_TailInsert(L);     Show_List(L); 	LNode *p = GetElem(L, 4); 	Del(L, p); 	printf("\n"); 	Show_List(L);     return 0; }</code></pre> <p>结果：</p> <pre><code class="language-cpp">1 2 3 4 5 6 7 8 9 10 1 2 3 5 6 7 8 9 10</code></pre> <h2 id="单链表的销毁">单链表的销毁</h2> <pre><code class="language-cpp">void Destory(LinkList &amp;L) {     LNode* p = L;     LNode* q = L;     while (q)     {         p = q;         q = q-&gt;next;         free(p);     }    free(L);      L=NULL; }</code></pre> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-42132.htm">北京宠物店店员一个月拿多少钱（北京宠物店招聘学徒）</a></p>
+                                        <p>下一个：<a href="/news/article-42617.htm">宠物美容师宠物美容（宠物美容师宠物美容培训学校天津）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-25351.htm" title="通过源码了解Java的自动装箱拆箱">通过源码了解Java的自动装箱拆箱</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-node-share.htm" title="「1月18日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月18日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24891.htm" title="动物疫苗厂家电话查询号码（动物疫苗批发）">动物疫苗厂家电话查询号码（动物疫苗批发）</a></li>
+                        <li class="py-2"><a href="/news/article-26262.htm" title="河南省兽药前十名企业名单（河南兽药50强企业排名）">河南省兽药前十名企业名单（河南兽药50强企业排名）</a></li>
+                        <li class="py-2"><a href="/news/article-22583.htm" title="设计模式详解之结构型设计模式——适配器、装饰器">设计模式详解之结构型设计模式——适配器、装饰器</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-node-subscribe-links.htm" title="「12月2日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「12月2日」最高速度21.2M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-35075.htm" title="河南兽药生产厂家名单（河南十大知名兽药厂家）">河南兽药生产厂家名单（河南十大知名兽药厂家）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月18日」最高速度21.5M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-clash-meta-node.htm" title="「10月9日」最高速度18M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「10月9日」最高速度18M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-32879.htm" title="Golang-Channel原理解析">Golang-Channel原理解析</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
