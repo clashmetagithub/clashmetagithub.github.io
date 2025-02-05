@@ -1,0 +1,215 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-51648.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>pyspark结合hive使用 spark on hive方式开发代码附上代码实例</title>
+        <meta name="description" content="1、在CDH中已经添加了hive 2、配置hive中的hive-site.xml参数 /opt/cloudera/parcels/CDH/lib/hive/conf/hive-site.xml 3、配" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-51648.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="pyspark结合hive使用 spark on hive方式开发代码附上代码实例" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/af57e05ee02ed6f459421543533f5b1e.webp" />
+        <meta property="og:release_date" content="2025-02-05T08:20:58" />
+    <meta property="og:updated_time" content="2025-02-05T08:20:58" />
+        <meta property="og:description" content="1、在CDH中已经添加了hive 2、配置hive中的hive-site.xml参数 /opt/cloudera/parcels/CDH/lib/hive/conf/hive-site.xml 3、配" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="pyspark结合hive使用 spark on hive方式开发代码附上代码实例">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                        <li><a href="#" class="nav-link">关于</a></li>
+                    <li><a href="#" class="nav-link">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">pyspark结合hive使用 spark on hive方式开发代码附上代码实例</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p>1、在CDH中已经添加了hive<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/e62177ac68e7e37daf6901d70d4491f4.jpg" alt="pyspark结合hive使用 spark on hive方式开发代码附上代码实例"><br /> 2、配置hive中的hive-site.xml参数 /opt/cloudera/parcels/CDH/lib/hive/conf/hive-site.xml<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/111e47e62bce17ddfd88655a5bb8c7db.jpg" alt="pyspark结合hive使用 spark on hive方式开发代码附上代码实例"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/2a75d812b8028868286e667715f5c908.jpg" alt="pyspark结合hive使用 spark on hive方式开发代码附上代码实例"><br /> 3、配置spark中的hive-site.xml 目录/opt/cloudera/parcels/CDH/lib/spark3/conf/hive-site.xml</p> <pre><code class="prism language-bash">  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>hive.metastore.warehouse.dir<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>/user/hive/warehouse<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>hive.metastore.local<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>false<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>hive.metastore.uris<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>thrift://hadoop103:908<span class="token operator"><span class="token file-descriptor important">3</span>&lt;</span>/value<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>  </code></pre> <p>4、修改spark-env.sh,目录/opt/cloudera/parcels/CDH/lib/spark3/conf/</p> <pre><code class="prism language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">PYSPARK_PYTHON</span><span class="token operator">=</span>/opt/cloudera/anaconda3/bin/python <span class="token builtin class-name">export</span> <span class="token assign-left variable">SPARK_HOME</span><span class="token operator">=</span>/opt/cloudera/parcels/CDH/lib/spark3 </code></pre> <p>5、如果自己在代码中实现这</p> <pre><code class="prism language-bash">spark <span class="token operator">=</span> SparkSession.builder.appName<span class="token punctuation">(</span><span class="token string">'feat-eng'</span><span class="token punctuation">)</span><span class="token punctuation">\</span>     .config<span class="token punctuation">(</span><span class="token string">"hive.metastore.warehouse.dir"</span>,<span class="token string">'hdfs://hadoop103:8020/user/hive/warehouse'</span><span class="token punctuation">)</span><span class="token punctuation">\</span>     .config<span class="token punctuation">(</span><span class="token string">"hive.metastore.uris"</span>,<span class="token string">"thrift://hadoop103:9083"</span><span class="token punctuation">)</span>    <span class="token punctuation">\</span> .enableHiveSupport<span class="token punctuation">(</span><span class="token punctuation">)</span>.getOrCreate<span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p>6、下面就是spark on hive 对接数据</p> <pre><code class="prism language-python"><span class="token keyword">import</span> findspark findspark<span class="token punctuation">.</span>init<span class="token punctuation">(</span>spark_home<span class="token operator">=</span><span class="token string">'/opt/cloudera/parcels/CDH/lib/spark3'</span><span class="token punctuation">,</span>python_path<span class="token operator">=</span><span class="token string">'/opt/cloudera/anaconda3/bin/python'</span><span class="token punctuation">)</span> <span class="token keyword">import</span> pyspark <span class="token keyword">from</span> pyspark<span class="token punctuation">.</span>context <span class="token keyword">import</span> SparkContext <span class="token keyword">from</span> pyspark<span class="token punctuation">.</span>sql <span class="token keyword">import</span> SparkSession <span class="token keyword">from</span> pyspark<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>functions <span class="token keyword">import</span> <span class="token operator">*</span>  spark <span class="token operator">=</span> SparkSession<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>appName<span class="token punctuation">(</span><span class="token string">'feat-eng'</span><span class="token punctuation">)</span>\     <span class="token punctuation">.</span>config<span class="token punctuation">(</span><span class="token string">"hive.metastore.warehouse.dir"</span><span class="token punctuation">,</span><span class="token string">'hdfs://hadoop103:8020/user/hive/warehouse'</span><span class="token punctuation">)</span>\     <span class="token punctuation">.</span>config<span class="token punctuation">(</span><span class="token string">"hive.metastore.uris"</span><span class="token punctuation">,</span><span class="token string">"thrift://hadoop103:9083"</span><span class="token punctuation">)</span>    \ <span class="token punctuation">.</span>enableHiveSupport<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>getOrCreate<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token triple-quoted-string string">'''读取csv的原始数据'''</span> anime_df <span class="token operator">=</span> spark<span class="token punctuation">.</span>read<span class="token punctuation">.</span>csv<span class="token punctuation">(</span><span class="token string">'hdfs://hadoop101:8020/recommandvideo/anime.csv'</span><span class="token punctuation">,</span>header<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>inferSchema<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> anime_df<span class="token punctuation">.</span>createOrReplaceTempView<span class="token punctuation">(</span><span class="token string">"temp_anime"</span><span class="token punctuation">)</span> <span class="token triple-quoted-string string">'''将数据入库hive'''</span> spark<span class="token punctuation">.</span>sql<span class="token punctuation">(</span><span class="token string">'insert into sparktest.anime select "1",anime_id,name,genre,type,episodes,rating,members from temp_anime'</span><span class="token punctuation">)</span> <span class="token triple-quoted-string string">'''读取hive中表的数据'''</span> spark<span class="token punctuation">.</span>sql<span class="token punctuation">(</span><span class="token string">"select * from sparktest.anime"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-51647.htm">深度学习（PyTorch）——TensorBoard的使用方法与技巧</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-30972.htm" title="郑州领养猫咪的网站（郑州哪里能领养猫）">郑州领养猫咪的网站（郑州哪里能领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-clash-meta-node.htm" title="「1月11日」最高速度20.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月11日」最高速度20.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22124.htm" title="动物疫苗公司10强名单公布时间（动物疫苗公司10强名单公布时间查询）">动物疫苗公司10强名单公布时间（动物疫苗公司10强名单公布时间查询）</a></li>
+                        <li class="py-2"><a href="/news/article-26742.htm" title="为什么猫打针没反应（为什么猫打针没反应了）">为什么猫打针没反应（为什么猫打针没反应了）</a></li>
+                        <li class="py-2"><a href="/news/article-20749.htm" title="动物疫苗间隔多久打一次最好 动物疫苗间隔多久打一次最好呢">动物疫苗间隔多久打一次最好 动物疫苗间隔多久打一次最好呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-clash-meta-node.htm" title="「1月5日」最高速度19.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月5日」最高速度19.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-31940.htm" title="办理宠物医院诊疗许可证（办理宠物医院审批动物诊疗许可证）">办理宠物医院诊疗许可证（办理宠物医院审批动物诊疗许可证）</a></li>
+                        <li class="py-2"><a href="/news/article-32413.htm" title="动物疫苗公司排名榜前十名 动物疫苗公司排名榜前十名有哪些">动物疫苗公司排名榜前十名 动物疫苗公司排名榜前十名有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-25351.htm" title="通过源码了解Java的自动装箱拆箱">通过源码了解Java的自动装箱拆箱</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-node-share.htm" title="「12月21日」最高速度20.3M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接">「12月21日」最高速度20.3M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
