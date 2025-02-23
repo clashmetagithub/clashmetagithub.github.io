@@ -1,0 +1,215 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-61732.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>通过winsw将SpringBoot可运行jar包做成后台服务，启动运行</title>
+        <meta name="description" content="一，背景 因为网络限制，目前开发的一个SpringBoot项目不能部署到Linux设备上，必须要部署到Windows上。在Linux设备上后台启动SpringBoot项目只需要一条命令：nohup s" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-61732.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="通过winsw将SpringBoot可运行jar包做成后台服务，启动运行" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/a42abe912f6a5552212146d5f98525bb.webp" />
+        <meta property="og:release_date" content="2025-02-23T09:47:43" />
+    <meta property="og:updated_time" content="2025-02-23T09:47:43" />
+        <meta property="og:description" content="一，背景 因为网络限制，目前开发的一个SpringBoot项目不能部署到Linux设备上，必须要部署到Windows上。在Linux设备上后台启动SpringBoot项目只需要一条命令：nohup s" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="通过winsw将SpringBoot可运行jar包做成后台服务，启动运行">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">通过winsw将SpringBoot可运行jar包做成后台服务，启动运行</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h2>一，背景</h2> <p>因为网络限制，目前开发的一个SpringBoot项目不能部署到Linux设备上，必须要部署到Windows上。在Linux设备上后台启动SpringBoot项目只需要一条命令：<strong>nohup sh run.sh &amp;，</strong>run.sh脚本包含了启动SpringBoot项目的命令。在windows上后台启动SpringBoot项目貌似就比较尴尬，没有那么好用的命令来后台启动项目，打成war包放到Tomcat等web容器中就浪费了SpringBoot内嵌web容器的优势。在网络上搜肠刮肚一番，最终选择了<strong>winsw(</strong><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/kohsuke/winsw/releases"  rel="nofollow">https://github.com/kohsuke/winsw/releases</a><strong>)</strong>，winsw是一个可以将任何应用程序注册成服务的软件。嗯，就是她了，哈哈哈。</p> <h2>二，步骤</h2> <p>a，去上面给出的链接里下载自己所需的文件，选择了最新版本的winsw。主要需要下载两个文件，一个是sample-minimal.xml和WinSW.NET4.exe(WinSW.NET2.exe也行)。</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="347" src="http://img.555519.xyz/uploads/20230112/e37d1fbe2d3c802d05dedfe9a3bce853.jpg"></p> <p>a.+，下载winsw后，在window上安装 .net framework4&nbsp;，否则后面会出问题。（很重要）</p> <p>b，SpringBoot项目通过执行<strong>mvn clean package</strong>命令后得到可执行jar包：statement-0.0.1-SNAPSHOT.jar。</p> <p>c，将sample-minimal.xml和WinSW.NET4.exe改为statement-0.0.1-SNAPSHOT.xml和statement-0.0.1-SNAPSHOT.exe，文件名保持一致，方便后续操作。（<strong>jar包、.exe文件、.xml文件均在同一目录下</strong>）</p> <p>d，在statement-0.0.1-SNAPSHOT.xml文件中&lt;configuration&gt;标签内进行相关配置，如下。</p> <pre class="has"><code>&lt;configuration&gt;      &lt;!-- ID of the service. It should be unique accross the Windows system--&gt;   &lt;!--服务ID：启动、关闭、删除服务时，都是通过ID来操作的--&gt;   &lt;id&gt;statement-0.0.1-SNAPSHOT&lt;/id&gt;   &lt;!-- Display name of the service --&gt;   &lt;!--服务名称--&gt;   &lt;name&gt;statement-0.0.1-SNAPSHOT (powered by WinSW)&lt;/name&gt;   &lt;!-- Service description --&gt;   &lt;!--服务描述--&gt;   &lt;description&gt;This service is a service for Statement Project（http://www.eachtravel.com/）&lt;/description&gt;      &lt;!-- Path to the executable, which should be started --&gt;   &lt;!--当前电脑配置了java环境变量，直接写成“java”就行；你也可以写成类似这样：D:\develop\jdk1.8\jre\bin\java--&gt;   &lt;executable&gt;java&lt;/executable&gt;      &lt;!--启动参数--&gt;   &lt;arguments&gt;-jar statement-0.0.1-SNAPSHOT.jar&lt;/arguments&gt;   &lt;!--&lt;arguments&gt;-jar "C:\Users\Administrator\Desktop\winsw\statement-0.0.1-SNAPSHOT.jar"&lt;/arguments&gt;--&gt;   &lt;!--日志配置--&gt;   &lt;logmode&gt;rotate&lt;/logmode&gt;      &lt;/configuration&gt;</code></pre> <p>e，到此就完成了配置，可以安装并启动服务了</p> <p>e1，进入到三个文件的目标目录（比如target）,执行命令：statement-0.0.1-SNAPSHOT.exe install，安装服务。</p> <p>e2，安装服务成功后，通过命令：net start&nbsp;statement-0.0.1-SNAPSHOT(服务ID)启动服务。</p> <p><img decoding="async" alt="" class="has" height="237" src="http://img.555519.xyz/uploads/20230112/e14c0db9dc39be1ffbb27cc3eead4bd2.jpg"></p> <p>当然，也可以通过在开始那里输入：services.msc命令直接进入服务界面，通过服务ID找到服务，然后手动启动。</p> <p>&nbsp;<img decoding="async" alt="" class="has" height="343" src="http://img.555519.xyz/uploads/20230112/85504482b18c3bdf8de0cf38bc80f0f3.jpg"></p> <p>e3，通过命令：net stop statement-0.0.1-SNAPSHOT&nbsp;停止服务，或者是直接去服务界面手动停止服务。</p> <p>e4，停止服务后，可通过：sc delete ServiceName删除服务</p> <p><img loading="lazy" decoding="async" alt="" class="has" height="59" src="http://img.555519.xyz/uploads/20230112/54a107df87ff21919d3501a24f2fa4bf.jpg"></p> <p>e4,查找windows service的PID：SC queryex service_name</p> <p><img loading="lazy" decoding="async" alt="" class="has" height="179" src="http://img.555519.xyz/uploads/20230112/c82b75d22eaae4c6dd2352d1fb4ecb32.jpg"></p> <h2>三，总结&nbsp;</h2> <p>虽然不难，但还是捣鼓了好久，哈哈，记录下来，留个纪念！</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-61147.htm">dell新版bios设置硬盘启动模式（dellbios设置硬盘启动项）</a></p>
+                                        <p>下一个：<a href="/news/article-61733.htm">tf.reshape(tensor, shape, name=None)改变tensor的形状</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-29534.htm" title="同城免费领养宠物猫骗局（同城免费领养猫猫）">同城免费领养宠物猫骗局（同城免费领养猫猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-node-share-links.htm" title="「2月15日」最高速度18.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月15日」最高速度18.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-clash-meta-node.htm" title="「11月21日」最高速度20.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接">「11月21日」最高速度20.4M/S，2024年Clash Meta每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-43124.htm" title="ruby 版本管理RVM （ruby version manager）">ruby 版本管理RVM （ruby version manager）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-clash-meta-windows.htm" title="「1月9日」最高速度21.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月9日」最高速度21.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-39636.htm" title="access update语句执行_用pymysql实现对多行数据的insert和update加速">access update语句执行_用pymysql实现对多行数据的insert和update加速</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-node-share-links.htm" title="「12月27日」最高速度21.5M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接">「12月27日」最高速度21.5M/S，2024年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-node-share-links.htm" title="「2月9日」最高速度22.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月9日」最高速度22.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-28141.htm" title="动物疫苗间隔时间多久打第二针呢（动物疫苗间隔时间多久打第二针呢）">动物疫苗间隔时间多久打第二针呢（动物疫苗间隔时间多久打第二针呢）</a></li>
+                        <li class="py-2"><a href="/news/article-25353.htm" title="广州宠物批发（广州宠物批发市场在哪里进货）">广州宠物批发（广州宠物批发市场在哪里进货）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
