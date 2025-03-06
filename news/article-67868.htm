@@ -1,0 +1,212 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-67868.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>最小二乘法Python实现</title>
+        <meta name="description" content="数学和统计上面一个基本方法是，根据最小二衬发拟合平面上的点集。其拟合的图形通常是基本类型函数，如：线性函数、多项式、三角多项式等。由于数据有测量误差或者试验误差，我们不要求数据通过所有数据点。实际上，" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-67868.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="最小二乘法Python实现" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/dee0e752086d39122f7d57358efedbda.webp" />
+        <meta property="og:release_date" content="2025-03-05T11:12:17" />
+    <meta property="og:updated_time" content="2025-03-05T11:12:17" />
+        <meta property="og:description" content="数学和统计上面一个基本方法是，根据最小二衬发拟合平面上的点集。其拟合的图形通常是基本类型函数，如：线性函数、多项式、三角多项式等。由于数据有测量误差或者试验误差，我们不要求数据通过所有数据点。实际上，" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="最小二乘法Python实现">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">最小二乘法Python实现</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>数学和统计上面一个基本方法是，根据最小二衬发拟合平面上的点集。其拟合的图形通常是基本类型函数，如：线性函数、多项式、三角多项式等。由于数据有测量误差或者试验误差，我们不要求数据通过所有数据点。实际上，我们需要的是在所有数据点的y值，和逼近曲线相应点处的y值俩者之间误差的平方和最小意义下的最佳曲线。<br /> 具体原理推导不详细说，在线性代数的书里基本都会有介绍。下面介绍定理：</p> <blockquote> <p>若A是秩为n的m×n的矩阵，则正规方程组：<br /><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"></p> <p>           A</p> <p>           T</p> <p>          A</p> <p>          X</p> <p>          =</p> <p>           A</p> <p>           T</p> <p>          Y</p> <p>          A^{T}AX = A^{T}Y</p> <p>      </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.891331em; vertical-align: 0em;"></span><span class="mord"><span class="mord mathit">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.891331em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.13889em;">T</span></span></span></span></span></span></span></span></span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right: 0.07847em;">X</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.891331em; vertical-align: 0em;"></span><span class="mord"><span class="mord mathit">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.891331em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.13889em;">T</span></span></span></span></span></span></span></span></span><span class="mord mathit" style="margin-right: 0.22222em;">Y</span></span></span></span></span></span><br /> 有唯一解：<br /><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"></p> <p>          x</p> <p>          =</p> <p>          (</p> <p>           A</p> <p>           T</p> <p>          A</p> <p>           )</p> <p>            −</p> <p>            1</p> <p>           A</p> <p>           T</p> <p>          Y</p> <p>          （</p> <p>          1</p> <p>          ）</p> <p>          x = (A^T A)^{-1}A^T Y （1）</p> <p>      </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.14133em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.891331em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathit">A</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathit">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.891331em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathit" style="margin-right: 0.22222em;">Y</span><span class="mord cjk_fallback">（</span><span class="mord">1</span><span class="mord cjk_fallback">）</span></span></span></span></span></span><br /> 且x为方程组 AX = Y最小二乘解。</p> </blockquote> <p>按书写习惯，X和Y都是列向量。参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/cv-pr/p/6422837.html"  rel="nofollow">最小二乘法求解</a> 。由于输入数据格式不一样，刚开始看的时候没怎么看的懂。毕竟输入的是行向量，公式有点不同：<span class="katex--inline"><span class="katex"><span class="katex-mathml"></p> <p>        ω</p> <p>        =</p> <p>        (</p> <p>        X</p> <p>         X</p> <p>         T</p> <p>         )</p> <p>          −</p> <p>          1</p> <p>        X</p> <p>         Y</p> <p>         T</p> <p>        （</p> <p>        2</p> <p>        ）</p> <p>       \omega = (XX^T)^{-1}XY^T （2）</p> <p>    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03588em;">ω</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.09133em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord mathit" style="margin-right: 0.07847em;">X</span><span class="mord"><span class="mord mathit" style="margin-right: 0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.841331em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.13889em;">T</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.814108em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord mathit" style="margin-right: 0.07847em;">X</span><span class="mord"><span class="mord mathit" style="margin-right: 0.22222em;">Y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.841331em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord cjk_fallback">（</span><span class="mord">2</span><span class="mord cjk_fallback">）</span></span></span></span></span>。这里生成的数据x和y都是行向量,所以使用的是公式（2），代码如下：</p> <pre><code> """最小二乘法""" import numpy as np import matplotlib.pyplot as plt  def fun2ploy(x,n):     '''     数据转化为[x^0,x^1,x^2,...x^n]     首列变1     '''     lens = len(x)     X = np.ones([1,lens])     for i in range(1,n):         X = np.vstack((X,np.power(x,i)))#按行堆叠     return X    def leastseq_byploy(x,y,ploy_dim):     '''     最小二乘求解     '''     #散点图     plt.scatter(x,y,color="r",marker='o',s = 50)      X = fun2ploy(x,ploy_dim);     #直接求解     Xt = X.transpose();#转置变成列向量     XXt=X.dot(Xt);#矩阵乘     XXtInv = np.linalg.inv(XXt)#求逆     XXtInvX = XXtInv.dot(X)     coef = XXtInvX.dot(y.T)          y_est = Xt.dot(coef)          return y_est,coef  def fit_fun(x):     '''     要拟合的函数     '''     #return np.power(x,5)     return np.sin(x)  #    return 5*x+3 #    return np.sqrt(25-pow(x-5,2))   if __name__ == '__main__':     data_num = 100;     ploy_dim =10;#拟合参数个数，即权重数量     noise_scale = 0.2;     ## 数据准备     x = np.array(np.linspace(-2*np.pi,2*np.pi,data_num))   #数据      y = fit_fun(x)+noise_scale*np.random.rand(1,data_num)  #添加噪声      # 最小二乘拟合     [y_est,coef] = leastseq_byploy(x,y,ploy_dim)          #显示拟合结果     org_data = plt.scatter(x,y,color="r",marker='o',s = 50)     est_data = plt.plot(x,y_est,color="g",linewidth= 3)          plt.xlabel("X")     plt.ylabel("Y")     plt.title("Fit funtion with leastseq method")     plt.legend(["Noise data","Fited function"]);     plt.show() </code></pre> <p>选择性注释掉<span class="katex--inline"><span class="katex"><span class="katex-mathml"></p> <p>        f</p> <p>        i</p> <p>         t</p> <p>         f</p> <p>        u</p> <p>        n</p> <p>        (</p> <p>        )</p> <p>       fit_fun()</p> <p>    </span><span class="katex-html"><span class="base"><span class="strut" style="height: 1.03611em; vertical-align: -0.286108em;"></span><span class="mord mathit" style="margin-right: 0.10764em;">f</span><span class="mord mathit">i</span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.336108em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.10764em;">f</span></span></span></span><span class="vlist-s"></span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mord mathit">u</span><span class="mord mathit">n</span><span class="mopen">(</span><span class="mclose">)</span></span></span></span></span>函数中的返回值，选择不同的曲线作为被拟合对象。</p> <p>然后按照我自己的理解，修改了其中的算法，才搞清楚。代码如下（注意运算按公式（1），列向量计算）：</p> <pre><code>"""最小二乘法""" import numpy as np import matplotlib.pyplot as plt  def fun2ploy(x,n):     '''     数据转化为[x^0,x^1,x^2,...x^n]     首列变1     '''     lens = len(x)     X = np.ones([1,lens])     for i in range(1,n):         X = np.vstack((X,np.power(x,i)))#按行堆叠         Xt = X.transpose()     return   Xt  def leastseq_byploy(x,y,ploy_dim):     '''     最小二乘求解     '''     #散点图     plt.scatter(x,y,color="r",marker='o',s = 50)      X = fun2ploy(x,ploy_dim);     #直接求解     Xt = X.transpose();#转置变成列向量     XtX=Xt.dot(X);#矩阵乘     XtXInv = np.linalg.inv(XtX)#求逆     XtXInvX = XtXInv.dot(Xt)     coef = XtXInvX.dot(y.T)#权重值          y_est = X.dot(coef)          return y_est,coef  def fit_fun(x):     '''     要拟合的函数     '''     return np.power(x,5) #    return np.sin(x)  #    return 3+ 5*x       if __name__ == '__main__':     data_num = 100;#数据数量，也就是x个数     ploy_dim =10;#拟合参数个数，即权重数量     noise_scale = 0.2;#噪声参数     ## 数据准备     x = np.array(np.linspace(-2*np.pi,2*np.pi,data_num))   #数据      y = fit_fun(x)+noise_scale*np.random.rand(1,data_num)  #添加噪声      # 最小二乘拟合     [y_est,coef] = leastseq_byploy(x,y,ploy_dim)          #显示拟合结果     org_data = plt.scatter(x,y,color="r",marker='o',s = 50)     est_data = plt.plot(x,y_est,color="g",linewidth= 3)          plt.xlabel("X")     plt.ylabel("Y")     plt.title("Fit funtion with leastseq method")     plt.legend(["Noise data","Fited function"]);     plt.show() </code></pre> <p>当然输出没什么不一样：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230113/863d89f635cfeb61d1ed9f9ff88da33c.jpg" alt="最小二乘法Python实现"></p> <p>其中，有个lpoy_ dim参数,当时并不懂为什么有这么个万一，后来想明白了，最小二乘法就是用一个多项式函数去逼近它，这里将它设为10，表示用9次的多项式来逼近对象。调整这个参数，发现结果还是蛮有意思的。</p> <h2> <a id="scipy_158" rel="nofollow"></a>scipy库封装的最小二乘法使用</h2> <p>scipy在numpy基础上增加了许多数学计算。其中拟合和优化模块<strong>optimize</strong>提供了许多数值计算模块。而我们可以使用<strong>optimize.leastsq()</strong> 函数来使用最小二乘法。该函数需要传入：计算误差的函数、待确定参数（权重）初始值。给个例子：</p> <pre><code>from scipy import optimize import numpy as np  def fit_fun(x):     return 10+5*x  x = np.linspace(-2*np.pi,2*np.pi,100) y = fit_fun(x)+0.2*np.random.rand(1,100) y1 = y.reshape(100,) def residuals(p,y,x): #     "计算以p为参数的直线和原始数据之间的误差"     k, b = p     return (k*x + b)-y  p_init = np.random.randn(2)  # 随机初始化多项式参数 r = optimize.leastsq(residuals,p_init,args=(y1, x)) k, b = r[0] print("k =",k, "b =",b)  </code></pre> <p>输出为：</p> <pre><code>k = 5.00274134694685 b = 10.09289512565644 </code></pre> <p>官方文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.leastsq.html"  rel="nofollow">optimize.leastsq()用法</a> 。重要的有3个参数，也就是前三个。这里参数传递有些注意点:首先是第一个参数是残差函数；第二个是初始参数值，数据类型是数组；第三个是额外参数，所有额外参数都可以放入这个元组中，我传入了x与y的值，这里要注意的是，x和y是数组，并且二者之间数据的size必须一样。我将yreshape了一下，但注意reshape(100,)和reshape(100,1)是不一样的，后者会报错。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-67218.htm">兽医资格证自考需要什么条件百度百科（兽医怎么自考）</a></p>
+                                        <p>下一个：<a href="/news/article-67871.htm">猫咪一共要打几针疫苗多少钱（猫猫要打几针疫苗多少钱）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-67868.htm" title="最小二乘法Python实现">最小二乘法Python实现</a></li>
+                        <li class="py-2"><a href="/news/article-40152.htm" title="扬州收费合理的宠物医院（扬州正规的宠物医院）">扬州收费合理的宠物医院（扬州正规的宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-54899.htm" title="动物疫苗接种时间表图片高清版 动物疫苗接种时间表图片高清版大全">动物疫苗接种时间表图片高清版 动物疫苗接种时间表图片高清版大全</a></li>
+                        <li class="py-2"><a href="/news/article-37754.htm" title="天津免费领养狗狗（天津领养狗狗中心在哪）">天津免费领养狗狗（天津领养狗狗中心在哪）</a></li>
+                        <li class="py-2"><a href="/news/article-50593.htm" title="动物的疫苗多少钱一针打（动物疫苗多少钱一支）">动物的疫苗多少钱一针打（动物疫苗多少钱一支）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-clash-meta-github.htm" title="「1月21日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月21日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-53256.htm" title="私人协议签字按手印法律上生效吗（私人协议按手印有法律效应吗）">私人协议签字按手印法律上生效吗（私人协议按手印有法律效应吗）</a></li>
+                        <li class="py-2"><a href="/news/article-38165.htm" title="Android EditText光标指定位置">Android EditText光标指定位置</a></li>
+                        <li class="py-2"><a href="/news/article-38164.htm" title="Vue基础之Vue列表渲染">Vue基础之Vue列表渲染</a></li>
+                        <li class="py-2"><a href="/news/article-68507.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
