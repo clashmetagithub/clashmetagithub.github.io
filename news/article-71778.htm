@@ -1,0 +1,212 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-71778.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>KMP算法中的next数组详解</title>
+        <meta name="description" content="next 数组的意义 此处 next[j] = k；则有 k 前面的浅蓝色区域和 j 前面的浅蓝色区域相同； next[j] 表示当位置 j 的字符串与主串不匹配时，下一个需要和主串比较的字串位置在 " />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-71778.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="KMP算法中的next数组详解" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/3bcf47906ea440473a3bad441178f0e1.webp" />
+        <meta property="og:release_date" content="2025-03-11T07:48:14" />
+    <meta property="og:updated_time" content="2025-03-11T07:48:14" />
+        <meta property="og:description" content="next 数组的意义 此处 next[j] = k；则有 k 前面的浅蓝色区域和 j 前面的浅蓝色区域相同； next[j] 表示当位置 j 的字符串与主串不匹配时，下一个需要和主串比较的字串位置在 " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="KMP算法中的next数组详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">KMP算法中的next数组详解</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <h2 id="next-数组的意义">next 数组的意义</h2> <p>此处 next[j] = k；则有 k 前面的浅蓝色区域和 j 前面的浅蓝色区域相同；</p> <p>next[j] 表示当位置 j 的字符串与主串不匹配时，下一个需要和主串比较的字串位置在 next[j] 处；有下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/435eb439c59f823a4adf7f414fd7fb7c.jpg" alt="KMP算法中的next数组详解"></p> <p>若当前位置 j 与主串某一个字符不匹配，则下一次比较的是 K 与主串的当前位置，这个 K 也就是next[j]；由于两个浅蓝色区域相同，因此 K 前面的区域肯定与主串相同，不需比较；如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a0e7afd996bbf8b9f0001f2a96233b18.jpg" alt="KMP算法中的next数组详解"></p> <p>由上图可知，K 前面的区域不需比较；</p> <h2 id="next-数组的推导">next 数组的推导</h2> <p>从 next 数组所表达的意义可知，我们要求 next[j]，首先要找到一个 K，这个 K 前面的浅蓝色区域和 j 前面的浅蓝色区域相同；如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/435eb439c59f823a4adf7f414fd7fb7c.jpg" alt="KMP算法中的next数组详解"></p> <p>根据规定 next[1] = 0；接下来求其他的 next[j]；</p> <p>对于 next[2] 可得其必然为 next[2] = 1；</p> <p>如下图：当第二个元素不匹配时，j 将退回到 1 处进行比较，因此 next[2] 一定为 1；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b67eacc23d3f1e47d84109d7b3ddf7f7.jpg" alt="KMP算法中的next数组详解"></p> <p>接下来是一般情况的推导，此处使用递推法进行推导，即已知 next[j] 求 next[j + 1]；</p> <p>若 next[j] = k 则有下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c3ddd12bc3b9bc60bfc05429ffbd34bc.jpg" alt="KMP算法中的next数组详解"></p> <p>由于 next[j = k，可知浅蓝色部分相同；接下来分两种情况讨论；</p> <ul> <li> <p>ch[K] == ch[j]，这种情况时，可以得到下图；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ceb8888dbf20ba362e53d01f9f9b9722.jpg" alt="KMP算法中的next数组详解"></p> </li> </ul> <p>由图可知：对于 j + 1，能够找到一个 K + 1 使得有浅蓝色区域相同，那么当 j + 1 不匹配时，下一次将比较 K + 1 和主串；因此 next[j + 1] = K + 1 = next[j] + 1；</p> <ul> <li> <p>ch[K] != ch[j]，这种情况就变的复杂，这也是整个 KMP 算法中最难理解的部分；</p> <p>从本节的开头可以知道，求 next[j + 1] 最关键的一点在于求 j + 1 之前有多长的后缀和前缀匹配，即找出多大的浅蓝色区域匹配；我们现在面对的图如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/256b1e9b972765f60b4e1665bef93d48.jpg" alt="KMP算法中的next数组详解"></p> </li> </ul> <p>我们的目的是找到一个 K1 使得出现下列情况：找到 K1 使得浅蓝色部分相同；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/55433722a109b8d4415ea5499788f9cf.jpg" alt="KMP算法中的next数组详解"></p> <p>要想浅蓝色部分相同，分为两个部分，使得 1 和 2 相同，使得 K1 和 j 相同；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d6730e1627357bb0951dd56e35ea6260.jpg" alt="KMP算法中的next数组详解"></p> <p>想要让 1 和 2 相同是难以比较的，但是可以转化为另一个问题，如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cc72ad97bf27299bd8a4f3b49058dfdc.jpg" alt="KMP算法中的next数组详解"></p> <p><strong>想要找出 1 和 3 相同的区域，等价与找到 1 和 2 相同的区域；</strong>为什么呢？因为 next[j] = K，因此 j 前面与 K 前面相同如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/435eb439c59f823a4adf7f414fd7fb7c.jpg" alt="KMP算法中的next数组详解"></p> <p>这个等价关系非常重要，是这部分推导的关键；将其单独抽离出来如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cee276050b3fcc10c73f6c70d6eb0d81.jpg" alt="KMP算法中的next数组详解"></p> <p>那么如何得到 K1 使得 1 和 2 相同呢？回到文首 next[j] 所表示的意义，<strong>next[j] = k；则有 k 前面的浅蓝色区域和 j 前面的浅蓝色区域相同</strong> 而 next[K] 是在 j 前面的是已知的，因此可得 K1 = next[K]，此时得到的 K1 即可满足 1 和 3 相同；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cc72ad97bf27299bd8a4f3b49058dfdc.jpg" alt="KMP算法中的next数组详解">到此就解决了 1 和 3 相等的问题，直接比较 K1 和 j 若两者相同，则可得到下图；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/55433722a109b8d4415ea5499788f9cf.jpg" alt="KMP算法中的next数组详解"></p> <p>那么 next[j + 1] = K1 + 1 = next[K] + 1 = next[next[j]] + 1；</p> <p>那么若 ch[j] != ch[K1] 呢？那么就又演化为如下问题：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/aca4be87b68f1d5156b4cf0448e0e8e8.jpg" alt="KMP算法中的next数组详解"></p> <p>这个图和本小节开始的图相同，那么按照此方法解决即可；</p> <p>可得结果：next[j + 1] = next[K1] + 1 = next[next[K]] + 1 = next[next[next[j]]] + 1</p> <p>若下一次 K2 依然和 j 不相等，那么又接着递归即可；一直到 Kn = 0；</p> <h2 id="一个例子">一个例子</h2> <p>接下来使用上面的结论来计算一个字符串的 next 数组；</p> <p>有数组 ababaaababaa 转化为如下表：</p> <table> <thead> <tr> <th style="text-align: center">S</th> <th style="text-align: center">a</th> <th style="text-align: center">b</th> <th style="text-align: center">a</th> <th style="text-align: center">b</th> <th style="text-align: center">a</th> <th style="text-align: center">a</th> <th style="text-align: center">a</th> <th style="text-align: center">b</th> <th style="text-align: center">a</th> <th style="text-align: center">b</th> <th style="text-align: center">a</th> <th style="text-align: center">a</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">编号</td> <td style="text-align: center">1</td> <td style="text-align: center">2</td> <td style="text-align: center">3</td> <td style="text-align: center">4</td> <td style="text-align: center">5</td> <td style="text-align: center">6</td> <td style="text-align: center">7</td> <td style="text-align: center">8</td> <td style="text-align: center">9</td> <td style="text-align: center">10</td> <td style="text-align: center">11</td> <td style="text-align: center">12</td> </tr> <tr> <td style="text-align: center">next</td> <td style="text-align: center">0</td> <td style="text-align: center">1</td> <td style="text-align: center">1</td> <td style="text-align: center">2</td> <td style="text-align: center">3</td> <td style="text-align: center">4</td> <td style="text-align: center">2</td> <td style="text-align: center">2</td> <td style="text-align: center">3</td> <td style="text-align: center">4</td> <td style="text-align: center">5</td> <td style="text-align: center">6</td> </tr> </tbody> </table> <p>按如下顺序填表的 next 栏：</p> <ul> <li>对于 next[1] 规定为 0，根据前面的分析：next[2] = 1；</li> <li>对于 next[3]，则观察 2 和 next[2] = 1，即 b 和 a，不相等；而next[next[2]] = 0，因此 next[3] = 1；</li> <li>对于 next[4]，观察 3 和 next[3] = 1，即 a 和 a，相等，故 next[4] = next[3] + 1 = 2；</li> <li>对于 next[5]，观察 4 和 next[4] = 2，即 b 和 b，相等，故 next[5] = next[4] + 1 = 3；</li> <li>对于 next[6]，观察 5 和 next[5] = 3，即 a 和 a，相等，故 next[6] = next[5] + 1 = 4；</li> <li>对于 next[7]，观察 6 和 next[6] = 4，即 a 和 b，不相等，next[next[6]] = 2，与 6 比较即 b 和 a，不相等，继续递归 next[next[next[6]]] = next[next[4]] = next[2] = 1；比较 1 和 6 即 a 和 a，相等，因此 next[6] = next[next[next[6]] + 1 = 2；</li> <li>对于 next[8]，观察 7 和 next[7] = 2，即 a 和 b，不相等，next[next[7]] = 1，1 和 7相等，因此 next[8] = next[next[7]] + 1 = next[2] + 1 = 2；</li> <li>对于 next[9]，观察 8 和 next[8] = 2，即 b 和 b，相等，故 next[9] = next[8] + 1 = 3；</li> <li>对于 next[10]，观察 9 和 next[9] = 1，即 a 和 a，相等，故 next[10] = next[9] + 1 = 4；</li> <li>对于 next[11]，观察 10 和 next[10] = 2，即 b 和 b，相等，故 next[11] = next[10] + 1 = 5；</li> <li>对于 next[12]，观察 11 和 next[11] = 3，即 a 和 a，相等，故 next[12] = next[11] + 1 = 6；</li> </ul> <h2 id="代码实现">代码实现</h2> <p>通过以上分析得到的获取 next 数组的代码如下：</p> <pre><code class="language-cpp">void get_next(String T, int next[]) {     int k = 0, j = 1;     next[1] = 0;     while (j &lt; T.length)     {         if(k == 0 || T.ch[k] == T.ch[j]) {             k++;             j++;             next[j] = k;         } else {             k = next[k];         }     } }</code></pre> <p>那么接下来的 KMP 算法代码就比较容易了：</p> <pre><code class="language-cpp">int KMP(String S, String T, int next[]) {     int i = 1, j = 1;     while (i &lt;= S.length &amp;&amp; j &lt;= T.length)     {         if(j == 0 || S.ch[i] == T.ch[j]) {             i++;             j++;         } else {             j = next[j];         }     }     if(j &gt; T.length) {         return i - T.length;     } else {         return 0;     } }</code></pre> <p>测试代码如下：</p> <pre><code class="language-cpp">#include&lt;iostream&gt; using namespace std; const int MAX = 255; typedef struct {     char ch[MAX];     int length; } String;  void InitiString(String &amp;s, char chars[]) {     int len = 0;     while(chars[len] != '\0') {         s.ch[len + 1] = chars[len];         len++;     }     s.length = len; }  void get_next(String T, int next[]) {     int k = 0, j = 1;     next[1] = 0;     while (j &lt; T.length)     {         if(k == 0 || T.ch[k] == T.ch[j]) {             k++;             j++;             next[j] = k;         } else {             k = next[k];         }     } }  int KMP(String S, String T, int next[]) {     int i = 1, j = 1;     while (i &lt;= S.length &amp;&amp; j &lt;= T.length)     {         if(j == 0 || S.ch[i] == T.ch[j]) {             i++;             j++;         } else {             j = next[j];         }     }     if(j &gt; T.length) {         return i - T.length;     } else {         return 0;     } }  int main() {     char char1[20] = "aabaabaabaac";     char char2[20] = "aabaac";     String S, T;     InitiString(S, char1);     InitiString(T, char2);     int next[MAX];     get_next(T, next);     int index  = KMP(S, T, next);     printf("%d", index);     return 0; }</code></pre> <p>输出结果：</p> <pre><code class="language-cpp">7</code></pre> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-71776.htm">在vue项目中实现 将数据导入Excel 三种方式(.xlsx , .csv)</a></p>
+                                        <p>下一个：<a href="/news/article-72437.htm">pymysql执行有参数的in语句</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-clash-meta-node-github.htm" title="「3月8日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月8日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-free-node-subscribe.htm" title="「1月14日」最高速度20.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月14日」最高速度20.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-50593.htm" title="动物的疫苗多少钱一针打（动物疫苗多少钱一支）">动物的疫苗多少钱一针打（动物疫苗多少钱一支）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-21-clash-meta-node-github.htm" title="「2月21日」最高速度19.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月21日」最高速度19.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-node-share-links.htm" title="「2月22日」最高速度20.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月22日」最高速度20.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-44625.htm" title="宠物店利润和成本分析怎么写（宠物店利润计划）">宠物店利润和成本分析怎么写（宠物店利润计划）</a></li>
+                        <li class="py-2"><a href="/news/article-39637.htm" title="被猫抓了一下轻微破皮要***吗没出血有点痒（被猫抓了一下轻微破皮不***没事吧）">被猫抓了一下轻微破皮要***吗没出血有点痒（被猫抓了一下轻微破皮不***没事吧）</a></li>
+                        <li class="py-2"><a href="/news/article-58257.htm" title="PHP声明语句">PHP声明语句</a></li>
+                        <li class="py-2"><a href="/news/article-69812.htm" title="简述动物防疫管理的要点包括的简单介绍">简述动物防疫管理的要点包括的简单介绍</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-clash-meta-github.htm" title="「1月21日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月21日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
