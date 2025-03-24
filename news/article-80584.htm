@@ -1,0 +1,212 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-80584.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kubernetes Ingress作用及Ingress-Nginx实际操作详解</title>
+        <meta name="description" content="什么是Ingress 在k8s里，Ingress是一个可以允许集群外部访问集群内布服务的控制器。通过配置一条条规则（rules）来规定进来的连接被分配到后端的哪个服务。 Ingress相当于一个集中的" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-80584.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="Kubernetes Ingress作用及Ingress-Nginx实际操作详解" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/416d380b19d40d44edc9845ec7be85bc.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:22:06" />
+    <meta property="og:updated_time" content="2025-03-24T08:22:06" />
+        <meta property="og:description" content="什么是Ingress 在k8s里，Ingress是一个可以允许集群外部访问集群内布服务的控制器。通过配置一条条规则（rules）来规定进来的连接被分配到后端的哪个服务。 Ingress相当于一个集中的" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Kubernetes Ingress作用及Ingress-Nginx实际操作详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">Kubernetes Ingress作用及Ingress-Nginx实际操作详解</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <p></p> <div class="toc"> <ul> <li> <ul></ul> </li> </ul> </div> <h2><a id="Ingress_5" rel="nofollow"></a>什么是Ingress</h2> <p>在k8s里，Ingress是一个可以允许集群外部访问集群内布服务的控制器。通过配置一条条规则（rules）来规定进来的连接被分配到后端的哪个服务。</p> <p>Ingress相当于一个集中的路由中心，例如，可以将<code>xiaofu.com/api/v1/</code>路由到后端的<code>service-v1</code>服务，而将<code>xiaofu.com/api/v2/</code>路由到<code>service-v2</code>服务。</p> <h2><a id="Ingress_vs_NodePort_11" rel="nofollow"></a>Ingress vs NodePort</h2> <p>同样是将集群内部的服务暴露给集群外，很有必要对比下Ingress和上一节学习的NodePort。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/57f3b364d7058ec806bf953d70353914.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"><br /><mark>NodePort是Service的一个类型，并没有额外加入组件</mark>。其会在每个Node上开一个端口，对应到后端的Service。所有访问集群任意节点IP上该端口都可以访问到后端的Service。这样的优点就是简单快速，但是只是起了简单的Node端口到Service端口的映射功能，功能很单一。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/830fe8c043694b855d4c8e851c9d0c3e.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"><br /><mark>Ingress是区别于上一节学的那些Service的另一个单独组件</mark>，可以被单独声明，创建和销毁。引入Ingress的好处就是有一个集中的路由配置项，同时可实现基于内容的七层负载均衡。小小的麻烦就是引入了额外组件，但是其实创建一个Ingress和创建一个k8s中的其他资源的步骤没什么两样。</p> <p>Ingress的实现方式有很多，下面着重学习下官方推荐的基于Nginx的Ingress-Nginx控制器。</p> <h2><a id="IngressNginx_23" rel="nofollow"></a>Ingress-Nginx</h2> <p>可以将上面的Ingress理解为在集群的前端加了一个Nginx，用来提供Nginx所能提供的一切功能，例如基于url的反向代理，https认证，用户鉴权，域名重定向等等<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/10fa266051067d65ea42d250204570d5.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"></p> <p>需要注意几点：</p> <ul> <li>Nginx是基于url的，如果没有DNS解析url到集群中任意ip可以考虑hosts文件劫持</li> <li>Nginx的本质也是NodePort的方式暴露给集群外的一个特殊Service</li> <li>Nginx的配置文件根据Ingress的规则自动添加和修改</li> </ul> <p>更详细的介绍可以查看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://kubernetes.github.io/ingress-nginx/"  rel="nofollow">官方网站</a>。</p> <h3><a id="_35" rel="nofollow"></a>安装</h3> <p>直接按照<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://kubernetes.github.io/ingress-nginx/deploy/"  rel="nofollow">官方文档</a>进行安装即可。官方提供了minikube以及各厂商的云机器上安装的方式，我们是用kubeadm自己搭建的k8s环境，所以选择<code>Bare-metal</code>部分的安装脚本，只有下面一句脚本即可</p> <pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/baremetal/deploy.yaml</code></pre> <blockquote> <p>官方默认采用NodePort的方式安装Nginx，其实还有其余方式，参考https://kubernetes.github.io/ingress-nginx/deploy/baremetal/</p> </blockquote> <p>推荐先将上面这个yaml文件下载到本地，因为以后还可以根据这个文件批量删除或者修改ingress-nginx的资源。</p> <blockquote> <p>kubectl apply -f xxx.yaml 也可以用来修改资源配置<br /> kubectl delete -f xxx.yaml 则可以批量删除资源</p> </blockquote> <pre><code>[root@k8s-master ~]# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/baremetal/deploy.yaml namespace/ingress-nginx created serviceaccount/ingress-nginx created configmap/ingress-nginx-controller created clusterrole.rbac.authorization.k8s.io/ingress-nginx created clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx created role.rbac.authorization.k8s.io/ingress-nginx created rolebinding.rbac.authorization.k8s.io/ingress-nginx created service/ingress-nginx-controller-admission created service/ingress-nginx-controller created deployment.apps/ingress-nginx-controller created validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission created clusterrole.rbac.authorization.k8s.io/ingress-nginx-admission created clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created job.batch/ingress-nginx-admission-create created job.batch/ingress-nginx-admission-patch created role.rbac.authorization.k8s.io/ingress-nginx-admission created rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created serviceaccount/ingress-nginx-admission created</code></pre> <p>所有的资源都在<code>ingress-nginx</code>这个namespace下</p> <pre><code>[root@k8s-master ~]# kubectl get svc  -n ingress-nginx NAME                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE ingress-nginx-controller             NodePort    10.96.130.237   &lt;none&gt;        80:31958/TCP,443:30265/TCP   54m ingress-nginx-controller-admission   ClusterIP   10.109.76.229   &lt;none&gt;        443/TCP                      54m [root@k8s-master ~]# kubectl get pod -n ingress-nginx NAME                                        READY   STATUS      RESTARTS   AGE ingress-nginx-admission-create-g5sfq        0/1     Completed   0          57m ingress-nginx-admission-patch-tzv5x         0/1     Completed   0          57m ingress-nginx-controller-5575c6cd9d-8xwmt   1/1     Running     0          57m [root@k8s-master ~]# kubectl get deployment -n ingress-nginx NAME                       READY   UP-TO-DATE   AVAILABLE   AGE ingress-nginx-controller   1/1     1            1           57m</code></pre> <p>从上面的svc可以看到，有个以NodePort暴露出来的<code>ingress-nginx-controller</code>的service，对外暴露31958端口对应nginx的80端口，暴露30265端口对应nginx的443端口。下面在实际操作的时候会用到这两个外部端口。</p> <h3><a id="_86" rel="nofollow"></a>实际操作</h3> <p>以下所有yaml文件托管在<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/Victor2Code/centos-k8s-init/tree/master/test%20yaml"  rel="nofollow">我的Github仓库</a></p> <p>事先删除上一节的所有service和pod，以免引起混淆。</p> <h4><a id="HTTP_92" rel="nofollow"></a>HTTP代理</h4> <p>首先用yaml文件<code>http-mynginx.yaml</code>创建<code>mynginx:v2</code>版的deployment的常规的ClusterIP的service</p> <pre><code>apiVersion: extensions/v1beta1 kind: Deployment metadata:   name: mynginx-deployment spec:   replicas: 3   template:     metadata:       labels:         app: mynginx         version: v2     spec:       containers:         - name: mynginx           image: mynginx:v2           ports:             - containerPort: 80 --- apiVersion: v1 kind: Service metadata:   name: mynginx-service   namespace: default spec:   type: ClusterIP   selector:     app: mynginx     version: v2   ports:     - name: http       port: 8080       targetPort: 80</code></pre> <p>这里其实就是上一节ClusterIP中的两个yaml文件，用<code>---</code>在同一个yaml文件中进行了合并。</p> <p>成功创建出pod和service</p> <pre><code>[root@k8s-master k8s-ingress]# kubectl apply -f http-mynginx.yaml deployment.extensions/mynginx-deployment created service/mynginx-service created [root@k8s-master k8s-ingress]# kubectl get svc NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE kubernetes        ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP    10d mynginx-service   ClusterIP   10.97.205.233   &lt;none&gt;        8080/TCP   10s [root@k8s-master k8s-ingress]# kubectl get pod -o wide NAME                                 READY   STATUS    RESTARTS   AGE   IP            NODE         NOMINATED NODE   READINESS GATES mynginx-deployment-b66f59f66-bbkgg   1/1     Running   0          14s   10.244.1.77   k8s-node1    &lt;none&gt;           &lt;none&gt; mynginx-deployment-b66f59f66-vfvsw   1/1     Running   0          14s   10.244.1.76   k8s-node1    &lt;none&gt;           &lt;none&gt; mynginx-deployment-b66f59f66-xtk4c   1/1     Running   0          14s   10.244.0.15   k8s-master   &lt;none&gt;           &lt;none&gt;</code></pre> <p>下面需要将上述<code>mynginx-service</code>这个service的8080端口通过nginx暴露出去，用yaml文件<code>http-mynginx-ingress.yaml</code>在nginx中创建一条规则</p> <pre><code>apiVersion: extensions/v1beta1 kind: Ingress metadata:   name: mynginx-http spec:   rules:     - host: mynginx.xiaofu.com       http:         paths:           - path: /             backend:               serviceName: mynginx-service               servicePort: 8080</code></pre> <p>这个规则中将域名<code>mynginx.xiaofu.com</code>的根目录映射到后端的mynginx-service。这里用根目录是因为后端pod中只有一个<code>index.html</code>文件，没有别的路径，实际中这个路径可以根据自己需求去灵活指定。</p> <p>然后修改本地hosts文件，绑定<code>mynginx.xiaofu.com</code>到k8s集群中任意一个node的外网ip即可。Windows下的hosts文件路径为<code>C:\Windows\System32\drivers\etc\hosts</code>。<mark>此后访问该域名的31958端口，数据流就会被导到nginx的80端口，然后到后端服务<code>mynginx-service</code>的8080端口，最后走负载均衡到其中一个pod</mark>。</p> <p>效果如下<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/5b3468cc5c70f3a6831c7bb0772428fd.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"></p> <p>这样就成功完成了nginx中的http反向代理功能，对nginx配置感兴趣的话，可以用类似下面的方法进去nginx的pod中看一下配置文件</p> <pre><code>[root@k8s-master k8s-ingress]# kubectl get pod -n ingress-nginx NAME                                        READY   STATUS      RESTARTS   AGE ingress-nginx-admission-create-g5sfq        0/1     Completed   0          4h18m ingress-nginx-admission-patch-tzv5x         0/1     Completed   0          4h18m ingress-nginx-controller-5575c6cd9d-7b8zt   1/1     Running     0          36m [root@k8s-master k8s-ingress]# kubectl exec ingress-nginx-controller-5575c6cd9d-7b8zt -n ingress-nginx -it -- /bin/bash bash-5.0$ cat /etc/nginx/nginx.conf</code></pre> <p>如果想达到开头时候说的类似访问<code>svc1.mynginx.xiaofu.com</code>和<code>svc2.mynginx.xiaofu.com</code>映射到后端的不同service，只需要将这两个域名都指向集群中node的ip，并在Ingress中添加两条不同规则即可，这里就不演示了。</p> <h4><a id="HTTPS_182" rel="nofollow"></a>HTTPS代理</h4> <p>如果想要网站访问更安全，可以考虑带加密和认证的https协议。在客户端和nginx之间走https协议，<mark>nginx反向代理到后端的时候因为是内网，还是走未加密的http协议即可</mark>。Https的工作方式这里不额外介绍了，要完成配置，我们需要服务端的自签名CA证书和私钥文件。</p> <p>生成所需的两个文件</p> <pre><code>[root@k8s-master ssl]# openssl genrsa -out ca.key 1024 Generating RSA private key, 1024 bit long modulus ..................++++++ .....................++++++ e is 65537 (0x10001) [root@k8s-master ssl]# openssl req -new -key ca.key -out ca.csr You are about to be asked to enter information that will be incorporated into your certificate request. What you are about to enter is what is called a Distinguished Name or a DN. There are quite a few fields but you can leave some blank For some fields there will be a default value, If you enter '.', the field will be left blank. ----- Country Name (2 letter code) [XX]:SG State or Province Name (full name) []: Locality Name (eg, city) [Default City]: Organization Name (eg, company) [Default Company Ltd]:xiaofu Organizational Unit Name (eg, section) []: Common Name (eg, your name or your server's hostname) []: Email Address []:  Please enter the following 'extra' attributes to be sent with your certificate request A challenge password []: An optional company name []: root@k8s-master ssl]# openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt Signature ok subject=/C=SG/L=Default City/O=xiaofu Getting Private key [root@k8s-master ssl]# ll total 12 -rw-r--r--. 1 root root 713 May  8 20:07 ca.crt -rw-r--r--. 1 root root 582 May  8 20:02 ca.csr -rw-r--r--. 1 root root 887 May  8 20:01 ca.key</code></pre> <p>将刚才生成的两个文件存储到了k8s的secret里面，这里可以暂时不用管下面的命令具体含义，后面讲到k8s的存储的时候我们再详细学习。</p> <pre><code>[root@k8s-master ssl]# kubectl create secret tls tls-secret --key ca.key --cert ca.crt secret/tls-secret created</code></pre> <p>通过yaml文件<code>https-mynginx.yaml</code>创建一个https加密的域名，采用刚才存储的<code>tls-secret</code>进行认证和加密，映射到后面和刚才一样的service</p> <pre><code>apiVersion: extensions/v1beta1 kind: Ingress metadata:   name: mynginx-https spec:   tls:     - hosts:       - secret.xiaofu.com       secretName: tls-secret   rules:     - host: secret.xiaofu.com       http:         paths:           - path: /             backend:               serviceName: mynginx-service               servicePort: 8080</code></pre> <p>成功创建出来</p> <pre><code>[root@k8s-master k8s-ingress]# kubectl apply -f https-mynginx.yaml ingress.extensions/mynginx-https created</code></pre> <p>之后修改hosts文件，将<code>secret.xiaofu.com</code>绑定到集群中任一node的ip。</p> <p>然后就可以用https访问域名了，<mark>端口是前面ingress暴露出来的443对用的外网端口</mark><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/7e85f6ad243463fe670e85ed1b54f82a.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"><br /> 因为是我们自己签名的证书，所以需要用户认证一下<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/ddb2598a3c8904b9590eb00d7a34df0d.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"><br /> 之后就可以正常访问了<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/cd64b39c66297345caf6edcbe038826e.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"></p> <p>更多tls的相关使用参考k8s的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://kubernetes.github.io/ingress-nginx/user-guide/tls/"  rel="nofollow">官方文档</a></p> <h4><a id="BasicAuth_264" rel="nofollow"></a>BasicAuth</h4> <p>以下案例参考了k8s<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://kubernetes.github.io/ingress-nginx/examples/auth/basic/"  rel="nofollow">官方文档</a></p> <p>因为要通过apache的htpasswd模块去验证，所以要先安装apache，centos7中就是httpd</p> <pre><code>yum install httpd</code></pre> <p>之后创建用户xiaofu及密码文件auth，并根据auth文件存储到k8s的secret中</p> <pre><code>[root@k8s-master ~]# htpasswd -c auth xiaofu New password: Re-type new password: Adding password for user xiaofu [root@k8s-master ~]# kubectl create secret generic basic-auth --from-file=auth secret/basic-auth created</code></pre> <p>通过yaml文件<code>basicauth-mynginx.yaml</code>来添加一条需要认证的域名</p> <pre><code>apiVersion: extensions/v1beta1 kind: Ingress metadata:   name: mynginx-basicauth   annotations:     nginx.ingress.kubernetes.io/auth-type: basic     nginx.ingress.kubernetes.io/auth-secret: basic-auth     nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - xiaofu' spec:   rules:     - host: auth.xiaofu.com       http:         paths:           - path: /             backend:               serviceName: mynginx-service               servicePort: 8080</code></pre> <p>这里和前面http部分的yaml文件就只是<code>annotations</code>部分。</p> <p>成功创建</p> <pre><code>[root@k8s-master k8s-ingress]# kubectl apply -f basicauth-mynginx.yaml ingress.extensions/mynginx-basicauth created</code></pre> <p>同时在hosts文件中将<code>basicauth.xiaofu.com</code>映射到任意node的ip，之后再访问声明了的域名就要密码了<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/ad0ea2861973b5c653fe51b1988d7c04.jpg" alt="Kubernetes Ingress作用及Ingress-Nginx实际操作详解"><br /> 输入刚才创建的用户和密码即可成功访问。</p> <h4><a id="Nginx_313" rel="nofollow"></a>Nginx重写</h4> <p>上面yaml文件中的<code>annotations</code>除了可以声明认证方式外，还有很多重写功能。</p> <p>下面的表格取自<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://kubernetes.github.io/ingress-nginx/examples/rewrite/"  rel="nofollow">官方文档</a></p> <table> <thead> <tr> <th>Name</th> <th>Description</th> <th>Values</th> </tr> </thead> <tbody> <tr> <td>nginx.ingress.kubernetes.io/rewrite-target</td> <td>Target URI where the traffic must be redirected</td> <td>string</td> </tr> <tr> <td>nginx.ingress.kubernetes.io/ssl-redirect</td> <td>Indicates if the location section is accessible SSL only (defaults to True when Ingress contains a Certificate)</td> <td>bool</td> </tr> <tr> <td>nginx.ingress.kubernetes.io/force-ssl-redirect</td> <td>Forces the redirection to HTTPS even if the Ingress is not TLS Enabled</td> <td>bool</td> </tr> <tr> <td>nginx.ingress.kubernetes.io/app-root</td> <td>Defines the Application Root that the Controller must redirect if it’s in ‘/’ context</td> <td>string</td> </tr> <tr> <td>nginx.ingress.kubernetes.io/use-regex</td> <td>Indicates if the paths defined on an Ingress use regular expressions</td> <td>bool</td> </tr> </tbody> </table> <p>下面利用重写功能将访问<code>redirect.xiaofu.com</code>的请求都重定向到<code>mynginx.xiaofu.com</code>。yaml文件<code>mynginx-rewrite.yaml</code>如下</p> <pre><code>apiVersion: extensions/v1beta1 kind: Ingress metadata:   name: mynginx-rewrite   annotations:     nginx.ingress.kubernetes.io/rewrite-target: http://mynginx.xiaofu.com:31958 spec:   rules:     - host: redirect.xiaofu.com       http:         paths:           - path: /             backend:               serviceName: mynginx-service               servicePort: 8080</code></pre> <blockquote> <p>跳转的目的地址要写完整</p> </blockquote> <p>成功创建</p> <pre><code>[root@k8s-master k8s-ingress]# kubectl apply -f mynginx-rewrite.yaml ingress.extensions/mynginx-rewrite configured</code></pre> <p>同时在hosts文件中将<code>redirect.xiaofu.com</code>映射到任意node的ip，此时访问<code>redirect.xiaofu.com:31958/</code>会自动跳转到<code>mynginx.xiaofu.com:31958</code></p> <h2><a id="_354" rel="nofollow"></a>总结</h2> <p>这一节我们学习了通过Ingress将k8s集群内部服务暴露给集群外的方法，到这里Service的部分就全部结束了，下一节我们开始学习k8s中的存储，其中就会学习到这一节中已经用到了的secret。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79913.htm">python之33个关键字详解_Python之33个关键字是哪些</a></p>
+                                        <p>下一个：<a href="/news/article-80585.htm">宠物鲜粮市场创业（宠物鲜粮市场创业项目）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-69812.htm" title="简述动物防疫管理的要点包括的简单介绍">简述动物防疫管理的要点包括的简单介绍</a></li>
+                        <li class="py-2"><a href="/news/article-68508.htm" title="宠物店的粮适合买吗现在多少钱（宠物粮食店铺）">宠物店的粮适合买吗现在多少钱（宠物粮食店铺）</a></li>
+                        <li class="py-2"><a href="/news/article-39161.htm" title="同城免费领养宠物软件下载安装大全（免费领养宠物平台）">同城免费领养宠物软件下载安装大全（免费领养宠物平台）</a></li>
+                        <li class="py-2"><a href="/news/article-58846.htm" title="解决Vue Cli安装Element-plus后启动失败的问题">解决Vue Cli安装Element-plus后启动失败的问题</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-free-node-subscribe.htm" title="「3月18日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月18日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-10-free-high-speed-nodes.htm" title="「2月10日」最高速度23M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月10日」最高速度23M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-free-subscribe-node.htm" title="「3月2日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月2日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-19-today-clash-meta-node.htm" title="「2月19日」最高速度19.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月19日」最高速度19.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42617.htm" title="宠物美容师宠物美容（宠物美容师宠物美容培训学校天津）">宠物美容师宠物美容（宠物美容师宠物美容培训学校天津）</a></li>
+                        <li class="py-2"><a href="/news/article-45597.htm" title="宠康动物医院是连锁的吗还是加盟（宠康宠物）">宠康动物医院是连锁的吗还是加盟（宠康宠物）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
