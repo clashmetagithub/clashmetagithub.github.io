@@ -1,0 +1,211 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-91031.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ASP.NET Core设置Ocelot网关限流_实用技巧</title>
+        <meta name="description" content="1.限流（Rate Limiting） 很多时候为了防止DoS攻击，我们会通过限流方式对上游请求进行限制，以保护下游服务不会负荷过载，为客户端提供高质量的资源服务。在Ocelot限流项目示例中，通过A" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-91031.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="ASP.NET Core设置Ocelot网关限流_实用技巧" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/010506817beab503fc72c101bcc6ed2c.webp" />
+        <meta property="og:release_date" content="2025-04-08T09:53:25" />
+    <meta property="og:updated_time" content="2025-04-08T09:53:25" />
+        <meta property="og:description" content="1.限流（Rate Limiting） 很多时候为了防止DoS攻击，我们会通过限流方式对上游请求进行限制，以保护下游服务不会负荷过载，为客户端提供高质量的资源服务。在Ocelot限流项目示例中，通过A" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ASP.NET Core设置Ocelot网关限流_实用技巧">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">ASP.NET Core设置Ocelot网关限流_实用技巧</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>1.限流（Rate Limiting）</h2> <p>很多时候为了防止DoS攻击，我们会通过限流方式对上游请求进行限制，以保护下游服务不会负荷过载，为客户端提供高质量的资源服务。在<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/catcherwong-archive/APIGatewayDemo/tree/master/APIGatewayRateLimitDemo"   target="_blank" rel="nofollow">Ocelot限流项目</a>示例中，通过APIGateway项目路由RateLimitOptions选项可以配置限流。对解决方案的示例APIServices项目Get方法进行限流，文件配置具体代码如下：</p> <div class="ay1code"> <pre class="brush:js;">{    "Routes": [      {        "DownstreamPathTemplate": "/api/values",        "DownstreamScheme": "http",        "DownstreamHostAndPorts": [          {            "Host": "localhost",            "Port": 9001          }        ],        "UpstreamPathTemplate": "/customers",        "UpstreamHttpMethod": [ "Get" ],        "RateLimitOptions": {          //客户端白名单。名单中的客户端不会被限流。          "ClientWhitelist": [],          //是否启用限流。          "EnableRateLimiting": true,          //限流时间（1s，5m，1h，1d）。在限流时间内限制请求数，需要等PeriodTimespan时间过去了，才能再次发起请求。          "Period": "1s",          //限流时间间隔，限流后多少秒后才可以再次发起请求。          "PeriodTimespan": 3,          //限制请求数。          "Limit": 1        }      }    ],    //全局配置，所有下游服务都执行如下限流配置    "GlobalConfiguration": {      "RequestIdKey": "OcRequestId",      "AdministrationPath": "/administration",      "RateLimitOptions": {        //是否禁用X-Rate-Limit和Retry-After标头。        "DisableRateLimitHeaders": false,        //限流返回的消息。        "QuotaExceededMessage": "Customize Tips!"      }    }  }</pre> </div> <p>下面来介绍下RateLimitOptions选项几个参数：</p> <ul> <li>ClientWhitelist：客户端白名单。名单中的客户端不会被限流。</li> <li>EnableRateLimiting：是否启用限流。</li> <li>Period：限流时间（1s，5m，1h，1d）。在限流时间内限制请求数，需要等PeriodTimespan时间过去了，才能再次发起请求。</li> <li>PeriodTimespan：限流时间间隔，限流后多少秒后才可以再次发起请求。</li> <li>Limit：限制请求数。</li> <li>DisableRateLimitHeaders：是否禁用X-Rate-Limit和Retry-After标头。</li> <li>QuotaExceededMessage：限流返回的消息。</li> <li>HttpStatusCode：限流时候，指定返回的HTTP状态代码。</li> <li>ClientIdHeader：允许您指定应用于标识客户端的标头。默认情况下为“ClientId”。</li> </ul> <h2><strong>2.项目演示</strong></h2> <h3>2.1APIGateway项目</h3> <p>添加Ocelot服务注入和Logging信息输出：</p> <div class="ay1code"> <pre class="brush:csharp;">public class Startup  {      public Startup(IWebHostEnvironment env)      {          var builder = new Microsoft.Extensions.Configuration.ConfigurationBuilder();          builder.SetBasePath(env.ContentRootPath)                  .AddJsonFile("appsettings.json")                  //add configuration.json                  .AddJsonFile("configuration.json", optional: false, reloadOnChange: true)                  .AddEnvironmentVariables();            Configuration = builder.Build();      }        public IConfigurationRoot Configuration { get; }        public void ConfigureServices(IServiceCollection services)      {          //输出Logging信息；          services.AddLogging(logging =&gt;          {              logging.AddConsole();              logging.AddDebug();          });          //添加Ocelot服务；          services.AddOcelot(Configuration);      }        public void Configure(IApplicationBuilder app)      {          //使用Ocelot；          app.UseOcelot().Wait();      }  }</pre> </div> <h3>2.2APIServices项目</h3> <p>项目添加一个Get方法，对应APIGateway项目的路由上下游配置，具体代码如下：</p> <div class="ay1code"> <pre class="brush:csharp;">[Route("api/[controller]")]  public class ValuesController : Controller  {      // GET api/values      [HttpGet]      public IEnumerable&lt;string&gt; Get()      {          return new string[] { "value1", "value2" };      }  }</pre> </div> <h3>2.3项目运行</h3> <p>输入dotnet run --project 项目路径\项目文件.csproj把两个项目启动起来，通过在浏览器不断刷新上游服务地址，会看到如下信息：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/47ae5b5c06c033d064ceaf4c60e36b88.jpg"></p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/7e75f77e319298e2460095c017aea3c9.jpg"></p> <p>根据上述信息可以知道在1秒时间内，如果请求数超过路由配置限制数，那么Ocelot网关就会直接返回429状态码和全局给客户端，不会再转发到对应下游服务方法去，防止了客户端恶意攻击，保证了下游服务不会负荷过载！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91030.htm">在Java中搜索字符串中的字符。</a></p>
+                                        <p>下一个：<a href="/news/article-92142.htm">青葫芦如何处理</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-83432.htm" title="入门用的电吉他音箱有哪些品牌(入门用的电吉他音箱有哪些牌子)">入门用的电吉他音箱有哪些品牌(入门用的电吉他音箱有哪些牌子)</a></li>
+                        <li class="py-2"><a href="/news/article-77846.htm" title="青岛市宠物医院电话（青岛宠物医院价格表）">青岛市宠物医院电话（青岛宠物医院价格表）</a></li>
+                        <li class="py-2"><a href="/news/article-71133.htm" title="公务员国考2023报名时间（202年国考公务员报考和考试时间）">公务员国考2023报名时间（202年国考公务员报考和考试时间）</a></li>
+                        <li class="py-2"><a href="/news/article-78540.htm" title="宠物领养协议文案范文图片大全（宠物领养协议模板）">宠物领养协议文案范文图片大全（宠物领养协议模板）</a></li>
+                        <li class="py-2"><a href="/news/article-79207.htm" title="领养狗协议书范本大全（领养狗协议书范本大全模板）">领养狗协议书范本大全（领养狗协议书范本大全模板）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-subscribe-node.htm" title="「3月22日」最高速度22.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月22日」最高速度22.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-92144.htm" title="白蛇传里小青是谁（难以置信）白蛇传小青是什么身份，红门兄弟，小戏骨2016年白蛇传，">白蛇传里小青是谁（难以置信）白蛇传小青是什么身份，红门兄弟，小戏骨2016年白蛇传，</a></li>
+                        <li class="py-2"><a href="/news/article-75122.htm" title="MySQL VARCHAR列的最大长度是多少？">MySQL VARCHAR列的最大长度是多少？</a></li>
+                        <li class="py-2"><a href="/news/article-77844.htm" title="echart整体图形大小调整">echart整体图形大小调整</a></li>
+                        <li class="py-2"><a href="/news/article-68507.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
