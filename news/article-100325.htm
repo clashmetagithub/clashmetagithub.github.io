@@ -1,0 +1,211 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-100325.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MySQL之内连接、外连接的含义和具体使用</title>
+        <meta name="description" content="在实际开发中，需要根据实体的内容设计数据表，实体间会有各种关联关系。所以根据实体设计的数据表之间也存在着各种关联关系，MySQL中数据表的关联关系有三种。  2.1 多对一 多对一是数据表中最常见的一" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-100325.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="MySQL之内连接、外连接的含义和具体使用" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/a85674760691b5f6a659dbe057e04429.webp" />
+        <meta property="og:release_date" content="2025-04-20T09:04:40" />
+    <meta property="og:updated_time" content="2025-04-20T09:04:40" />
+        <meta property="og:description" content="在实际开发中，需要根据实体的内容设计数据表，实体间会有各种关联关系。所以根据实体设计的数据表之间也存在着各种关联关系，MySQL中数据表的关联关系有三种。  2.1 多对一 多对一是数据表中最常见的一" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL之内连接、外连接的含义和具体使用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">MySQL之内连接、外连接的含义和具体使用</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> </h1> <p>在实际开发中，需要根据实体的内容设计数据表，实体间会有各种关联关系。所以根据实体设计的数据表之间也存在着各种关联关系，MySQL中数据表的关联关系有三种。</p> </h1> <h2><a id="21	_3" rel="nofollow"></a>2.1 多对一</h2> <p>多对一是数据表中最常见的一种关联关系。例如部门和员工之间的关系，一个部门可以有多个员工，而一个员工不能属于多个部门，也就是说部门表中的一行在员工表中可以有许多匹配行，但员工表中的一行在部门表中只能有一个匹配行。<br /> 表之间的关系是由外键建立的。在多对一的表关系中，应该将外键建立在多的一方，否则会造成数据的冗余。</p> <blockquote> <p>注意：可以在多的一方设置外键保存另外一方的主键。</p> </blockquote> <h2><a id="22	_7" rel="nofollow"></a>2.2 多对多</h2> <p>多对多也是数据表中一种关系，比如学生和课程的关系，一个学生可以选择多门课程，当然一门课程也可以供多个学生选择，即学生表中的一行在课程表中可以有许多匹配行，课程表中的一行在学生表中也有许多匹配行。</p> <blockquote> <p>通常情况下，为了实现这种关系，需要定义一张中间表，称为连接表，该表会存在两个外键，分别参照课程表和学生表。在多对多的关系中，需要注意：连接表的两个外键都是可以重复的，但是两个外键之间的关系是不能重复的，所以这两个外键又是连接表的联合主键。<br /> 实际生活中，学生和老师的关系，也属于多对多。</p> </blockquote> <h2><a id="23	_11" rel="nofollow"></a>2.3 一对一</h2> <p>一对一关系在实际生活中比较常见，例如人与身份证之间的关系就是一对一的关系，一个人对应一张身份证，一张身份证只能匹配一个人。如何在数据表中建立这种关联关系呢？<br /> 首先，要分清主从关系，从表需要主表的存在才有意义，身份证需要人的存在才有意义，因此人为主表，身份证为从表。要在身份证表中建立外键。由实际经验克制，身份证中的外键必须是非空唯一的，因此通常会直接用从表(身份证表)中的主键作为外键。<br /> 一对一的关系，主要可以运用于以下几个方面。<br /> 1， 分割具有很多列的表<br /> 2， 由于安全原因而隔离表的一部分<br /> 3， 保存临时的数据，并且可以毫不费力的通过删除该表而删除这些数据。</p> <h2><a id="24	_18" rel="nofollow"></a>2.4 案例演示</h2> <h3><a id="241	_19" rel="nofollow"></a>2.4.1 材料</h3> <pre><code>mysql&gt; create table grade (     -&gt; id int(4) not null primary key,     -&gt; name varchar(36)     -&gt; ); Query OK, 0 rows affected (0.56 sec)  mysql&gt; create table student (     -&gt; sid int(4) not null primary key,     -&gt; sname varchar(36),     -&gt; gid int(4) not null     -&gt; ); Query OK, 0 rows affected (0.41 sec)</code></pre> <p>首先在表student和表grade中添加外键约束来建立两个表的关联关系。关于外键的定义、作用、添加和删除可以参见博客</p> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lk142500/article/details/83590862"  rel="nofollow">https://blog.csdn.net/lk142500/article/details/83590862</a></p> </blockquote> <pre><code>mysql&gt; desc grade         -&gt; ;     +-------+-------------+------+-----+---------+-------+     | Field | Type        | Null | Key | Default | Extra |     +-------+-------------+------+-----+---------+-------+     | id    | int(4)      | NO   | PRI | NULL    |       |     | name  | varchar(36) | YES  |     | NULL    |       |     +-------+-------------+------+-----+---------+-------+     2 rows in set (0.00 sec)          mysql&gt; desc student;     +-------+-------------+------+-----+---------+-------+     | Field | Type        | Null | Key | Default | Extra |     +-------+-------------+------+-----+---------+-------+     | sid   | int(4)      | NO   | PRI | NULL    |       |     | sname | varchar(36) | YES  |     | NULL    |       |     | gid   | int(4)      | NO   |     | NULL    |       |     +-------+-------------+------+-----+---------+-------+     rows in set (0.00 sec)</code></pre> <h3><a id="242	_59" rel="nofollow"></a>2.4.2 建立关联关系</h3> <pre><code>mysql&gt; alter table student add constraint FK_ID foreign key(gid) references gra Query OK, 0 rows affected (1.31 sec) Records: 0  Duplicates: 0  Warnings: 0  mysql&gt; desc grade; +-------+-------------+------+-----+---------+-------+ | Field | Type        | Null | Key | Default | Extra | +-------+-------------+------+-----+---------+-------+ | id    | int(4)      | NO   | PRI | NULL    |       | | name  | varchar(36) | YES  |     | NULL    |       | +-------+-------------+------+-----+---------+-------+ 2 rows in set (0.00 sec)  mysql&gt; desc student; +-------+-------------+------+-----+---------+-------+ | Field | Type        | Null | Key | Default | Extra | +-------+-------------+------+-----+---------+-------+ | sid   | int(4)      | NO   | PRI | NULL    |       | | sname | varchar(36) | YES  |     | NULL    |       | | gid   | int(4)      | NO   | MUL | NULL    |       | +-------+-------------+------+-----+---------+-------+ 3 rows in set (0.00 sec)</code></pre> <p>上述代码片段表名已经建立了student表和grade表的关联关系并且已经成功添加外键约束。</p> <pre><code>mysql&gt; show create table student; +---------+-------------------------------------------------------------- | Table   | Create Table +---------+-------------------------------------------------------------- | student | CREATE TABLE `student` (   `sid` int(4) NOT NULL,   `sname` varchar(36) DEFAULT NULL,   `gid` int(4) NOT NULL,   PRIMARY KEY (`sid`),   KEY `FK_ID` (`gid`),   CONSTRAINT `FK_ID` FOREIGN KEY (`gid`) REFERENCES `grade` (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8 | +---------+-------------------------------------------------------------- row in set (0.00 sec)</code></pre> <p>从查询结果看，student表的外键约束已经成功添加。此时表student和表grade之间是多对一的关系。</p> <h3><a id="243	_102" rel="nofollow"></a>2.4.3 添加数据</h3> <p>因此外键列只能插入参考列存在的值，所以要外两个表添加数据，就需要先为主表grade添加数据，具体如下：</p> <pre><code>mysql&gt; insert into grade (id, name) values(1, "软件一班"); Query OK, 1 row affected (0.16 sec)  mysql&gt; insert into grade (id, name) values(2, "软件二班"); Query OK, 1 row affected (0.16 sec) mysql&gt; select * from grade; +----+--------------+ | id | name         | +----+--------------+ |  1 | 软件一班     | |  2 | 软件二班     | +----+--------------+ 3 rows in set (0.00 sec)</code></pre> <p>可以看到在grade班级表中已经插入了两条数据，添加的主键id为1和2，由于student表的外键与grade表的主键关联，因此在student表中添加数据时，gid的值只能是1或2，不能用其他的值。</p> <pre><code>mysql&gt; insert into student(sid, name, gid) values(1, "王红", 1); ERROR 1054 (42S22): Unknown column 'name' in 'field list' mysql&gt; insert into student(sid, sname, gid) values(1, "李青", 1); Query OK, 1 row affected (0.12 sec)  mysql&gt; insert into student(sid, sname, gid) values(1, "李青", 1); ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY' mysql&gt; insert into student(sid, sname, gid) values(2, "王红", 1); Query OK, 1 row affected (0.21 sec) mysql&gt; insert into student(sid, sname, gid) values(3, "赵云", 2); Query OK, 1 row affected (0.09 sec)  mysql&gt; insert into student(sid, sname, gid) values(4, "马云", 2); Query OK, 1 row affected (0.12 sec)  mysql&gt;</code></pre> <p>如果插入了grade表中不存在id值，报错如下</p> <pre><code>mysql&gt; insert into student(sid, sname, gid) values(3, "李云龙", 5); ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`test`.`student`, CONSTRAINT `FK_ID` FOREIGN KEY (`gid`) REFERENCES `grade` (`id`)) mysql&gt;</code></pre> <p>上述的代码片段中两个表之间的数据已经有了关联性。例如要查询软件一班有哪些学生，需要先查找软件一班的id，然后根据这个id查询该班级中有哪些学生。具体步骤如下：</p> <pre><code>mysql&gt; select id from grade where name="软件一班";  //MySQL支持单引号和双引号中文 +----+ | id | +----+ |  1 | +----+ 1 row in set (0.00 sec)</code></pre> <p>然后再student表中查询gid=1的学生，即软件一班的学生。</p> <pre><code>mysql&gt; select sname from student where gid=1; +--------+ | sname  | +--------+ | 李青   | | 王红   | +--------+ 2 rows in set (0.05 sec)</code></pre> <h3><a id="244	_165" rel="nofollow"></a>2.4.4 删除数据</h3> <p>上一部分简单阐述了如何为关联表添加数据，在某些情况下还需要删除关联表中的数据。例如学校的软件一班取消了，就需要在数据库中将该班级以及该班级的学生一起删除。由于grade表和student表中存在关联关系，参照列被参照的的值不能被删除，因此在删除软件1班时，一定要先删除该班级的所有学生，然后再删除班级。如果直接删除grade表中仍存在参照关系的记录时报错如下：</p> <pre><code>mysql&gt; delete from grade where id=1; ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`test`.`student`, CONSTRAINT `FK_ID` FOREIGN KEY (`gid`) REFERENCES `grade` (`id`))</code></pre> <p>正确删除过程如下：</p> <pre><code>mysql&gt; select * from student; +-----+--------+-----+ | sid | sname  | gid | +-----+--------+-----+ |   1 | 李青   |   1 | |   2 | 王红   |   1 | |   3 | 赵云   |   2 | |   4 | 马云   |   2 | +-----+--------+-----+ 4 rows in set (0.00 sec)  mysql&gt; delete from student where gid = 1; Query OK, 2 rows affected (0.15 sec) mysql&gt;  delete from grade where id=1; Query OK, 1 row affected (0.19 sec)</code></pre> <p>上述过程为正确的删除关联表的过程。</p> <blockquote> <p>注意：在两个具有关联关系的表中删除数据时，一定要先删除从表中的数据，然后删除主表中的数据，否则会报错。</p> </blockquote> <p>另外，在实际情况中，想要删除”软件一班”，并不需要删除”软件一班”的学生，可以<font size="4" color="red">将表student中”李青”，”王红”的gid改为NULL，只要主表中该列没有被参照就可以删除</font>。但是由于在建表时，gid字段有非空约束，所以就只能将”李青”，”王红”的记录删除。</p> </h1> <p>在关系型数据库中，建立表时各个数据之间的关系不必确定，通常将每个实体的所有信息存放在一个表中，当查询数据时，通过连接操作查询多个表中的实体信息，当两个或多个表中存在相同意义的字段时，便可以通过这些字段对不同的表进行连接查询，连接查询有如下四种：</p> <h2><a id="31	_195" rel="nofollow"></a>3.1 交叉连接</h2> <p>交叉连接返回结果是被连接的两个表中的所有数据行的笛卡儿积，也就是返回第一个表中符合查询条件的数据行乘以第二个表中符合查询条件的数据行数。<br /> 语法格式如下：</p> <pre><code>select * from 表1 cross join 表2;</code></pre> <p>cross join用于连接连个要查询的表。</p> <h3><a id="311	_202" rel="nofollow"></a>3.1.1 表结构准备</h3> <pre><code>mysql&gt; create table department(     -&gt; did int(4) not null primary key,     -&gt; dname varchar(40)     -&gt; ); Query OK, 0 rows affected (0.41 sec)  mysql&gt; create table employee(     -&gt; id int(4) not null primary key,     -&gt; name varchar(36),     -&gt; age int(2),     -&gt; did int(4) not null     -&gt; ); Query OK, 0 rows affected (0.32 sec)</code></pre> <h3><a id="312	_220" rel="nofollow"></a>3.1.2 插入数据</h3> <pre><code>mysql&gt; insert into department(did, dname) values (1, '网络部'); Query OK, 1 row affected (0.13 sec)  mysql&gt; insert into department(did, dname) values (2, '媒体部'); Query OK, 1 row affected (0.06 sec)  mysql&gt; insert into department(did, dname) values (3, '研发部'); Query OK, 1 row affected (0.06 sec)  mysql&gt; insert into department(did, dname) values (4, '人事部');  mysql&gt; insert into employee(id, name, age, did) values (1, '王红', 20, 1); Query OK, 1 row affected (0.19 sec)  mysql&gt; insert into employee(id, name, age, did) values (2, '李强', 22, 1); Query OK, 1 row affected (0.07 sec)  mysql&gt; insert into employee(id, name, age, did) values (3, '赵四', 20, 2); Query OK, 1 row affected (0.06 sec)  mysql&gt; insert into employee(id, name, age, did) values (4, '郝娟', 20, 4); Query OK, 1 row affected (0.11 sec)</code></pre> <p>上述代码片段分别插入了部门和员工表，每张表插入了几条记录，注意两张表并没有外键约束。</p> <h3><a id="313	_246" rel="nofollow"></a>3.1.3 演示</h3> <pre><code>mysql&gt; select * from department cross join employee; +-----+-----------+----+--------+------+-----+ | did | dname     | id | name   | age  | did | +-----+-----------+----+--------+------+-----+ |   1 | 网络部    |  1 | 王红   |   20 |   1 | |   2 | 媒体部    |  1 | 王红   |   20 |   1 | |   3 | 研发部    |  1 | 王红   |   20 |   1 | |   4 | 人事部    |  1 | 王红   |   20 |   1 | |   1 | 网络部    |  2 | 李强   |   22 |   1 | |   2 | 媒体部    |  2 | 李强   |   22 |   1 | |   3 | 研发部    |  2 | 李强   |   22 |   1 | |   4 | 人事部    |  2 | 李强   |   22 |   1 | |   1 | 网络部    |  3 | 赵四   |   20 |   2 | |   2 | 媒体部    |  3 | 赵四   |   20 |   2 | |   3 | 研发部    |  3 | 赵四   |   20 |   2 | |   4 | 人事部    |  3 | 赵四   |   20 |   2 | |   1 | 网络部    |  4 | 郝娟   |   20 |   4 | |   2 | 媒体部    |  4 | 郝娟   |   20 |   4 | |   3 | 研发部    |  4 | 郝娟   |   20 |   4 | |   4 | 人事部    |  4 | 郝娟   |   20 |   4 | +-----+-----------+----+--------+------+-----+ 16 rows in set (0.00 sec)</code></pre> <p>从结果看，交叉连接的结果就是两个表中所有数据的组合，但这在实际业务中这种需求很少，一般不会使用交叉连接，而是会使用具体的条件对数据进行有目的的查询。因为交叉连接产生的结果存在许多没有意义的数据。例如上述文档的标红处</p> <h2><a id="32	_272" rel="nofollow"></a>3.2 内连接</h2> <p>内连接(Inner Join)又称简单连接或自然连接，是一种常见的连接查询。内连接使用比较运算符对两个表中的数据进行比较，并列出与连接条件匹配的数据行，组合成新的纪录。也就是说在内连接查询中，只有满足条件的记录才能出现在查询结果中。<br /> 内连接查询语法：</p> <pre><code>select 查询字段from 表1 [inner] join 表2 on 表1.关系字段 = 表2.关系字段</code></pre> <p>对department和employee两张表使用内连接查询</p> <pre><code>mysql&gt; select employee.name, department.dname from department join employee on department.did=employee.did; +--------+-----------+ | name   | dname     | +--------+-----------+ | 王红   | 网络部    | | 李强   | 网络部    | | 赵四   | 媒体部    | | 郝娟   | 人事部    | +--------+-----------+ 4 rows in set (0.00 sec)  mysql&gt; select employee.name, department.dname from department inner join employee on department.did=employee.did; +--------+-----------+ | name   | dname     | +--------+-----------+ | 王红   | 网络部    | | 李强   | 网络部    | | 赵四   | 媒体部    | | 郝娟   | 人事部    | +--------+-----------+ 4 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>可以明显看到内连接会过滤掉许多无用的数据，而留下真实有意义的数据。<br /> 注意：在使用inner join时，对于关系字段使用ON关键字而不是用where字段。<br /> 然而在MySQL中，可以使用where条件语句来实现相同的功能:</p> <pre><code>mysql&gt; select employee.name, department.dname from department, employee where department.did=employee.did; +--------+-----------+ | name   | dname     | +--------+-----------+ | 王红   | 网络部    | | 李强   | 网络部    | | 赵四   | 媒体部    | | 郝娟   | 人事部    | +--------+-----------+ 4 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>虽然where子句和inner join的查询结果是一样的，但是inner join是内连接语句，where是条件判断语句，在where语句后可以直接添加其他条件，而inner join 不可以。</p> <pre><code>mysql&gt; select employee.name, department.dname from department inner join employee on department.did=employee.did &amp;&amp; name="王红"; +--------+-----------+ | name   | dname     | +--------+-----------+ | 王红   | 网络部    | +--------+-----------+ 1 row in set (0.00 sec)</code></pre> <p>如果在一个连接查询中，涉及的两个表是同一个表，这种查询称为自连接查询。自连接是一种特殊的内连接，它是指相互连接的表再物理上为同一个表，但逻辑上分为两张表。例如要查询王红所在的部门有哪些员工，就可以使用自连接查询，如下：</p> <pre><code>mysql&gt; select p1.* from employee p1 join employee p2 on p1.did=p2.did where p2.name='王红'; +----+--------+------+-----+ | id | name   | age  | did | +----+--------+------+-----+ |  1 | 王红   |   20 |   1 | |  2 | 李强   |   22 |   1 | +----+--------+------+-----+ 2 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>详细的了解一下上述执行的过程，由于where子句为过滤，可以暂时不提，由于select子句选择的微p1.*,不够具体，我们可以把所有符合的内容都打印出来，如下：</p> <pre><code>mysql&gt; select p1.*, p2.* from employee p1 join employee p2 on p1.did=p2.did     -&gt; ; +----+--------+------+-----+----+--------+------+-----+ | id | name   | age  | did | id | name   | age  | did | +----+--------+------+-----+----+--------+------+-----+ |  1 | 王红   |   20 |   1 |  1 | 王红   |   20 |   1 | |  2 | 李强   |   22 |   1 |  1 | 王红   |   20 |   1 | |  1 | 王红   |   20 |   1 |  2 | 李强   |   22 |   1 | |  2 | 李强   |   22 |   1 |  2 | 李强   |   22 |   1 | |  3 | 赵四   |   20 |   2 |  3 | 赵四   |   20 |   2 | |  4 | 郝娟   |   20 |   4 |  4 | 郝娟   |   20 |   4 | +----+--------+------+-----+----+--------+------+-----+ 6 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>加入where之后的条件，结果如下：</p> <pre><code>mysql&gt; select p1.*, p2.* from employee p1 join employee p2 on p1.did=p2.did where p2.name='王红'; +----+--------+------+-----+----+--------+------+-----+ | id | name   | age  | did | id | name   | age  | did | +----+--------+------+-----+----+--------+------+-----+ |  1 | 王红   |   20 |   1 |  1 | 王红   |   20 |   1 | |  2 | 李强   |   22 |   1 |  1 | 王红   |   20 |   1 | +----+--------+------+-----+----+--------+------+-----+ 4 rows in set (0.00 sec)</code></pre> <p>过滤不要的p2.*</p> <pre><code>mysql&gt; select p1.* from employee p1 join employee p2 on p1.did=p2.did where p2.name='王红'; +----+--------+------+-----+ | id | name   | age  | did | +----+--------+------+-----+ |  1 | 王红   |   20 |   1 | |  2 | 李强   |   22 |   1 | +----+--------+------+-----+ 2 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>结果如上所示，王红所在的部门有两个人，王红和李强。</p> <h2><a id="33	_388" rel="nofollow"></a>3.3 外连接</h2> <p>在内连接查询中，返回的结果只包含符合查询条件和连接条件的数据，然而有时还需要包含没有关联的数据，即返回结果不仅包含符合条件的数据，而且还包含左表(左连接，左外连接)或右表(右连接或右外连接)或两个表(全外连接)中的所有数据，此时就要使用外连接查询。<br /> 外连接语法格式如下：</p> <pre><code>select 所查字段 from 表1 left | right [outer] join 表2 on 表1.关系字段=表2.关系字段 where 条件</code></pre> <blockquote> <p>注意使用left join, right join关键字左边的表称为左表，关键字右边的表称作右表。</p> </blockquote> <pre><code>left join: 返回左表中的所有记录和右表中符合连接条件的记录 right join: 返回包括右表中所有记录和左表中符合连接条件的记录。</code></pre> <h3><a id="331	Left_join_399" rel="nofollow"></a>3.3.1 左连接(Left join)</h3> <pre><code>mysql&gt; select department.did, department.dname, employee.name from department left join employee on department.did=employee.did; +-----+-----------+--------+ | did | dname     | name   | +-----+-----------+--------+ |   1 | 网络部    | 王红   | |   1 | 网络部    | 李强   | |   2 | 媒体部    | 赵四   | |   4 | 人事部    | 郝娟   | |   3 | 研发部    | NULL   | +-----+-----------+--------+ 4 rows in set (0.00 sec)  mysql&gt; select department.did, department.dname, employee.name from department join employee on department.did=employee.did; +-----+-----------+--------+ | did | dname     | name   | +-----+-----------+--------+ |   1 | 网络部    | 王红   | |   1 | 网络部    | 李强   | |   2 | 媒体部    | 赵四   | |   4 | 人事部    | 郝娟   | +-----+-----------+--------+ 4 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>上述的代码片段即包含外连接和内连接，可以看到外连接比内连接多包含的一条记录，而该记录挺特殊的，为缺少的部门，对应的员工信息均为NULL</p> <pre><code>mysql&gt; select * from department join employee on department.did=employee.did; +-----+-----------+----+--------+------+-----+ | did | dname     | id | name   | age  | did | +-----+-----------+----+--------+------+-----+ |   1 | 网络部    |  1 | 王红   |   20 |   1 | |   1 | 网络部    |  2 | 李强   |   22 |   1 | |   2 | 媒体部    |  3 | 赵四   |   20 |   2 | |   4 | 人事部    |  4 | 郝娟   |   20 |   4 | +-----+-----------+----+--------+------+-----+ 4 rows in set (0.00 sec)  mysql&gt; select * from department left join employee on department.did=employee.did; +-----+-----------+------+--------+------+------+ | did | dname     | id   | name   | age  | did  | +-----+-----------+------+--------+------+------+ |   1 | 网络部    |    1 | 王红   |   20 |    1 | |   1 | 网络部    |    2 | 李强   |   22 |    1 | |   2 | 媒体部    |    3 | 赵四   |   20 |    2 | |   4 | 人事部    |    4 | 郝娟   |   20 |    4 | |   3 | 研发部    | NULL | NULL   | NULL | NULL | +-----+-----------+------+--------+------+------+ 5 rows in set (0.00 sec)</code></pre> <p>上述代码片段的实际意义，比如说我<font color="purple">要查询每个部门的员工信息，这需要一种类似连接表的结构，即表中应该有部门id， 部门名称，以及对应的每个部门所存在的员工姓名，员工id，但是某个部门可能暂时没有员工，但我依然想要把该部门信息查询出来，只不过对应的员工信息均为空，即不存在员工罢了</font>。</p> <h3><a id="332	Right_join_453" rel="nofollow"></a>3.3.2 右连接(Right join)</h3> <p>右连接与左连接正好相反，返回右表中所有指定的记录和所有满足连接条件的记录，如果右表的某条记录在左表中没有匹配，则左表将返回空值。</p> <pre><code>mysql&gt; select department.did, department.dname, employee.name from department right join employee on department.did=employee.did; +------+-----------+--------+ | did  | dname     | name   | +------+-----------+--------+ |    1 | 网络部    | 王红   | |    1 | 网络部    | 李强   | |    2 | 媒体部    | 赵四   | |    4 | 人事部    | 郝娟   | +------+-----------+--------+ 4 rows in set (0.00 sec)  //插入一条员工，但did在department中不存在 mysql&gt; insert into employee(id, name, age, did) Values(5, '周杰伦', 30, 10); Query OK, 1 row affected (0.18 sec)  mysql&gt; select department.did, department.dname, employee.name from department right join employee on department.did=employee.did; +------+-----------+-----------+ | did  | dname     | name      | +------+-----------+-----------+ |    1 | 网络部    | 王红      | |    1 | 网络部    | 李强      | |    2 | 媒体部    | 赵四      | |    4 | 人事部    | 郝娟      | | NULL | NULL      | 周杰伦    | +------+-----------+-----------+ 5 rows in set (0.00 sec)</code></pre> <p>实际意义就是，该员工在当前状态下可能属于实习期，并未确定录入那个部门，仅仅是添加了一条员工记录，对应的部门did并未真实。</p> <h3><a id="333	_484" rel="nofollow"></a>3.3.3 复合条件连接查询</h3> <p>复合条件连接查询就是在连接查询的过程中，通过添加过滤条件来限制查询结果，使得查询结果更加精确。<br /> 在department和employee表使用内连接查询，并将查询结果按照年龄从大到小排序:</p> <pre><code>mysql&gt; select employee.name, employee.age, department.dname from department join employee on department.did=employee.did; +--------+------+-----------+ | name   | age  | dname     | +--------+------+-----------+ | 王红   |   20 | 网络部    | | 李强   |   22 | 网络部    | | 赵四   |   20 | 媒体部    | | 郝娟   |   20 | 人事部    | +--------+------+-----------+ 4 rows in set (0.00 sec)  mysql&gt; select employee.name, employee.age, department.dname from department join employee on department.did=employee.did order by age desc; +--------+------+-----------+ | name   | age  | dname     | +--------+------+-----------+ | 李强   |   22 | 网络部    | | 王红   |   20 | 网络部    | | 赵四   |   20 | 媒体部    | | 郝娟   |   20 | 人事部    | +--------+------+-----------+ 4 rows in set (0.00 sec) mysql&gt; select employee.name, employee.age, department.dname from department join employee on department.did=employee.did order by did desc; ERROR 1052 (23000): Column 'did' in order clause is ambiguous mysql&gt;</code></pre> <p>上述代码片段中使用did排序二义性是因为查询出来的结果有两个did，如下所示：</p> <pre><code>mysql&gt; select * from department join employee on department.did=employee.did order by age; +-----+-----------+----+--------+------+-----+ | did | dname     | id | name   | age  | did | +-----+-----------+----+--------+------+-----+ |   1 | 网络部    |  1 | 王红   |   20 |   1 | |   2 | 媒体部    |  3 | 赵四   |   20 |   2 | |   4 | 人事部    |  4 | 郝娟   |   20 |   4 | |   1 | 网络部    |  2 | 李强   |   22 |   1 | +-----+-----------+----+--------+------+-----+ 4 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>由于查询出来的结果字段名一行存在两个did，因此无法直接使用did进行排序，可以通过表名进行限定：</p> <pre><code>mysql&gt; select * from department join employee on department.did=employee.did order by did; ERROR 1052 (23000): Column 'did' in order clause is ambiguous mysql&gt; select * from department join employee on department.did=employee.did order by department.did; +-----+-----------+----+--------+------+-----+ | did | dname     | id | name   | age  | did | +-----+-----------+----+--------+------+-----+ |   1 | 网络部    |  1 | 王红   |   20 |   1 | |   1 | 网络部    |  2 | 李强   |   22 |   1 | |   2 | 媒体部    |  3 | 赵四   |   20 |   2 | |   4 | 人事部    |  4 | 郝娟   |   20 |   4 | +-----+-----------+----+--------+------+-----+ 4 rows in set (0.00 sec)  mysql&gt;</code></pre> <p>使用复合条件查询的结果较为精确，符合实际需求</p> </h1> <p>本文详细的讲述了在MySQL使用过程中的关联关系的定义，演示了关联表中数据的添加和删除的过程，并且对MySQL中容易让人困惑的内连接查询、外连接查询进行详细的讲述，通过代码演示，希望能够阐明关于连接查询的问题。</p> </h1> <blockquote></blockquote> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-99559.htm">宠物粮代理怎么拿货便宜 宠物粮批发进货渠道</a></p>
+                                        <p>下一个：<a href="/news/article-100326.htm">宠物粮好卖吗赚钱吗知乎（宠物粮销售好做吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-node-share-links.htm" title="「3月10日」最高速度19.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月10日」最高速度19.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-77168.htm" title="动物疫苗注射方法有哪些 动物疫苗注射方法有哪些种类">动物疫苗注射方法有哪些 动物疫苗注射方法有哪些种类</a></li>
+                        <li class="py-2"><a href="/news/article-67217.htm" title="springboot数据库插入时间datetime类型的字段不对">springboot数据库插入时间datetime类型的字段不对</a></li>
+                        <li class="py-2"><a href="/news/article-92142.htm" title="青葫芦如何处理">青葫芦如何处理</a></li>
+                        <li class="py-2"><a href="/news/article-65990.htm" title="宠物领养平台app推荐下载免费 宠物领养平台app推荐下载免费">宠物领养平台app推荐下载免费 宠物领养平台app推荐下载免费</a></li>
+                        <li class="py-2"><a href="/news/article-92858.htm" title="无货源开网店真能轻松挣到钱吗是真的吗?（无货源开网店真能轻松挣到钱吗是真的吗知乎）">无货源开网店真能轻松挣到钱吗是真的吗?（无货源开网店真能轻松挣到钱吗是真的吗知乎）</a></li>
+                        <li class="py-2"><a href="/news/article-89180.htm" title="前端需要了解的颜色模型，RGB、HSL和HSV_在线工具">前端需要了解的颜色模型，RGB、HSL和HSV_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-93599.htm" title="宠物救助站领养宠物猫（宠物救助站领养宠物要钱吗）">宠物救助站领养宠物猫（宠物救助站领养宠物要钱吗）</a></li>
+                        <li class="py-2"><a href="/news/article-96616.htm" title="猫粮十大品牌（猫粮十大品牌排）">猫粮十大品牌（猫粮十大品牌排）</a></li>
+                        <li class="py-2"><a href="/news/article-99558.htm" title="Azure DevOps通过Azure Devops部署一个.NET Core WebAPI">Azure DevOps通过Azure Devops部署一个.NET Core WebAPI</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
