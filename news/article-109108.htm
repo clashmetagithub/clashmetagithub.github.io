@@ -1,0 +1,214 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clashmetagithub.github.io/news/article-109108.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>实现mysql主从复制、读写分离</title>
+        <meta name="description" content="目录  1.1 为什么要做主从复制？ 1.2 主从复制的原理是什么？ 1.3 复制的基本原则 1.4 复制的最大问题 2. 实战MySQL主从复制 2.1 环境说明 2.2 MySQL主从复制的复制方" />
+        <link rel="icon" href="/assets/website/img/clashmetagithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta Github节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashmetagithub.github.io/news/article-109108.htm" />
+    <meta property="og:site_name" content="Clash Meta Github节点订阅官网" />
+    <meta property="og:title" content="实现mysql主从复制、读写分离" />
+    <meta property="og:image" content="https://clashmetagithub.github.io/uploads/20240815-1/e7cbc43cc7e568feab18fa1351c842e1.webp" />
+        <meta property="og:release_date" content="2025-05-01T09:04:14" />
+    <meta property="og:updated_time" content="2025-05-01T09:04:14" />
+        <meta property="og:description" content="目录  1.1 为什么要做主从复制？ 1.2 主从复制的原理是什么？ 1.3 复制的基本原则 1.4 复制的最大问题 2. 实战MySQL主从复制 2.1 环境说明 2.2 MySQL主从复制的复制方" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="实现mysql主从复制、读写分离">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/clashmetagithub/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/clashmetagithub/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4QMXPZG4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V4QMXPZG4V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" data-page="detail">
+        <div class="lines-wrap">
+        <div class="lines-inner">
+            <div class="lines"></div>
+        </div>
+    </div>
+    <!-- END lines -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
+        <div class="container">
+            <div class="site-navigation">
+                                <a href="/" class="logo m-0 float-left">ClashMeta<span class="text-primary">Github</span></span></a>
+                
+                <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
+                                        <li><a href="/" class="nav-link">首页</a></li>
+                                        <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                        <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                        <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="untree_co-hero" id="home-section">
+        <div class="container">
+            <div class="row align-items-center" style="height: 380px;overflow: hidden;padding-top: 0;">
+                <div class="col-12">
+                    <div class="dots"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 ml-auto order-lg-2" data-aos="fade-right" data-aos-delay="400">
+                            <img src="/assets/website/img/clashmetagithub/market-launch-pana.svg" alt="Image" class="img-fluid">
+                        </div> <!-- /.col-lg-6 -->
+                        <div class="col-lg-5">
+                            <h1 class="heading" data-aos="fade-up" data-aos-delay="0">实现mysql主从复制、读写分离</h1>
+                            <div class="excerpt" data-aos="fade-up" data-aos-delay="100">
+                                <p>
+                                    <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                                </p>
+                            </div> <!-- /.excerpt -->
+                        </div> <!-- /.col-lg-5 -->
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /.untree_co-hero -->
+    <div class="untree_co-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="-toc" style="margin-left:80px;"> <p id="1.1%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%EF%BC%9F-toc" style="margin-left:80px;">1.1 为什么要做主从复制？</p> <p id="1.2%20%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-toc" style="margin-left:80px;">1.2 主从复制的原理是什么？</p> <p id="1.3%20%E5%A4%8D%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99-toc" style="margin-left:80px;">1.3 复制的基本原则</p> <p id="1.4%20%E5%A4%8D%E5%88%B6%E7%9A%84%E6%9C%80%E5%A4%A7%E9%97%AE%E9%A2%98-toc" style="margin-left:80px;">1.4 复制的最大问题</p> <p id="2.%20%E5%AE%9E%E6%88%98MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6-toc" style="margin-left:40px;">2. 实战MySQL主从复制</p> <p id="2.1%20%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E-toc" style="margin-left:80px;">2.1 环境说明</p> <p id="2.3%20MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%A4%8D%E5%88%B6%E6%96%B9%E5%BC%8F-toc" style="margin-left:80px;">2.2 MySQL主从复制的复制方式</p> <p id="2.3.1%20SBR%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9-toc" style="margin-left:80px;">2.2.1 SBR方式的优缺点</p> <p id="2.3.2%20RBR%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9-toc" style="margin-left:80px;">2.2.2 RBR方式的优缺点</p> <p id="2.3.3%20%E6%B7%B7%E5%90%88%E6%96%B9%E5%BC%8F-toc" style="margin-left:80px;">2.2.3 混合方式</p> <p id="2.3.4%20%E5%85%A8%E5%B1%80%E4%BA%8B%E5%8A%A1%E6%A0%87%E8%AF%86%E7%AC%A6%20GTID-toc" style="margin-left:80px;">2.2.4 全局事务标识符 GTID</p> <p id="2.4%20%E5%AE%9E%E7%8E%B0MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%9A%84%E9%85%8D%E7%BD%AE-toc" style="margin-left:80px;">2.3 实现MySQL主从复制需要进行的配置</p> <p id="25-修改master配置-toc" style="margin-left:80px;">2.4 修改master配置</p> <p id="26-在主机上建立账户并授权slave-toc" style="margin-left:80px;">2.5 在主机上建立账户并授权slave</p> <p id="27-告知从服务器二进制文件名与位置-toc" style="margin-left:80px;">2.6 告知从服务器二进制文件名与位置</p> <p id="2.8%20%E6%9F%A5%E7%9C%8B%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81%C2%A0-toc" style="margin-left:80px;">2.7 查看从服务器状态</p> <p id="2.9%20%E6%B5%8B%E8%AF%95%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F-toc" style="margin-left:80px;">2.8 测试主从复制是否成功</p> <p id="210-常用语句-toc" style="margin-left:40px;">2.9 常用语句</p> <p id="3.%20%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%AE%9E%E8%B7%B5-toc" style="margin-left:40px;">3. 读写分离实践</p> <p id="3.1%20%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-toc" style="margin-left:80px;">3.1 读写分离的实现方式</p> <p id="3.2%20%E4%BD%BF%E7%94%A8Mycat%E5%AE%9E%E7%8E%B0%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB-toc" style="margin-left:80px;">3.2 使用Mycat实现读写分离</p> <p id="3.2.1%20%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Mycat-toc" style="margin-left:80px;">3.2.1 下载安装Mycat</p> <p id="3.2.2%20%E9%85%8D%E7%BD%AEMycat-toc" style="margin-left:80px;">3.2.2 配置Mycat</p> <p id="3.2.3%20%E5%90%AF%E5%8A%A8mycat-toc" style="margin-left:80px;">3.2.3 启动mycat</p> <p id="3.3%20%E6%B5%8B%E8%AF%95%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB-toc" style="margin-left:80px;">3.3 测试读写分离</p> <p style="margin-left:80px;"> <p>在一主多从的数据库体系中，多个从服务器采用异步的方式更新主数据库的变化，业务服务器在执行写或者相关修改数据库的操作是在主服务器上进行的，读操作则是在各从服务器上进行。如果配置了多个从服务器或者多个主服务器又涉及到相应的负载均衡问题，关于负载均衡具体的技术细节还没有研究过，今天就先简单的实现一主一从的主从复制功能。</p> <p>本文是根据这篇博客自己动手实现的：https://blog.csdn.net/why15732625998/article/details/80463041</p> <h3></h3> <h3 id="1.1%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%EF%BC%9F"><strong>1.1 为什么要做主从复制？</strong></h3> <p><strong>首先我们要知道，主从复制是指同步数据的方式，我们是在主从复制的基础上通过读写分离来提升数据库的并发负载能力的。</strong></p> <ul> <li>读写分离。在业务复杂的系统中，有这么一个情景，有一句sql语句需要锁表，导致暂时不能使用读的服务，那么就很影响运行中的业务，使用主从复制，让主库负责写，从库负责读，这样，即使主库出现了锁表的情景，通过读从库也可以保证业务的正常运作。</li> <li>做数据的热备</li> <li>架构的扩展。业务量越来越大，I/O访问频率过高，单机无法满足，此时做多库的存储，降低磁盘I/O访问的频率，提高单个机器的I/O性能。</li> </ul> <h3 id="1.2%20%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><strong>1.2 主从复制的原理是什么？</strong></h3> <p> 　　MySQL的主从复制是一个异步的复制过程（虽然一般情况下感觉是实时的），数据将从一个MySQL数据库（Master）复制到另一个MySQL数据库（Slave），在Master和Slave之间实现整个主从复制的过程是由三个线程参与完成的。其中两个线程（SQL线程和IO线程）在Slave端，另一个线程（I/O线程）在Master端。<br /> 　　要实现MySQL的主从复制，首先必须打开Master端的binlog记录功能，否则就无法实现。binlog: binary log，是主库中保存所有更新事件日志的二进制文件。因为整个复制过程实际上就是Slave从Master端获取binlog日志，然后在Slave上以相同顺序执行获取的binlog日志中的记录的各种SQL操作。</p> <p>我们根据上图来分析一下整个主从复制的过程：</p> <p>（1）在Slave服务器上执行start slave命令开启主从复制开关，开始进行主从复制。</p> <p>（2）此时，Slave服务器的IO线程会通过在master上已经授权的复制用户权限请求连接Master服务器，并请求从执行binlog日志文件中的指定位置（日志文件名和位置就是在配置主从复制服务时执行change master命令指定的）之后开始发送binlog日志内容。</p> <p>（3）Master服务器接收来自Slave服务器的IO线程的请求后，其上负责复制的IO线程会根据Slave服务器的IO线程请求的信息分批读取指定binlog日志文件指定位置之后的binlog日志信息，然后返回给Slave端的IO线程。返回的信息中除了binlog日志内容外，还有在Master服务器端记录的IO线程。返回的信息中除了binlog中的下一个指定更新位置。</p> <p>（4）当Slave服务器的IO线程获取到Master服务器上IO线程发送的日志内容、日志文件及位置点后，会将binlog日志内容依次写到Slave端自身的Relay Log（即中继日志）文件（Mysql-relay-bin.xxx）的最末端，并将新的binlog文件名和位置记录到master-info文件中，以便下一次读取master端新binlog日志时能告诉Master服务器从新binlog日志的指定文件及位置开始读取新的binlog日志内容</p> <p>（5）Slave服务器端的SQL线程会实时检测本地Relay Log 中IO线程新增的日志内容，然后及时把Relay LOG 文件中的内容解析成sql语句，并在自身Slave服务器上按解析SQL语句的位置顺序执行应用这样sql语句，并在relay-log.info中记录当前应用中继日志的文件名和位置点</p> <p style="text-align:center;"><img fetchpriority="high" decoding="async" alt="è¿éåå¾çæè¿°" height="344" src="http://img.555519.xyz/uploads3/20220830/5b9fdf0369f009b019a8b05312a47a46.jpg"></p> <h3 id="1.3%20%E5%A4%8D%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99">1.3 复制的基本原则</h3> <p>每个Slave只有一个Master</p> <p>每个Slave只能有一个唯一的服务ID</p> <p>每个Master可以有多个Slave</p> <h3 id="1.4%20%E5%A4%8D%E5%88%B6%E7%9A%84%E6%9C%80%E5%A4%A7%E9%97%AE%E9%A2%98">1.4 复制的最大问题</h3> <p>延时</p> <p>主从同步延迟原理和解决方案：&nbsp;https://www.cnblogs.com/cnmenglang/p/6393769.html</p> <h2 id="2.%20%E5%AE%9E%E6%88%98MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6">2. 实战MySQL主从复制</h2> <h3 id="2.1%20%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E">2.1 环境说明</h3> <ul> <li>两个CentOS7虚拟机</li> <li>MySQL 5.7</li> <li>Master_IP:192.168.131.140</li> <li>Slave_IP:192.168.131.141</li> </ul> <p>注意：MySQL版本号最好一致，为了方便学习测试，建议关闭防火墙</p> <h3 id="2.3%20MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E5%A4%8D%E5%88%B6%E6%96%B9%E5%BC%8F">2.2 MySQL主从复制的复制方式</h3> <p>MySQL的主从复制并不完美，存在着几个由来已久的问题，首先一个问题是复制方式：</p> <ul> <li>基于SQL语句的复制（statement-based replication,SBR）</li> <li>基于行的复制（row-based replication,RBR）</li> <li>混合模式复制（mixed-based replication,MBR）</li> <li>全局事务标识符 GTID（Global Transaction Identifier,GTID）</li> <li>基于SQL语句的方式是最古老的方式，也是目前默认的复制方式，后来的三种是MySQL 5以后才出现的复制方式。</li> </ul> <h3 id="2.3.1%20SBR%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9">2.2.1 SBR方式的优缺点</h3> <p>SBR的优点</p> <ul> <li>历史悠久，技术成熟</li> <li>binlog文件较小</li> <li>binlog中包含了所有数据库更改信息，可以据此来审核数据库的安全等情况</li> <li>binlog可以用于实时的还原，而不仅仅用于复制</li> <li>主从版本可以不一样，从服务器版本可以比主服务器版本高</li> </ul> <p>SBR的缺点：</p> <ul> <li>不是所有的UPDATE语句都能被复制，尤其是包含不确定操作的时候</li> <li>复制需要进行全表扫描(WHERE 语句中没有使用到索引)的 UPDATE 时，需要比 RBR 请求更多的行级锁</li> <li>对于一些复杂的语句，在从服务器上的耗资源情况会更严重，而 RBR 模式下，只会对那个发生变化的记录产生影响</li> <li>数据表必须几乎和主服务器保持一致才行，否则可能会导致复制出错</li> <li>执行复杂语句如果出错的话，会消耗更多资源</li> </ul> <h3 id="2.3.2%20RBR%E6%96%B9%E5%BC%8F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9">2.2.2 RBR方式的优缺点</h3> <p>RBR的优点</p> <ul> <li>任何情况都可以被复制，这对复制来说是最安全可靠的</li> <li>和其他大多数数据库系统的复制技术一样</li> <li>多数情况下，从服务器上的表如果有主键的话，复制就会快了很多</li> </ul> <p>RBR 的缺点：</p> <ul> <li>binlog 大了很多</li> <li>复杂的回滚时 binlog 中会包含大量的数据</li> <li>主服务器上执行 UPDATE 语句时，所有发生变化的记录都会写到 binlog 中，而 SBR 只会写一次，这会</li> <li>导致频繁发生 binlog 的并发写问题</li> <li>无法从 binlog 中看到都复制了写什么语句</li> </ul> <h3 id="2.3.3%20%E6%B7%B7%E5%90%88%E6%96%B9%E5%BC%8F">2.2.3 混合方式</h3> <p>混合方式就是有mysql自动选择RBR方式和SBR方式，能够充分发挥两种方式的优点，一般情况下都使用该种方式实现主从复制</p> <h3 id="2.3.4%20%E5%85%A8%E5%B1%80%E4%BA%8B%E5%8A%A1%E6%A0%87%E8%AF%86%E7%AC%A6%20GTID">2.2.4 全局事务标识符 GTID</h3> <p>这种方式虽然能够大大提高主从复制的效率，减小主从复制的延时，但也存在问题，具体请参看下面的博客。</p> <p>https://blog.csdn.net/guotao521/article/details/45483833</p> <p>http://hamilton.duapp.com/detail?articleId=47</p> <h3 id="2.4%20%E5%AE%9E%E7%8E%B0MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%9A%84%E9%85%8D%E7%BD%AE">2.3 实现MySQL主从复制需要进行的配置</h3> <p>主服务器Master</p> <pre><code>开启二进制日志 binlog 配置唯一的server-id 获得master二进制文件名及位置 创建一个用于slave和master通信的用户账号</code></pre> <ul> <li>从服务器Slave</li> </ul> <pre><code>配置唯一的server-id 使用master分配的用户账号读取master二进制日志 启动slave服务</code></pre> <h3 id="25-修改master配置">2.4 修改master配置</h3> <ul> <li>找到<code>主数据库</code>的配置文件my.cnf(或者my.ini)，我的在/etc/my.cnf,在[mysqld]部分插入如下：</li> </ul> <pre><code>[mysqld] #开启二进制日志 log-bin=mysql-bin  #设置server-id，建议使用ip最后3位 server-id=140</code></pre> <ul> <li>找到<code>从数据库</code>的配置文件my.cnf(或者my.ini)，我的在/etc/my.cnf,在[mysqld]部分插入如下：</li> </ul> <pre><code>#开启中继日志 relay-log=mysql-relay #设置server-id，建议使用ip最后3位 server-id=141</code></pre> <ul> <li>重启mysql服务</li> </ul> <pre><code>systemctl restart mysqld.service</code></pre> <h3 id="26-在主机上建立账户并授权slave">2.5 在主机上建立账户并授权slave</h3> <pre><code>GRANT REPLICATION SLAVE ON *.* TO 'mysql141'@'192.168.131.141' IDENTIFIED BY 'mysql141';  flush privileges;  --查询master的状态 show master status\G</code></pre> <p style="text-align:center;"><img decoding="async" alt="" height="493" src="http://img.555519.xyz/uploads3/20220830/7c6a1bbda9ea281184def4809605dbff.jpg"></p> <p>记录上图结果中File和Position的值。</p> <p><strong>注意：</strong><code>执行完此步骤后不要再操作主服务器MySQL，防止主服务器状态发生状态值变化。</code></p> <h3 id="27-告知从服务器二进制文件名与位置">2.6 告知从服务器二进制文件名与位置</h3> <p>这里要根据上面主服务器的状态来填写，不要直接用下面的SQL，需要根据实际值修改。</p> <pre><code>CHANGE MASTER TO master_host = '192.168.131.140',  master_user = 'mysql141',  master_password = 'mysql141',  master_log_file = 'mysql-bin.000001',  master_log_pos = 120;</code></pre> <h3 id="2.8%20%E6%9F%A5%E7%9C%8B%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81%C2%A0">2.7 查看从服务器状态</h3> <pre><code>//开启复制 start slave;  //查看主从复制是否配置成功 SHOW SLAVE STATUS\G</code></pre> <p style="text-align:center;"><img decoding="async" alt="" height="447" src="http://img.555519.xyz/uploads3/20220830/2d9063640a6b2f20bdd551bd312a62d7.jpg"></p> <p style="text-align:center;"><img loading="lazy" decoding="async" alt="" height="211" src="http://img.555519.xyz/uploads3/20220830/7a0b10343e0bb4c174056542948276a0.jpg"></p> <p>当看到Slave_IO_State:Waiting for master ot send event 、Slave_IO_Running: YES、Slave_SQL_Running: YES才表明状态正常。</p> <p>注：如果Slave_IO_Running:connnecting，可能是防火墙没关，我就遇到这个情况了。关闭一下，然后关闭slave重新连接：</p> <pre><code>systemctl stop firewalld.service</code></pre> <h3 id="2.9%20%E6%B5%8B%E8%AF%95%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F">2.8 测试主从复制是否成功</h3> <p>Master中和Slave中执行SQL</p> <pre><code> SHOW DATABASES;  //在Master中创建数据库并创建数据表并插入一条数据 create database haha; use haha; create table tab1(id int auto_increment,name varchar(10),primary key(id)); insert into tab1(id,name) values (1,'test');</code></pre> <p style="text-align:center;"><img loading="lazy" decoding="async" alt="" height="303" src="http://img.555519.xyz/uploads3/20220830/b3d61efc9127b8e765a054d795a086bd.jpg"></p> <ul> <li>在Slave中查询这条数据</li> </ul> <p style="text-align:center;"><img loading="lazy" decoding="async" alt="" height="422" src="http://img.555519.xyz/uploads3/20220830/00a6922d4e12fd1ec26add776c964804.jpg"></p> <p>成了，MySQL主从复制就实现了。</p> <h3 id="210-常用语句">2.9 常用语句</h3> <pre><code>show master status: 查看master的状态，尤其是当前的日志及位置 show slave status 查看slave的状态 reset slave 重置slave状态 start slave 启动slave状态 stop slave 暂停slave状态</code></pre> <h2 id="3.%20%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%AE%9E%E8%B7%B5">3. 读写分离实践</h2> <p>绝大多数的企业的应用场景对于数据库来说都是读多写少，比如微博，明星发一条微博，上千万人读。所以为了分担数据库压力，做负载均衡，首先考虑到的就是读写分离，读写分离基于上面实现的主从复制，使用主库作为写库，从库为读库，提高数据库性能，提高IO性能。</p> <h3 id="3.1%20%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F">3.1 读写分离的实现方式</h3> <p>为了实现读写分离，出现了很多解决方案，其中比较流行的是采用中间件做为Proxy，保持应用层代码不随数据库的变动而发生变化，这里包括Amoeba、Atlas、Cobar、Mycat、MySQL Proxy等，而Mycat是目前开源的数据库中间件中比较成熟的解决方案。可以说Mycat真的非常强大，但是建议慎重考虑使用，具体原因请自行百度mycat发起人和Mycat社区现状。<br /> 　　但我们以学习的目的进行使用还是非常好的，Mycat确实非常强大，我们可以学习他的思想和技术。所以我们使用Mycat中间件作为读写分离的实现方式。<br /> 　　《Mycat权威指南》和《分布式数据库架构及企业实践-基于mycat中间件》两本书都介绍的非常详细。</p> <h3></h3> <h3 id="3.2%20%E4%BD%BF%E7%94%A8Mycat%E5%AE%9E%E7%8E%B0%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB">3.2 使用Mycat实现读写分离</h3> <h3 id="3.2.1%20%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Mycat">&nbsp; &nbsp; 3.2.1 下载安装Mycat</h3> <p>原文链接：https://www.cnblogs.com/joylee/p/7513038.html</p> <p>Mycat官网：http://www.mycat.io/&nbsp; 可以了解下Mycat的背景和应用情况，这样使用起来比较有信心。</p> <p>Mycat下载地址：http://dl.mycat.io/&nbsp; 官网有个文档，属于详细的介绍，初次入门，看起来比较花时间。</p> <p>下载：&nbsp;建议大家选择 1.6-RELEASE 版本，毕竟是比较稳定的版本。</p> <p>安装：&nbsp;根据不同的系统选择不同的版本。包括linux、windows、mac,作者考虑还是非常周全的，当然，也有源码版的。</p> <p>Mycat的安装其实只要解压下载的目录就可以了，非常简单。</p> <p>安装完成后，目录如下：</p> <p style="text-align:center;"><img loading="lazy" decoding="async" alt="" height="251" src="http://img.555519.xyz/uploads3/20220830/655f10855e3f7522a8f08652f90368ad.jpg"></p> <p>配置</p> <p>Mycat的配置文件都在conf目录里面，这里介绍几个常用的文件：</p> <p style="text-align:center;"><img loading="lazy" decoding="async" alt="" height="168" src="http://img.555519.xyz/uploads3/20220830/de19f5793431249368f33f572a72d82b.jpg"></p> <p>我们现在做一个主从、读写分离，简单分表的示例。结构如下图：</p> <p style="text-align:center;"><img loading="lazy" decoding="async" alt="è¿éåå¾çæè¿°" height="364" src="http://img.555519.xyz/uploads3/20220830/1cc4e9744815b08b02e3898e70d1c4a3.jpg"></p> <p> 　　Mycat作为主数据库中间件，肯定是与代码弱关联的，所以代码是不用修改的，使用Mycat后，连接数据库是不变的，默认端口是8066。连接方式和普通数据库一样，如：jdbc:mysql://192.168.0.2:8066/。</p> <h3 id="3.2.2%20%E9%85%8D%E7%BD%AEMycat">&nbsp; &nbsp; 3.2.2 配置Mycat</h3> <p>我们只针对mycat实现简单的读写分离，更多其他特性如分库分表切片的功能请参看上面推荐的书，这里只针对简单的读写分离的配置。<br /> 　　我们真实的物理数据库名称为 itoo_cloud，包含一个表 ta_user，以免大家对后面的配置不明白。</p> <ul> <li> <p><strong>server.xml</strong></p> </li> </ul> <pre><code>    &lt;user name="root"&gt;         &lt;property name="password"&gt;root&lt;/property&gt;         &lt;property name="schemas"&gt;itoo&lt;/property&gt;         &lt;property name="readOnly"&gt;false&lt;/property&gt;         &lt;!-- 表级 DML 权限设置 --&gt;         &lt;!--                 &lt;privileges check="false"&gt;             &lt;schema name="TESTDB" dml="0110" &gt;                 &lt;table name="tb01" dml="0000"&gt;&lt;/table&gt;                 &lt;table name="tb02" dml="1111"&gt;&lt;/table&gt;             &lt;/schema&gt;         &lt;/privileges&gt;                 --&gt;     &lt;/user&gt;</code></pre> <p>重点关注下面这段，其他默认即可</p> <p>我这里配置了一个账号root密码也是root,针对逻辑数据库itoo（自己定义别名，不是真实的物理数据库）,读写权限都有，没有针对表做任何特殊的权限。</p> <ul> <li><strong>schema.xml</strong><br /> schema.xml是最主要的配置项，首先看我的配置文件。</li> </ul> <pre><code>&lt;?xml version="1.0"?&gt; &lt;!DOCTYPE mycat:schema SYSTEM "schema.dtd"&gt; &lt;mycat:schema xmlns:mycat="http://io.mycat/"&gt;      &lt;schema name="itoo" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn1"/&gt;      &lt;dataNode name="dn1" dataHost="auth" database="itoo_cloud" /&gt;       &lt;dataHost name="auth" maxCon="1000" minCon="10" balance="3"               writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100"&gt;         &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;         &lt;writeHost host="hostM" url="192.168.131.140:3306" user="root" password="root"&gt;             &lt;readHost host="hostS1" url="192.168.131.141:3306" user="test" password="test" /&gt;         &lt;/writeHost&gt;     &lt;/dataHost&gt; &lt;/mycat:schema&gt;</code></pre> <p>注意：读库的用户test是添加的mysql用户，只具有读权限的用户：</p> <pre><code>GRANT Select ON *.* TO 'test'@'%' IDENTIFIED BY "test"</code></pre> <p>下面是关于每个节点的配置说明;</p> <p style="text-align:center;"><img decoding="async" alt="è¿éåå¾çæè¿°" src="http://img.555519.xyz/uploads3/20220830/16ae46d830ee0268daf378edd84d175b.jpg"></p> <h3 id="3.2.3%20%E5%90%AF%E5%8A%A8mycat">&nbsp; &nbsp;3.2.3 启动mycat</h3> <p>Mycat的启动也非常简单，进入到bin目录下：</p> <pre><code>##启动 ./mycat start  ##停止 ./mycat stop  ##重启 ./mycat restart</code></pre> <p>如果在启动时发现异常，在logs目录中查看日志。</p> <ul> <li> <p>wrapper.log 为程序启动的日志，启动时的问题看这个</p> </li> <li> <p>mycat.log 为脚本执行时的日志，SQL脚本执行报错后的具体错误内容,查看这个文件。mycat.log是最新的错误日志，历史日志会根据时间生成目录保存。</p> </li> </ul> <p>mycat启动后，执行命令不成功，可能实际上配置有错误，导致后面的命令没有很好的执行。</p> <h3></h3> <h3 id="3.3%20%E6%B5%8B%E8%AF%95%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB">3.3 测试读写分离</h3> <p>使用navicat连接mycat，如下图所示，注意端口为8066。</p> <p style="text-align:center;"><img decoding="async" alt="è¿éåå¾çæè¿°" src="http://img.555519.xyz/uploads3/20220830/f9d4f104754135f8be80b23ccc64cb21.jpg"></p> <ul> <li> <p>测试写，插入一条数据，查看是否成功，查看从库是否数据已经同步过去</p> </li> <li>测试读，这里为了确保读的是从库，我们用root账号登录从库，将刚才插入的数据name值改为别的，然后再次执行查询，看查询出的数据是否为从库的数据。（因为此时主库的name值为原来insert的，而从库的改为了别的）。</li> </ul> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-108306.htm">宠物产品品牌调查（宠物产品市场调研报告）</a></p>
+                                        <p>下一个：<a href="/news/article-109109.htm">领养小狗狗（领养小狗狗游戏）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-103323.htm" title="专科动物医学可以考公务员吗（专科有动物医学）">专科动物医学可以考公务员吗（专科有动物医学）</a></li>
+                        <li class="py-2"><a href="/news/article-89181.htm" title="妙三多猫三联一共几针,多少钱（妙三多猫三联一盒几支）">妙三多猫三联一共几针,多少钱（妙三多猫三联一盒几支）</a></li>
+                        <li class="py-2"><a href="/news/article-99559.htm" title="宠物粮代理怎么拿货便宜 宠物粮批发进货渠道">宠物粮代理怎么拿货便宜 宠物粮批发进货渠道</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-25-free-clash-meta-node.htm" title="「4月25日」最高速度18.9M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「4月25日」最高速度18.9M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-102490.htm" title="哈尔滨王允海宠物医院怎么样啊电话多少（哈尔滨王云海动物医院）">哈尔滨王允海宠物医院怎么样啊电话多少（哈尔滨王云海动物医院）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-5-2-free-clash-meta-node.htm" title="「5月2日」最高速度23M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「5月2日」最高速度23M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-free-clash-meta-node.htm" title="「4月2日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「4月2日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-91030.htm" title="在Java中搜索字符串中的字符。">在Java中搜索字符串中的字符。</a></li>
+                        <li class="py-2"><a href="/news/article-101704.htm" title="动物医院属于什么专业 动物医院属于什么专业类型">动物医院属于什么专业 动物医院属于什么专业类型</a></li>
+                        <li class="py-2"><a href="/news/article-106416.htm" title="动物疫苗现状分析报告模板（动物疫苗市场分析）">动物疫苗现状分析报告模板（动物疫苗市场分析）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /.container -->
+    </div> <!-- /.untree_co-section -->
+        <div class="site-footer">
+        <div class="footer-dots"></div> <!-- /.footer-dots -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p>
+                        <a href="/">Clash Meta Github节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.easing.1.3.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.animateNumber.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/jquery.fancybox.min.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/aos.js"></script>
+    <script src="/assets/website/js/frontend/clashmetagithub/custom.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
