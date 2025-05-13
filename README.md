@@ -1,4 +1,4 @@
-# 「5月8日」最高速度21M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接  更新时间 2025-05-08 10:54:41
+# 「5月13日」最高速度19.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接  更新时间 2025-05-13 09:33:23
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashmetagithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://clashmetagithub.github.io/uploads/2025/05/0-20250508.yaml
-- https://clashmetagithub.github.io/uploads/2025/05/1-20250508.yaml
-- https://clashmetagithub.github.io/uploads/2025/05/2-20250508.yaml
-- https://clashmetagithub.github.io/uploads/2025/05/3-20250508.yaml
-- https://clashmetagithub.github.io/uploads/2025/05/4-20250508.yaml
+- https://clashmetagithub.github.io/uploads/2025/05/0-20250513.yaml
+- https://clashmetagithub.github.io/uploads/2025/05/1-20250513.yaml
+- https://clashmetagithub.github.io/uploads/2025/05/2-20250513.yaml
+- https://clashmetagithub.github.io/uploads/2025/05/3-20250513.yaml
+- https://clashmetagithub.github.io/uploads/2025/05/4-20250513.yaml
 
 ### V2ray订阅链接
 
-- https://clashmetagithub.github.io/uploads/2025/05/0-20250508.txt
-- https://clashmetagithub.github.io/uploads/2025/05/1-20250508.txt
-- https://clashmetagithub.github.io/uploads/2025/05/2-20250508.txt
-- https://clashmetagithub.github.io/uploads/2025/05/3-20250508.txt
-- https://clashmetagithub.github.io/uploads/2025/05/4-20250508.txt
+- https://clashmetagithub.github.io/uploads/2025/05/0-20250513.txt
+- https://clashmetagithub.github.io/uploads/2025/05/1-20250513.txt
+- https://clashmetagithub.github.io/uploads/2025/05/2-20250513.txt
+- https://clashmetagithub.github.io/uploads/2025/05/3-20250513.txt
+- https://clashmetagithub.github.io/uploads/2025/05/4-20250513.txt
 
 ### Sing-box订阅链接
 
-- https://clashmetagithub.github.io/uploads/2025/05/20250508.json
+- https://clashmetagithub.github.io/uploads/2025/05/20250513.json
 
 ## 更多clash节点订阅 ：
 
