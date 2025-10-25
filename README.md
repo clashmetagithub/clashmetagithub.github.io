@@ -1,4 +1,4 @@
-# 「10月19日」最高速度19.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接  更新时间 2025-10-19 08:20:59
+# 「10月25日」最高速度21.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接  更新时间 2025-10-25 09:03:10
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashmetagithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://clashmetagithub.github.io/uploads/2025/10/0-20251019.yaml
-- https://clashmetagithub.github.io/uploads/2025/10/1-20251019.yaml
-- https://clashmetagithub.github.io/uploads/2025/10/2-20251019.yaml
-- https://clashmetagithub.github.io/uploads/2025/10/3-20251019.yaml
-- https://clashmetagithub.github.io/uploads/2025/10/4-20251019.yaml
+- https://clashmetagithub.github.io/uploads/2025/10/0-20251025.yaml
+- https://clashmetagithub.github.io/uploads/2025/10/1-20251025.yaml
+- https://clashmetagithub.github.io/uploads/2025/10/2-20251025.yaml
+- https://clashmetagithub.github.io/uploads/2025/10/3-20251025.yaml
+- https://clashmetagithub.github.io/uploads/2025/10/4-20251025.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://clashmetagithub.github.io/uploads/2025/10/0-20251019.txt
-- https://clashmetagithub.github.io/uploads/2025/10/1-20251019.txt
-- https://clashmetagithub.github.io/uploads/2025/10/2-20251019.txt
-- https://clashmetagithub.github.io/uploads/2025/10/3-20251019.txt
-- https://clashmetagithub.github.io/uploads/2025/10/4-20251019.txt
+- https://clashmetagithub.github.io/uploads/2025/10/0-20251025.txt
+- https://clashmetagithub.github.io/uploads/2025/10/1-20251025.txt
+- https://clashmetagithub.github.io/uploads/2025/10/2-20251025.txt
+- https://clashmetagithub.github.io/uploads/2025/10/3-20251025.txt
+- https://clashmetagithub.github.io/uploads/2025/10/4-20251025.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://clashmetagithub.github.io/uploads/2025/10/20251019.json
+- https://clashmetagithub.github.io/uploads/2025/10/20251025.json
 
 ## 更多Clash节点订阅 ：
 
