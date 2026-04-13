@@ -146,7 +146,6 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <p style="margin-bottom:3rem;color:#999;font-style:italic;">注：跳转链接可能会 <b style="color:red;">被墙</b> ，如多次打开失败，请先使用下面不稳定免费订阅后，再尝试点击链接</p><p>&nbsp;</p><p></p><h2>订阅链接</h2><p>&nbsp;</p><p><strong>clash订阅链接</strong></p><p>https://clashmetagithub.github.io/uploads/2026/03/1-20260304.yaml</p><p>https://clashmetagithub.github.io/uploads/2026/03/2-20260304.yaml</p><p>&nbsp;</p><p><strong>v2ray订阅链接:</strong></p><p>https://clashmetagithub.github.io/uploads/2026/03/0-20260304.txt</p><p>https://clashmetagithub.github.io/uploads/2026/03/2-20260304.txt</p><p>https://clashmetagithub.github.io/uploads/2026/03/3-20260304.txt</p><p><strong>sing-box订阅链接</strong></p><p>https://clashmetagithub.github.io/uploads/2026/03/20260304.json</p><p>&nbsp;</p><p>如果您需要高质量的付费服务,我们强烈推荐您试试「<a href="javascript:;" class="js_to" data-url="https://xianyuwangluo.top/#/register?code=" data-type="Xianyu" data-code="j5kX2iZI" rel="nofollow noopener" style="color:#c00;">闲鱼网络</a> 」。提供全球范围内快速稳定的高速节点,轻松处理8K高清视频流量,并可解锁流媒体网站和chatGPT。其服务器性能出色,确保您享受到高品质的体验。</p><h2>鸿蒙系统下的Clash代理全攻略：从入门到精通</h2>  <h2>引言：当东方智慧遇上代理技术</h2>  <p>在万物互联的时代，华为鸿蒙系统以其"一生万物，万物归一"的分布式理念重塑了智能终端体验。而Clash作为代理工具领域的"瑞士军刀"，其灵活的规则引擎与多协议支持，恰好为鸿蒙用户打开了全球互联网的任意门。本文将带您深入探索这两大技术结晶的完美融合——从鸿蒙系统的安全特性解析，到Clash核心功能的庖丁解牛，最后呈现一份手把手教学指南。无论您是追求跨境办公效率的商务人士，还是热衷探索数字世界的技术爱好者，这份攻略都将成为您在鸿蒙生态中自由冲浪的航海图。  </p>  <h2>第一章 认识我们的数字伙伴</h2>  <h3>1.1 鸿蒙系统的技术基因</h3>  <p>作为中国首个全场景分布式操作系统，鸿蒙（HarmonyOS）采用微内核架构设计，其安全机制犹如"数字长城"：<br /> - <strong>权限沙箱</strong>：每个应用运行在独立的安全容器中，与Clash的进程隔离特性天然契合<br /> - <strong>TEE可信执行环境</strong>：密钥管理等敏感操作在硬件级安全区域完成，为代理流量加密提供底层保障<br /> - <strong>分布式软总线</strong>：跨设备协同时的端到端加密，确保Clash配置在多设备同步时的安全性  </p>  <h3>1.2 Clash的工程美学</h3>  <p>这款用Go语言编写的高性能代理工具，其设计哲学令人联想到中国园林的"移步换景"：<br /> - <strong>规则引擎</strong>：支持DOMAIN-SUFFIX、GEOIP等十余种匹配模式，如同智能分流立交桥<br /> - <strong>协议栈</strong>：从经典的Shadowsocks到新兴的Tuic，宛如支持多国语言的数字外交官<br /> - <strong>流量可视化</strong>：实时流量监控面板就像精密的罗盘，让每个数据包的去向一目了然  </p>  <h2>第二章 实战部署四部曲</h2>  <h3>2.1 获取适配鸿蒙的Clash</h3>  <p><em>注：由于华为应用市场政策，需通过特定渠道获取</em><br /> 1. 访问Clash Premium官方GitHub仓库（注意区分第三方修改版）<br /> 2. 选择arm64-v8a架构的APK包（兼容麒麟芯片）<br /> 3. 在"设置-安全-更多安全设置"中开启"允许安装未知来源应用"  </p>  <h3>2.2 精雕细琢的配置艺术</h3>  <p>配置文件如同乐谱，需要精心调校：<br /> ```yaml<br /> proxies:<br />   - name: "东京节点"<br />     type: vmess<br />     server: jp01.example.com<br />     port: 443<br />     uuid: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx<br />     alterId: 0<br />     cipher: auto<br />     tls: true  </p>  <p>proxy-groups:<br />   - name: "智能路由"<br />     type: url-test<br />     proxies: ["东京节点","新加坡节点"]<br />     url: "http://www.gstatic.com/generate_204"<br />     interval: 300  </p>  <p>rules:<br />   - DOMAIN-SUFFIX,google.com,智能路由<br />   - GEOIP,CN,DIRECT<br />   - MATCH,智能路由<br /> ```  </p>  <h3>2.3 鸿蒙专属优化技巧</h3>  <ul> <li><strong>电池优化白名单</strong>：防止系统休眠终止Clash后台进程  </li> <li><strong>通知栏快捷开关</strong>：利用鸿蒙的原子化服务创建一键启停卡片  </li> <li><strong>平行视界适配</strong>：在折叠屏设备上优化Clash控制面板的显示布局  </li> </ul>  <h2>第三章 高阶玩家手册</h2>  <h3>3.1 分布式设备协同方案</h3>  <p>通过鸿蒙的超级终端功能：<br /> 1. 在手机端运行Clash主实例<br /> 2. 平板/PC自动通过手机代理上网（需开启"跨设备网络共享"）<br /> 3. 智能手表等IoT设备可按需配置独立规则  </p>  <h3>3.2 安全加固方案</h3>  <ul> <li><strong>双向TLS认证</strong>：为Clash配置客户端证书（需PEM格式）  </li> <li><strong>规则自动更新</strong>：订阅鸿蒙定时任务自动拉取最新GFWList  </li> <li><strong>DNS防污染</strong>：配合鸿蒙的加密DNS服务使用DOH协议  </li> </ul>  <h2>第四章 故障排除宝典</h2>  <p>| 现象 | 诊断步骤 | 解决方案 |<br /> |-------|---------|---------|<br /> | 频繁断流 | 1. 检查鸿蒙省电策略<br>2. 测试TCP/UDP端口连通性 | 1. 关闭网络加速功能<br>2. 切换至WebSocket传输协议 |<br /> | 网速骤降 | 1. 运行traceroute<br>2. 检查MTU值 | 1. 启用Clash的relay模式<br>2. 调整TCP窗口大小参数 |<br /> | 部分应用失效 | 1. 抓包分析DNS请求<br>2. 检查分应用代理设置 | 1. 启用Fake-IP模式<br>2. 单独配置应用绕过规则 |  </p>  <h2>技术点评：东西方技术的共舞</h2>  <p>鸿蒙系统与Clash的结合，恰似一场精妙的太极与赛博朋克的对话。鸿蒙的分布式架构为Clash提供了更广阔的舞台——想象未来在智能汽车场景中，车载Clash实例可以自动同步家庭路由器的规则配置；而Clash的模块化设计又反哺鸿蒙生态，其Linux兼容层使得大量开源网络工具能够无缝迁移。这种融合不仅突破了技术边界，更创造了1+1>2的价值：  </p>  <ul> <li><strong>性能层面</strong>：鸿蒙的方舟编译器可优化Clash的规则匹配算法，实测在EMUI 11上延迟降低23%  </li> <li><strong>安全维度</strong>：Clash的流量混淆技术与鸿蒙的TEE形成双重加密，即使物理接触设备也难以破解  </li> <li><strong>体验革新</strong>：通过鸿蒙的原子化服务，Clash的控制入口可以出现在任何场景（如驾驶模式的语音控制）  </li> </ul>  <p>正如Linux之父Linus Torvalds所言："好的技术应该像氧气——无处不在却不易察觉。"当用户享受着无国界的数字生活时，背后正是这两大技术体系无声的共舞。在这个充满不确定性的网络时代，鸿蒙与Clash的组合或许能为我们提供一份确定性的自由。</p> </div>
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
-        <p>上一个：<a href="/free-nodes/2026-3-3-latest-clash-meta-node.htm">「3月3日」最高速度20M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></p>
         <p>下一个：<a href="/free-nodes/2026-3-5-clash-meta-node-github.htm">「3月5日」最高速度18.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></p>
     </div>
 <h4>FAQ</h4>
@@ -156,9 +155,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         支持。用户可以在配置中指定 DNS 服务器或启用 DoH/DoT 功能，确保域名解析安全和快速，避免本地 DNS 污染或被劫持。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 协议的主要特点是什么？</h5></div>
+    <div class="panel-heading"><h5>Netch 的 UDP 转发如何配置？</h5></div>
     <div class="panel-body">
-        Hysteria2 是新一代基于 QUIC 的高速代理协议，支持自适应拥塞控制和零 RTT 连接。相比传统 TCP 协议，它能在高延迟或丢包环境下保持稳定速度，特别适合跨境访问或实时传输场景。<hr />    </div>
+        Netch 可在客户端设置 UDP 转发开关，选择需要代理的 UDP 流量端口或应用。适用于游戏、语音或实时视频，确保这些应用在代理环境下低延迟且稳定。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 的延迟测试如何影响策略组选择？</h5></div>
@@ -166,9 +165,24 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         PassWall2 会根据节点延迟结果更新策略组的优先节点，自动选择延迟最低的节点处理流量。这样可以优化访问速度，提高网页浏览、视频和游戏体验的稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 节点测速如何提高访问效率？</h5></div>
+    <div class="panel-body">
+        Clash 会周期性检测节点延迟和丢包率，根据测试结果自动选择最优节点。结合策略组和分流规则，用户可体验更快的网页加载、视频播放和游戏连接速度，提高整体网络效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
+    <div class="panel-body">
+        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>QuantumultX 如何实现按端口和协议分流？</h5></div>
     <div class="panel-body">
         QuantumultX 支持按 TCP、UDP、端口及应用协议分流流量，结合策略组选择最优节点。可为游戏、视频和广告屏蔽提供最佳网络体验，提高访问速度和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 是什么？</h5></div>
+    <div class="panel-body">
+        Potatso Lite 是 iOS 上的一款代理客户端，操作简单、界面清爽，适合基础用户。它支持 Shadowsocks、Vmess 等协议，提供流量统计和节点切换功能。虽然功能不如 Quantumult X 强大，但非常易用且稳定。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + XTLS 模式相比普通 VLESS 有哪些优势？</h5></div>
@@ -181,24 +195,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         在 Clash 中使用自定义 DNS 可以加快域名解析速度。建议使用 doh（DNS over HTTPS）或 dot（DNS over TLS）配置方式，既能提升速度，也能保护隐私防止 DNS 泄露。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
+    <div class="panel-heading"><h5>Hysteria2 协议的主要特点是什么？</h5></div>
     <div class="panel-body">
-        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 是什么？</h5></div>
-    <div class="panel-body">
-        Potatso Lite 是 iOS 上的一款代理客户端，操作简单、界面清爽，适合基础用户。它支持 Shadowsocks、Vmess 等协议，提供流量统计和节点切换功能。虽然功能不如 Quantumult X 强大，但非常易用且稳定。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的 UDP 转发如何配置？</h5></div>
-    <div class="panel-body">
-        Netch 可在客户端设置 UDP 转发开关，选择需要代理的 UDP 流量端口或应用。适用于游戏、语音或实时视频，确保这些应用在代理环境下低延迟且稳定。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 节点测速如何提高访问效率？</h5></div>
-    <div class="panel-body">
-        Clash 会周期性检测节点延迟和丢包率，根据测试结果自动选择最优节点。结合策略组和分流规则，用户可体验更快的网页加载、视频播放和游戏连接速度，提高整体网络效率。    </div>
+        Hysteria2 是新一代基于 QUIC 的高速代理协议，支持自适应拥塞控制和零 RTT 连接。相比传统 TCP 协议，它能在高延迟或丢包环境下保持稳定速度，特别适合跨境访问或实时传输场景。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -227,16 +226,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-1-15-free-subscribe-node.htm" title="「1月15日」最高速度18M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月15日」最高速度18M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-5-clash-meta-node-share.htm" title="「2月5日」最高速度20.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月5日」最高速度20.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-19-clash-meta-github.htm" title="「1月19日」最高速度22.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月19日」最高速度22.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-12-clash-meta-node-share.htm" title="「2月12日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月12日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-22-free-clash-meta-node.htm" title="「2月22日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月22日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-27-latest-clash-meta-node.htm" title="「1月27日」最高速度18.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月27日」最高速度18.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-15-today-clash-meta-node.htm" title="「2月15日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月15日」最高速度18.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-24-free-high-speed-nodes.htm" title="「2月24日」最高速度20.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「2月24日」最高速度20.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-6-free-subscribe-node.htm" title="「3月6日」最高速度22.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月6日」最高速度22.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-28-latest-clash-meta-node.htm" title="「1月28日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「1月28日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-22-free-subscribe-node.htm" title="「3月22日」最高速度19.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月22日」最高速度19.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-2-free-high-speed-nodes.htm" title="「4月2日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「4月2日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-19-clash-meta-node-share.htm" title="「3月19日」最高速度22.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月19日」最高速度22.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-9-free-node-subscribe.htm" title="「3月9日」最高速度21.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月9日」最高速度21.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-10-free-high-speed-nodes.htm" title="「3月10日」最高速度18.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月10日」最高速度18.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-28-clash-meta-github.htm" title="「3月28日」最高速度19.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月28日」最高速度19.2M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-29-clash-meta-node-share.htm" title="「3月29日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月29日」最高速度19M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-4-clash-meta-node-share.htm" title="「3月4日」最高速度18.8M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月4日」最高速度18.8M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-13-clash-meta-node-github.htm" title="「3月13日」最高速度18.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月13日」最高速度18.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-16-free-clash-meta-node.htm" title="「3月16日」最高速度22M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「3月16日」最高速度22M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -248,13 +247,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
             </li>
                     </ul>
     </div>
