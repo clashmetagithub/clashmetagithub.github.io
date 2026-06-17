@@ -1,4 +1,4 @@
-# 「6月10日」最高速度21.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接  更新时间 2026-06-10 09:22:44
+# 「6月17日」最高速度20.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接  更新时间 2026-06-17 10:43:02
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashmetagithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://clashmetagithub.github.io/uploads/2026/06/0-20260610.yaml
-- https://clashmetagithub.github.io/uploads/2026/06/1-20260610.yaml
-- https://clashmetagithub.github.io/uploads/2026/06/2-20260610.yaml
-- https://clashmetagithub.github.io/uploads/2026/06/3-20260610.yaml
-- https://clashmetagithub.github.io/uploads/2026/06/4-20260610.yaml
+- https://clashmetagithub.github.io/uploads/2026/06/0-20260617.yaml
+- https://clashmetagithub.github.io/uploads/2026/06/1-20260617.yaml
+- https://clashmetagithub.github.io/uploads/2026/06/2-20260617.yaml
+- https://clashmetagithub.github.io/uploads/2026/06/3-20260617.yaml
+- https://clashmetagithub.github.io/uploads/2026/06/4-20260617.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://clashmetagithub.github.io/uploads/2026/06/0-20260610.txt
-- https://clashmetagithub.github.io/uploads/2026/06/1-20260610.txt
-- https://clashmetagithub.github.io/uploads/2026/06/2-20260610.txt
-- https://clashmetagithub.github.io/uploads/2026/06/3-20260610.txt
-- https://clashmetagithub.github.io/uploads/2026/06/4-20260610.txt
+- https://clashmetagithub.github.io/uploads/2026/06/0-20260617.txt
+- https://clashmetagithub.github.io/uploads/2026/06/1-20260617.txt
+- https://clashmetagithub.github.io/uploads/2026/06/2-20260617.txt
+- https://clashmetagithub.github.io/uploads/2026/06/3-20260617.txt
+- https://clashmetagithub.github.io/uploads/2026/06/4-20260617.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://clashmetagithub.github.io/uploads/2026/06/20260610.json
+- https://clashmetagithub.github.io/uploads/2026/06/20260617.json
 
 ## 更多Clash节点订阅 ：
 
