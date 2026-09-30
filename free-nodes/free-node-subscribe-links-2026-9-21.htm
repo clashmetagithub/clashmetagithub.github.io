@@ -290,29 +290,9 @@ A：推荐加入Clash中文交流群、访问GitHub Issue区，或在Telegram中
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何按 IP 段实现智能分流？</h5></div>
+    <div class="panel-heading"><h5>Shadowrocket 的节点测速结果如何应用？</h5></div>
     <div class="panel-body">
-        Sing-box 支持根据 IP 段匹配流量，将国内流量直连、国外流量走代理。结合策略组和规则文件，实现精细化流量管理，保证访问速度和稳定性，同时提高节点使用效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 如何实现用户流量分配？</h5></div>
-    <div class="panel-body">
-        管理员可为每个用户设置带宽和流量配额。超出限制时可自动降速或阻止访问，确保服务器资源合理分配，避免单用户占用过多带宽，提高整体网络公平性和效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 节点延迟检测如何优化网络访问？</h5></div>
-    <div class="panel-body">
-        Clash 会定期测试节点延迟，并结合策略组自动选择最优节点。避免访问高延迟或失效节点，提升网页浏览、视频播放和游戏速度及稳定性，提高整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 的订阅更新机制如何运作？</h5></div>
-    <div class="panel-body">
-        Nekoray 可以通过远程订阅 URL 自动下载最新节点和规则文件。用户可以设置更新频率，程序会定时检测并替换旧节点，保持配置最新状态。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 策略组如何提升游戏和视频体验？</h5></div>
-    <div class="panel-body">
-        通过策略组将游戏、视频和浏览器流量分配到低延迟、高带宽节点，Surfboard 可自动切换最优节点，减少延迟和卡顿，提高整体网络体验和访问速度。<hr />    </div>
+        节点测速结果可用于策略组选择和自动切换，程序会根据延迟和丢包率选择最优节点。这样访问海外网站或流媒体时，可以保持高速和稳定的网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VMess 使用 AEAD 加密的优势是什么？</h5></div>
@@ -320,14 +300,14 @@ A：推荐加入Clash中文交流群、访问GitHub Issue区，或在Telegram中
         AEAD 加密提供更强的安全性和抗重放攻击能力，同时隐藏流量特征，降低被 DPI 检测风险。在高封锁环境下使用，可提升连接稳定性和长期可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekobox 是否可以管理多客户端节点？</h5></div>
+    <div class="panel-body">
+        可以。Nekobox 与 Shadowsocks、Clash 等客户端独立运行，互不干扰。结合策略组使用，可灵活分配节点，实现多客户端管理和流量优化。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 支持订阅链接导入吗？</h5></div>
     <div class="panel-body">
         Potatso Lite 不支持自动订阅功能，用户需手动添加节点。如果想批量导入订阅，可使用其他客户端生成节点二维码，再手动扫描添加。适合轻量使用者。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 的节点测速结果如何应用？</h5></div>
-    <div class="panel-body">
-        节点测速结果可用于策略组选择和自动切换，程序会根据延迟和丢包率选择最优节点。这样访问海外网站或流媒体时，可以保持高速和稳定的网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 的分组策略可以自动切换节点吗？</h5></div>
@@ -335,9 +315,29 @@ A：推荐加入Clash中文交流群、访问GitHub Issue区，或在Telegram中
         可以。用户可以设置策略组，PassWall2 会定期测速并根据延迟或成功率自动选择最优节点，实现智能节点切换，保证网络稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 是否可以管理多客户端节点？</h5></div>
+    <div class="panel-heading"><h5>Hiddify Next 如何实现用户流量分配？</h5></div>
     <div class="panel-body">
-        可以。Nekobox 与 Shadowsocks、Clash 等客户端独立运行，互不干扰。结合策略组使用，可灵活分配节点，实现多客户端管理和流量优化。    </div>
+        管理员可为每个用户设置带宽和流量配额。超出限制时可自动降速或阻止访问，确保服务器资源合理分配，避免单用户占用过多带宽，提高整体网络公平性和效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 的订阅更新机制如何运作？</h5></div>
+    <div class="panel-body">
+        Nekoray 可以通过远程订阅 URL 自动下载最新节点和规则文件。用户可以设置更新频率，程序会定时检测并替换旧节点，保持配置最新状态。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 节点延迟检测如何优化网络访问？</h5></div>
+    <div class="panel-body">
+        Clash 会定期测试节点延迟，并结合策略组自动选择最优节点。避免访问高延迟或失效节点，提升网页浏览、视频播放和游戏速度及稳定性，提高整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 策略组如何提升游戏和视频体验？</h5></div>
+    <div class="panel-body">
+        通过策略组将游戏、视频和浏览器流量分配到低延迟、高带宽节点，Surfboard 可自动切换最优节点，减少延迟和卡顿，提高整体网络体验和访问速度。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何按 IP 段实现智能分流？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持根据 IP 段匹配流量，将国内流量直连、国外流量走代理。结合策略组和规则文件，实现精细化流量管理，保证访问速度和稳定性，同时提高节点使用效率。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -385,16 +385,16 @@ A：推荐加入Clash中文交流群、访问GitHub Issue区，或在Telegram中
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-9-18-free-subscribe-node.htm" title="「9月18日」最高速度19.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月18日」最高速度19.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-15.htm" title="「9月15日」最高速度21.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月15日」最高速度21.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-16-today-clash-meta-node.htm" title="「8月16日」最高速度19.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月16日」最高速度19.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/clash-meta-node-github-2026-8-15.htm" title="「8月15日」最高速度22.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月15日」最高速度22.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-11.htm" title="「9月11日」最高速度22.8M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月11日」最高速度22.8M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-22-clash-meta-node.htm" title="「9月22日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月22日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-23.htm" title="「9月23日」最高速度20.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月23日」最高速度20.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-19.htm" title="「8月19日」最高速度20.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月19日」最高速度20.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-2-node-share.htm" title="「9月2日」最高速度22.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月2日」最高速度22.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-meta-node-share-2026-8-9.htm" title="「8月9日」最高速度18.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月9日」最高速度18.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-7.htm" title="「9月7日」最高速度19.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月7日」最高速度19.3M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-6-free-subscribe-node.htm" title="「8月6日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月6日」最高速度21.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-24-today-clash-meta-node.htm" title="「8月24日」最高速度22.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月24日」最高速度22.6M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-24-free-subscribe-node.htm" title="「9月24日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月24日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-14-node-share.htm" title="「8月14日」最高速度21.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月14日」最高速度21.1M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-25.htm" title="「9月25日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月25日」最高速度19.5M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-16-free-node-subscribe.htm" title="「9月16日」最高速度20M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「9月16日」最高速度20M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-13.htm" title="「8月13日」最高速度18.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月13日」最高速度18.4M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-17.htm" title="「8月17日」最高速度19.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接">「8月17日」最高速度19.7M/S，2025年Clash Meta Github每天更新免费机场订阅节点链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -406,7 +406,7 @@ A：推荐加入Clash中文交流群、访问GitHub Issue区，或在Telegram中
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
